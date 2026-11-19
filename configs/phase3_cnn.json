@@ -1,0 +1,28 @@
+{
+  "seed": 7,
+  "batch_size": 16,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "maximum_epochs": 30,
+  "patience": 5,
+  "optimizer": "AdamW",
+  "device": "auto",
+  "cpu_threads": 4,
+  "class_weight_maximum_ratio": 4.0,
+  "cache_traces_in_ram": true,
+  "model": {
+    "input_channels": 24,
+    "classes": 12,
+    "width": 64,
+    "kernel_size": 5,
+    "dilations": [1, 2, 4],
+    "convolutions_per_block": 2,
+    "dropout": 0.1
+  },
+  "overfit_sanity": {
+    "training_traces": 2,
+    "maximum_steps": 300,
+    "minimum_accuracy": 0.95,
+    "maximum_final_initial_loss_ratio": 0.2
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "confusion_matrix.png": {
+    "source": "outputs/phase3/cnn/unweighted/confusion_matrix.png",
+    "sha256": "cbcef9725c19ce897b34badd16a150a68226d835f146b0751df9ca744daf6ade"
+  },
+  "learning_curves.png": {
+    "source": "outputs/phase3/cnn/unweighted/learning_curves.png",
+    "sha256": "3cabca189cac6f0c5d8b366d9751c62282eeadb0288fb1b28d405c3c9e56f073"
+  },
+  "per_class_comparison.png": {
+    "source": "outputs/phase3/cnn/per_class_comparison.png",
+    "sha256": "920702e12a4dac3ea1441c6b56c0d3e797ca48724f6df8e83da35debf79d8aa5"
+  },
+  "temporal_diagnostic.png": {
+    "source": "outputs/phase3/cnn/temporal_diagnostic.png",
+    "sha256": "809ce3023dfee2733b6ec0817a1ceda2cd19903d82fa5440d79708b0ae0a8e62"
+  },
+  "audit_verdict.json": {
+    "source": "outputs/phase3/cnn_audit/verification.json",
+    "sha256": "b38b50c2c9fddac9d23e3978fd55ee401d96b0b2ecaff76cd7f23c0d7b47403e"
+  },
+  "comparison.json": {
+    "source": "outputs/phase3/cnn_audit/metrics_recalculated.json",
+    "source_sha256": "a6f8d2c4da3df592ae23badc58cef45311ef34ad6e935bd5d64e8052067d211b",
+    "derived_sha256": "b297f61e42dc2a9834a530719a884584694c268edf8a834613afc1276d610b99"
+  },
+  "per_class.csv": {
+    "source": "outputs/phase3/cnn_audit/metrics_recalculated.json",
+    "source_sha256": "a6f8d2c4da3df592ae23badc58cef45311ef34ad6e935bd5d64e8052067d211b",
+    "derived_sha256": "b44043a07909feed60b629ac81ec08ff5df85f8a76bce5ba02a211a004f42144"
+  }
+}

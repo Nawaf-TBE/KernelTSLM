@@ -1,0 +1,33 @@
+# Local environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.cache/
+.DS_Store
+# Reproducible generated figures and provenance manifests
+outputs/
+
+.pytest_cache/
+
+.worktrees/
+
+# Private research data and compatibility aliases
+data/
+kernels
+splits
+tools
+reports
+*.pt
+*.pth
+*.npz
+*.parquet
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.codex/
+.agents/
+.aws/
+# Verbatim third-party documentation remains local pending license review
+docs/dataset/

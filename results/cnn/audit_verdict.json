@@ -1,0 +1,47 @@
+{
+  "status": "passed_with_qualifications",
+  "verdict": "VERIFIED WITH QUALIFICATIONS",
+  "meaning": "Results are numerically correct but there are material generalization or reproducibility limitations.",
+  "confirmed_technical_correctness": "passed: artifact identity, independent confusion arithmetic, CPU frozen replay, training implementation, strict split isolation",
+  "reproducibility": "fixed checkpoint replay passed; seeded initialization and all 18 shuffle orders reproduced; MPS training nondeterminism and single seed qualify end-to-end reproduction",
+  "workload_generalization": "qualified: all 160 validation traces share collector families with training; only two traces contain any individually unseen compiled kernel symbol",
+  "scientific_interpretation": "validation primary L1 recognition only; not unseen-workload/hardware, overlap detection or counter-grounded explanation evidence",
+  "hard_failures": [],
+  "nonblocking_findings": [
+    "Future unsupported optimizer/cache configuration values are not rejected; separate proposed patch is not applied."
+  ],
+  "evidence": {
+    "protocol": "protocol.json",
+    "integrity": "source_integrity.json",
+    "metrics": "metrics_recalculated.json",
+    "inference": "cpu_replay.json",
+    "data_isolation": "data_isolation.json",
+    "training_review": "training_implementation_review.json",
+    "loss_optimizer": "training_synthetic_checks.json",
+    "training_controls": "training_control_checks.json",
+    "workloads": "workload_overlap_analysis.json",
+    "temporal": "temporal_diagnostics.json",
+    "uncertainty": "uncertainty.json",
+    "preservation": "preservation_after.json",
+    "regression": "regression.xml",
+    "historical_verifier": "legacy_verification/artifact_verification.json",
+    "evidence_hashes": "audit_evidence_hashes.json"
+  },
+  "regression": {
+    "tests": 62,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "passed": 61
+  },
+  "validation_traces": 160,
+  "valid_validation_bins": 33416,
+  "existing_files_unchanged": 22208,
+  "retrained": false,
+  "hyperparameters_tuned": false,
+  "test_evaluated": false,
+  "test_arrays_decoded": false,
+  "frozen_changed": false,
+  "historical_verifier_outputs_redirected": true,
+  "team_summary": "Share confirmed official-validation scores and fixed CPU replay with trace-cluster intervals and workload-overlap qualifications; novel workload/hardware generalization remains preliminary."
+}
