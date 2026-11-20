@@ -1,0 +1,53 @@
+{
+  "verdict": "VERIFIED WITH QUALIFICATIONS",
+  "status": "passed",
+  "validation_questions": 2369,
+  "training_questions": 16652,
+  "unique_validation_traces": 160,
+  "all_model_replays_match": true,
+  "independent_features": "Python fsum/std/explicit peak search",
+  "independent_prediction": "manual StandardScaler and coefficient matrix replay; exact classes",
+  "independent_metrics": "Python confusion counts, scalar precision/recall/F1, fsum numerical errors",
+  "training_scaler_moments_recomputed": true,
+  "training_rules_recomputed": true,
+  "qa_sha256": {
+    "train": "d63a0544e7ae3e3029d1af42c4a9a9f0d10308a8f4fcab7f29eecd816f298d41",
+    "val": "e873d36c89f86619bb29c98b19971e9b574490f48f9f37e94ad8b66c6adcf0df"
+  },
+  "preservation": {
+    "status": "passed",
+    "files_unchanged": 5161
+  },
+  "no_test_arrays_decoded": true,
+  "limitations": [
+    "shared workload families",
+    "single seed",
+    "primary features may indirectly reveal answers on special cases",
+    "aware features are answer-sufficient; direct solver is arithmetic, not learned reasoning",
+    "structured parameters supplied; no natural-language parsing evaluated"
+  ],
+  "tests": {
+    "focused": {
+      "tests": 16,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "passed": 16
+    },
+    "regression": {
+      "tests": 111,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 1,
+      "passed": 110
+    }
+  },
+  "feature_cache_replay": "all training/validation matrices independently reconstructed and compared at 1e-10",
+  "figures": 5,
+  "figures_visually_inspected": true,
+  "qa_v1_modified": false,
+  "cnn_modified": false,
+  "published": false,
+  "fit_repeatability": "all coefficients/intercepts/scalers bitwise identical; corrected run reproduces first attempt predictions exactly",
+  "statistics_paired_uncertainty": "statistics_paired_uncertainty.json"
+}

@@ -1,0 +1,14 @@
+{
+  "version": "qa-baselines-v1.0",
+  "seed": 7,
+  "logistic": {"C": 1.0, "solver": "lbfgs", "max_iter": 3000, "tol": 0.00000001, "random_state": 7},
+  "primary": "per counter mean, population std, first, last; A-B differences; length/512; ordered counter one-hots (24+24)",
+  "calculation_aware_additions": "per counter min, max, first-peak position/(length-1); A-B differences",
+  "scaling": "StandardScaler training-only continuous features; one-hot IDs passed unchanged",
+  "majority_tie_rule": "first encountered training category, matching frozen QA quality diagnostic",
+  "numerical_constant": "median training statistics answer",
+  "ablation": "reverse both queried channels within interval; preserve question parameters; all categorical tasks",
+  "identity_only_control": "replace all continuous features with training scaler means before scaling; retain ordered IDs",
+  "bootstrap": {"seed": 7, "replicates": 5000, "unit": "whole official validation trace", "interval": "percentile 2.5/97.5", "absent_class": "fixed supported classes, F1/recall=0", "paired": true},
+  "selection": "none; fixed hyperparameters, no validation selection"
+}

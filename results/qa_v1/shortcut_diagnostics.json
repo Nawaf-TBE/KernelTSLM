@@ -1,0 +1,28 @@
+{
+  "comparison": {
+    "primary": {
+      "accuracy": 0.93375,
+      "identities_only_accuracy": 0.48875,
+      "prediction_change_fraction": 0.4775
+    },
+    "aware": {
+      "accuracy": 0.98125,
+      "identities_only_accuracy": 0.48875,
+      "prediction_change_fraction": 0.4975
+    },
+    "lookup_reproduces_qa_v1": true
+  },
+  "temporal": {
+    "primary": {
+      "accuracy": 0.6228868660598179,
+      "identities_only_accuracy": 0.6176853055916776,
+      "prediction_change_fraction": 0.13394018205461639
+    },
+    "aware": {
+      "accuracy": 0.8959687906371911,
+      "identities_only_accuracy": 0.37581274382314694,
+      "prediction_change_fraction": 0.5448634590377113
+    },
+    "lookup_reproduces_qa_v1": true
+  }
+}

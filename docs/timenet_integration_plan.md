@@ -1,5 +1,9 @@
 # Kernel X-ray Phase 2 Task 1 — TimeNet integration plan
 
+For commands below, start at the Kernel X-ray repository root and set
+`export KERNEL_XRAY_ROOT="$PWD"`. This publication-only path parameterization
+does not change the recorded experiments or historical artifact contents.
+
 Research snapshot: 18 November 2026 (Asia/Muscat). This document is a design, not an
 implemented connector. It describes the local `../TimeNet` checkout at commit
 `9bd1613019ee61fbc52e02106a1a45990ead7a54`, whose `timenet` package declares version
@@ -348,6 +352,8 @@ is authorized. No dependencies or TimeNet code were executed/installed here.
 Future commands after the connector exists, not commands run in Task 1:
 
 ```bash
+export KERNEL_XRAY_ROOT="$PWD"
+cd "${KERNEL_XRAY_ROOT}/.worktrees/timenet-kernelsight"
 # In the TimeNet development checkout, using its separate uv environment:
 make sync
 make check
@@ -357,9 +363,9 @@ make test-connectors
 make license-check
 
 # Environment variable below is a proposed connector option.
-KERNELSIGHT_ROOT="/Users/nawaf/Desktop/Kernel X-ray/data/kernelsight_v4" \
+KERNELSIGHT_ROOT="${KERNEL_XRAY_ROOT}/data/kernelsight_v4" \
   uv run timenet-build build williamhtan/kernelsight@1.0.0 \
-  --keep-cache --local-registry "/Users/nawaf/Desktop/Kernel X-ray/outputs/phase2/timef"
+  --keep-cache --local-registry "${KERNEL_XRAY_ROOT}/outputs/phase2/timef"
 ```
 
 The final command is the eventual full conversion and is gated by the held-out

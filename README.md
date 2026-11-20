@@ -121,4 +121,30 @@ No teammate is added until their GitHub username is provided.
 ## Planned research
 
 Linear baselines, temporal-order ablations, L2 recognition, overlap detection,
-OpenTSLM integration, mathematical QA, and grounded explanations remain planned.
+OpenTSLM integration and grounded explanations remain planned; conventional QA
+reference baselines are complete below.
+## QA Benchmark and Baselines
+
+QA v1 contains **19,021 verified questions**: interval means, counter-maximum
+comparison, and unique-peak ordering. A deterministic oracle and independent
+scalar validation verify every answer; exact regeneration passed.
+
+| Validation method | Comparison | Temporal |
+|---|---:|---:|
+| Majority | 51.125% | 37.581% |
+| Counter-pair lookup | 56.125% | 61.769% |
+| Primary logistic regression | 93.375% | 62.289% |
+| Calculation-aware LR | 98.125% | 89.597% |
+| Direct calculation control | 100% | 100% |
+
+**VERIFIED WITH QUALIFICATIONS.** Primary temporal LR does not establish useful
+reasoning beyond the shortcut (+0.52 points, paired 95% CI [-2.12,+3.08]).
+Calculation-aware features explicitly expose answer-sufficient quantities; direct
+calculation is an arithmetic control. Structured parameters, normalized counters,
+workload overlap and identity shortcuts limit interpretation. No OpenTSLM
+training/evaluation or official QA test evaluation is claimed.
+
+See [QA definitions](docs/phase4_qa_v1.md), [baseline methods](docs/phase4_qa_baselines.md),
+[figures](results/qa_v1/figures/accuracy.png), and
+[verification summaries and provenance](results/qa_v1/MANIFEST.md).
+Datasets, fitted models, predictions, and full audit evidence remain local.

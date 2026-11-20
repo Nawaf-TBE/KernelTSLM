@@ -31,3 +31,11 @@ reports
 .aws/
 # Verbatim third-party documentation remains local pending license review
 docs/dataset/
+
+# QA data, serialized fits, and generated feature/prediction payloads
+*.jsonl
+*.pkl
+*.pickle
+*.joblib
+*.onnx
+*.npy

@@ -1,0 +1,13 @@
+{
+  "version": "kernelsight-qa-v1.0",
+  "seed": 7,
+  "per_type": 5,
+  "attempts_per_type": 1500,
+  "length_bands": [[16, 64], [65, 192], [193, 512]],
+  "comparison_atol": 0.0001,
+  "comparison_rtol": 0.001,
+  "peak_atol": 0.000001,
+  "peak_rtol": 0.00001,
+  "answer_atol": 0.000001,
+  "answer_rtol": 0.00001
+}

@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "questions_verified": 19021,
+  "agreement_percent": 100,
+  "independent_method": "math.fsum, Python max/sorted, explicit unique-index enumeration; does not call oracle",
+  "deterministic_regeneration": true,
+  "no_test_access": true,
+  "strict_views_only": true,
+  "label_based_generation": false,
+  "model_serializer_allowlist_verified": true,
+  "preservation": {
+    "status": "passed",
+    "files_unchanged": 5076,
+    "scope": "all captured preexisting files; newly created Phase 4 source/config excluded from historical preservation, separately hashed"
+  },
+  "dataset_sha256": {
+    "train": "d63a0544e7ae3e3029d1af42c4a9a9f0d10308a8f4fcab7f29eecd816f298d41",
+    "val": "e873d36c89f86619bb29c98b19971e9b574490f48f9f37e94ad8b66c6adcf0df"
+  },
+  "tests": {
+    "focused": {
+      "tests": 33,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 33
+    },
+    "regression": {
+      "tests": 95,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 94
+    }
+  },
+  "versions": {
+    "python": "3.13.4",
+    "numpy": "2.5.0",
+    "torch": "2.13.0",
+    "timenet": "0.12.0",
+    "pyarrow": "24.0.0"
+  },
+  "figures_visually_inspected": true,
+  "illustrations_distinct_training_traces": 3,
+  "trained_models": false,
+  "published_benchmark": false
+}

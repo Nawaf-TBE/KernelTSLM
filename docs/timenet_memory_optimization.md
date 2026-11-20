@@ -1,5 +1,9 @@
 # Phase 2 Task 2.1 — memory profiling and optimization
 
+For commands below, start at the Kernel X-ray repository root and set
+`export KERNEL_XRAY_ROOT="$PWD"`. This publication-only path parameterization
+does not change the recorded experiments or historical artifact contents.
+
 ## Outcome and scope
 
 **Memory target achieved; ready for controlled full conversion.** This conclusion
@@ -263,24 +267,25 @@ Two existing core skips and fork-related warnings are recorded in the full log.
 
 ## Reproduce without touching the existing registries
 
-From the TimeNet development worktree, use its existing uv environment. Each build
+Start at the Kernel X-ray repository root; the block switches to the TimeNet development worktree and uses its existing uv environment. Each build
 must have a fresh output path; replace `reproduce-*` if already used. These commands
 use only training and never perform a full conversion:
 
 ```bash
-cd '/Users/nawaf/Desktop/Kernel X-ray/.worktrees/timenet-kernelsight'
-export UV_CACHE_DIR='/Users/nawaf/Desktop/Kernel X-ray/.cache/uv'
-export KERNELSIGHT_ROOT='/Users/nawaf/Desktop/Kernel X-ray/data/kernelsight_v4'
+export KERNEL_XRAY_ROOT="$PWD"
+cd "${KERNEL_XRAY_ROOT}/.worktrees/timenet-kernelsight"
+export UV_CACHE_DIR="${KERNEL_XRAY_ROOT}/.cache/uv"
+export KERNELSIGHT_ROOT="${KERNEL_XRAY_ROOT}/data/kernelsight_v4"
 export KERNELSIGHT_TEST_ROOT="$KERNELSIGHT_ROOT"
 export KERNELSIGHT_PARTITIONS=train
 
 .venv/bin/uv run python benchmarks/kernelsight/verify_training.py \
   --data-root "$KERNELSIGHT_ROOT" --stage training \
-  --output '/Users/nawaf/Desktop/Kernel X-ray/outputs/phase2/task2_1/reproduce-combined'
+  --output "${KERNEL_XRAY_ROOT}/outputs/phase2/task2_1/reproduce-combined"
 
 .venv/bin/uv run python benchmarks/kernelsight/profile_memory.py \
   --data-root "$KERNELSIGHT_ROOT" \
-  --output '/Users/nawaf/Desktop/Kernel X-ray/outputs/phase2/task2_1/reproduce-profile'
+  --output "${KERNEL_XRAY_ROOT}/outputs/phase2/task2_1/reproduce-profile"
 
 .venv/bin/uv run pytest \
   packages/timenet-connectors/src/timenet_connectors/datasets/williamhtan/kernelsight/tests \

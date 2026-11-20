@@ -1,0 +1,16 @@
+{
+  "statistics/majority/original": {
+    "n": 800,
+    "mae": 0.5532430867725739,
+    "median_absolute_error": 0.22349025645636683,
+    "rmse": 0.9664594467495949,
+    "within_tolerance": 0.0
+  },
+  "statistics/direct/original": {
+    "n": 800,
+    "mae": 0.0,
+    "median_absolute_error": 0.0,
+    "rmse": 0.0,
+    "within_tolerance": 1.0
+  }
+}

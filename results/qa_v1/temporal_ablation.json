@@ -1,0 +1,74 @@
+{
+  "comparison": {
+    "correct_label_change_fraction": 0.0,
+    "all_altered_answers_well_defined": true,
+    "models": {
+      "majority": {
+        "prediction_change_fraction": 0.0,
+        "original_accuracy": 0.51125,
+        "reversed_original_label_accuracy": 0.51125,
+        "reversed_altered_label_accuracy": 0.51125
+      },
+      "lookup": {
+        "prediction_change_fraction": 0.0,
+        "original_accuracy": 0.56125,
+        "reversed_original_label_accuracy": 0.56125,
+        "reversed_altered_label_accuracy": 0.56125
+      },
+      "primary": {
+        "prediction_change_fraction": 0.0175,
+        "original_accuracy": 0.93375,
+        "reversed_original_label_accuracy": 0.93625,
+        "reversed_altered_label_accuracy": 0.93625
+      },
+      "aware": {
+        "prediction_change_fraction": 0.00625,
+        "original_accuracy": 0.98125,
+        "reversed_original_label_accuracy": 0.9825,
+        "reversed_altered_label_accuracy": 0.9825
+      },
+      "direct": {
+        "prediction_change_fraction": 0.0,
+        "original_accuracy": 1.0,
+        "reversed_original_label_accuracy": 1.0,
+        "reversed_altered_label_accuracy": 1.0
+      }
+    }
+  },
+  "temporal": {
+    "correct_label_change_fraction": 0.6241872561768531,
+    "all_altered_answers_well_defined": true,
+    "models": {
+      "majority": {
+        "prediction_change_fraction": 0.0,
+        "original_accuracy": 0.37581274382314694,
+        "reversed_original_label_accuracy": 0.37581274382314694,
+        "reversed_altered_label_accuracy": 0.37581274382314694
+      },
+      "lookup": {
+        "prediction_change_fraction": 0.0,
+        "original_accuracy": 0.6176853055916776,
+        "reversed_original_label_accuracy": 0.6176853055916776,
+        "reversed_altered_label_accuracy": 0.34070221066319895
+      },
+      "primary": {
+        "prediction_change_fraction": 0.0754226267880364,
+        "original_accuracy": 0.6228868660598179,
+        "reversed_original_label_accuracy": 0.6072821846553966,
+        "reversed_altered_label_accuracy": 0.3641092327698309
+      },
+      "aware": {
+        "prediction_change_fraction": 0.5422626788036411,
+        "original_accuracy": 0.8959687906371911,
+        "reversed_original_label_accuracy": 0.36540962288686607,
+        "reversed_altered_label_accuracy": 0.8491547464239272
+      },
+      "direct": {
+        "prediction_change_fraction": 0.6241872561768531,
+        "original_accuracy": 1.0,
+        "reversed_original_label_accuracy": 0.37581274382314694,
+        "reversed_altered_label_accuracy": 1.0
+      }
+    }
+  }
+}

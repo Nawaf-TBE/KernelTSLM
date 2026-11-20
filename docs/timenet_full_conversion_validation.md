@@ -1,5 +1,9 @@
 # Phase 2 Task 3 — controlled full KernelSight conversion
 
+For commands below, start at the Kernel X-ray repository root and set
+`export KERNEL_XRAY_ROOT="$PWD"`. This publication-only path parameterization
+does not change the recorded experiments or historical artifact contents.
+
 ## Scope and approved execution plan
 
 This task mechanically converts the pinned KernelSight v4 source into a complete
@@ -110,19 +114,20 @@ Phase 1 `.venv`. Use new output paths for every attempt. Before a new large run,
 repeat resource preflight; the 3 GiB approval recorded here applies to this task.
 
 ```bash
-cd '/Users/nawaf/Desktop/Kernel X-ray/.worktrees/timenet-kernelsight'
-export UV_CACHE_DIR='/Users/nawaf/Desktop/Kernel X-ray/.cache/uv'
-export KERNELSIGHT_ROOT='/Users/nawaf/Desktop/Kernel X-ray/data/kernelsight_v4'
+export KERNEL_XRAY_ROOT="$PWD"
+cd "${KERNEL_XRAY_ROOT}/.worktrees/timenet-kernelsight"
+export UV_CACHE_DIR="${KERNEL_XRAY_ROOT}/.cache/uv"
+export KERNELSIGHT_ROOT="${KERNEL_XRAY_ROOT}/data/kernelsight_v4"
 
 .venv/bin/uv run python -m benchmarks.kernelsight.full_conversion \
   --mode write --data-root "$KERNELSIGHT_ROOT" \
-  --output '/path/to/fresh-writer-output' \
+  --output "${KERNEL_XRAY_ROOT}/outputs/phase2/task3/fresh-writer-output" \
   --rss-limit-bytes 3221225472
 
 .venv/bin/uv run python -m benchmarks.kernelsight.full_conversion \
   --mode audit --data-root "$KERNELSIGHT_ROOT" \
-  --version '/path/to/fresh-writer-output/unvalidated-registry/williamhtan/kernelsight/1.0.0' \
-  --output '/path/to/fresh-reader-output' \
+  --version "${KERNEL_XRAY_ROOT}/outputs/phase2/task3/fresh-writer-output/unvalidated-registry/williamhtan/kernelsight/1.0.0" \
+  --output "${KERNEL_XRAY_ROOT}/outputs/phase2/task3/fresh-reader-output" \
   --rss-limit-bytes 3221225472
 
 .venv/bin/uv run pytest benchmarks/kernelsight/tests -q
@@ -190,7 +195,8 @@ dataset, splits, Phase 1 code/environment/galleries, reports and all earlier
 benchmark artifacts remain unchanged. Recheck with:
 
 ```bash
-cd '/Users/nawaf/Desktop/Kernel X-ray'
+: "${KERNEL_XRAY_ROOT:?Run the repository-root setup block above first}"
+cd "${KERNEL_XRAY_ROOT}"
 .venv/bin/python scripts/verify_task3_preservation.py
 ```
 

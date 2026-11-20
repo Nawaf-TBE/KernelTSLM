@@ -1,5 +1,9 @@
 # Phase 2 Task 2 — local KernelSight connector
 
+For commands below, start at the Kernel X-ray repository root and set
+`export KERNEL_XRAY_ROOT="$PWD"`. This publication-only path parameterization
+does not change the recorded experiments or historical artifact contents.
+
 Implementation is in the separate TimeNet worktree
 `.worktrees/timenet-kernelsight`, branch `feature/kernelsight-v4`, based on
 `9bd1613019ee61fbc52e02106a1a45990ead7a54`. The original `~/Desktop/TimeNet`
@@ -108,13 +112,14 @@ Publication remains separately blocked on namespace and licensing requirements.
 
 ## Reproduce stages A–C
 
-From the TimeNet worktree, use its environment explicitly:
+Start at the Kernel X-ray repository root; the setup block switches to the TimeNet worktree and uses its environment explicitly:
 
 ```bash
-cd "/Users/nawaf/Desktop/Kernel X-ray/.worktrees/timenet-kernelsight"
+export KERNEL_XRAY_ROOT="$PWD"
+cd "${KERNEL_XRAY_ROOT}/.worktrees/timenet-kernelsight"
 export PATH="$PWD/.venv/bin:$PATH"
-export UV_CACHE_DIR="/Users/nawaf/Desktop/Kernel X-ray/.cache/uv"
-export KERNELSIGHT_ROOT="/Users/nawaf/Desktop/Kernel X-ray/data/kernelsight_v4"
+export UV_CACHE_DIR="${KERNEL_XRAY_ROOT}/.cache/uv"
+export KERNELSIGHT_ROOT="${KERNEL_XRAY_ROOT}/data/kernelsight_v4"
 export KERNELSIGHT_PARTITIONS=train
 ```
 
@@ -122,6 +127,7 @@ Stage A, independently synthetic fixtures only (the two real tests skip unless
 explicitly enabled):
 
 ```bash
+: "${KERNEL_XRAY_ROOT:?Run the repository-root setup block above first}"
 unset KERNELSIGHT_TEST_ROOT
 uv run pytest packages/timenet-connectors/src/timenet_connectors/\
 datasets/williamhtan/kernelsight/tests -q
@@ -130,20 +136,22 @@ datasets/williamhtan/kernelsight/tests -q
 Stage B, opt-in real training tests and persistent prototype registry:
 
 ```bash
+: "${KERNEL_XRAY_ROOT:?Run the repository-root setup block above first}"
 export KERNELSIGHT_TEST_ROOT="$KERNELSIGHT_ROOT"
 uv run pytest packages/timenet-connectors/src/timenet_connectors/\
 datasets/williamhtan/kernelsight/tests -q
 uv run python benchmarks/kernelsight/verify_training.py \
   --data-root "$KERNELSIGHT_ROOT" --stage prototype \
-  --output "/Users/nawaf/Desktop/Kernel X-ray/outputs/phase2/task2/prototype-new"
+  --output "${KERNEL_XRAY_ROOT}/outputs/phase2/task2/prototype-new"
 ```
 
 Stage C, only after Stage B passes:
 
 ```bash
+: "${KERNEL_XRAY_ROOT:?Run the repository-root setup block above first}"
 uv run python benchmarks/kernelsight/verify_training.py \
   --data-root "$KERNELSIGHT_ROOT" --stage training \
-  --output "/Users/nawaf/Desktop/Kernel X-ray/outputs/phase2/task2/training-new"
+  --output "${KERNEL_XRAY_ROOT}/outputs/phase2/task2/training-new"
 ```
 
 Output directories must be fresh; scripts refuse to overwrite registries. Defaults
