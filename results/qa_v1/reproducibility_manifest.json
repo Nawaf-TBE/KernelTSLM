@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "files": {
+    "models/qa_v1/temporal_aware.json": "81bef44a66f289eb463b4068d14526b7f798019c15acc1444de783d66b3f8b26",
+    "models/qa_v1/comparison_aware.json": "92345588f3c8aa7432b0183a71e17c64ea88b67a1400271df6d9e37a667395fb",
+    "models/qa_v1/comparison_primary.json": "ff8dc962e3a380c0c1883bc0acc3da496d2bd71b50266b530ceb5e3ea3554ca2",
+    "models/qa_v1/temporal_primary.json": "77cb79196dc9e355c1b4801dcb52d54cb30c1c33325e9678844e0b20b27f531a",
+    "results/qa_v1/predictions.json": "4aef1e10b258af8105d21478f37b47c8ea0221730a1f5445b2e89b5c555d0854",
+    "results/qa_v1/question_index.json": "5ff3db0fd3346a1b825004a879bab13ee0e87239a39d39cccc5709587b0d75b3",
+    "results/qa_v1/condition_metrics.json": "1c8dd4ac64edf9ad30032f0b6bdc8a8c6378692ca280e4242da347d3b69394db",
+    "results/qa_v1/model_equivalence.json": "1cb1a424743de24d190f6f8a76d135147469cd6535656a1c038d057f744476dd",
+    "src/kernel_xray/qa_baselines/portable.py": "b258aa60c1666e25c54e46a4e73c4b4d5e0b4fe42b2fbbeba65d74b655ce99eb",
+    "scripts/verify_published_qa.py": "f5b8c116a30915a09844329dbf892335fa556adbeb51941de19ffe950b36b1e4",
+    "scripts/replay_portable_qa.py": "ba5a9b34c04556e8902f5528f073a9fcca7aee651aa023a77bbfac2d027c58cf",
+    "scripts/export_portable_qa.py": "cb99a27de67a14abdbafe78f4eefa5c59e6c088a1b283f8b16631be383f7cf5c",
+    "docs/REPRODUCIBILITY.md": "9081ea25c0259bca6987dbf3d232b63df3eb29f7f3d2a18add4f2d78b8f57cc8",
+    "tests/test_portable_qa.py": "56d472e70b14c97e855d953bfc151ed4c10197fe600833aa2fddaaebbb3ebf69",
+    "results/qa_v1/publication_verification.json": "00ea8c76de56ab62a785cae63c5d6bd275f31a361cdde5861572c86877318a90"
+  },
+  "qa_sha256": {
+    "train": "d63a0544e7ae3e3029d1af42c4a9a9f0d10308a8f4fcab7f29eecd816f298d41",
+    "val": "e873d36c89f86619bb29c98b19971e9b574490f48f9f37e94ad8b66c6adcf0df"
+  },
+  "qa_jsonl_published": false,
+  "qa_exclusion_reason": "Collection-time third-party notice completeness remains unresolved; private hosting does not waive redistribution obligations.",
+  "predictions": {
+    "source": "outputs/phase4/qa_baselines_v1/predictions.json",
+    "source_sha256": "afb837275250e0f210c453983a48ffa47aa32c612a4fd514a6d8526daf6a7b45",
+    "retained": [
+      "condition key",
+      "question id",
+      "reference",
+      "prediction"
+    ],
+    "removed": [
+      "trace_id"
+    ],
+    "question_index": "derived directly from frozen validation QA, not an independently authenticated dataset substitute"
+  },
+  "model_source": {
+    "path": "outputs/phase4/qa_baselines_v1/models.pkl",
+    "sha256": "1da48cc45327ccc4071a64a99bbf526260972ad78d6d5d3b657600a2d52a670e"
+  },
+  "model_probability_tolerance": {
+    "rtol": 1e-12,
+    "atol": 1e-12
+  },
+  "limitations": [
+    "structured parameters",
+    "counter-identity shortcuts",
+    "primary temporal gain not established",
+    "answer-sufficient aware features",
+    "direct solver not learned reasoning",
+    "raw trace/connector setup external"
+  ]
+}

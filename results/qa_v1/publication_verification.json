@@ -1,0 +1,37 @@
+{
+  "verdict": "VERIFIED WITH QUALIFICATIONS",
+  "artifact_only_conditions_recalculated": 36,
+  "portable_models": 4,
+  "validation_model_predictions": 3138,
+  "class_disagreements": 0,
+  "probability_tolerance": {
+    "rtol": 1e-12,
+    "atol": 1e-12
+  },
+  "max_probability_abs_difference": 8.881784197001252e-16,
+  "tests": {
+    "tests": 119,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "passed": 118
+  },
+  "preservation": {
+    "status": "passed",
+    "historical_files_unchanged": 5152,
+    "qa_and_cnn_hashes_match": true,
+    "original_model_and_protocol_hashes_match": true
+  },
+  "qa_jsonl_published": false,
+  "exclusion": "unresolved collection-time redistribution notices",
+  "predictions_export": "hashed question IDs, reference and prediction per condition; trace paths/operands/arrays omitted",
+  "limitations": [
+    "QA IDs externally authenticated only with original frozen QA",
+    "unpublished TimeNet connector environment required for full replay",
+    "structured parameters; no language parsing",
+    "identity shortcuts; primary temporal gain unestablished",
+    "aware features answer-sufficient; direct control arithmetic",
+    "no test evaluation or OpenTSLM fitting"
+  ],
+  "source_commit_before_export": "b0760799cb9ba296c90ce2d0d0fca1552444da60"
+}

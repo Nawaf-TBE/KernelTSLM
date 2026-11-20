@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "traces": 160,
+  "tolerance": {
+    "rtol": 1e-12,
+    "atol": 1e-12
+  },
+  "models": {
+    "comparison/primary": {
+      "questions": 800,
+      "class_disagreements": 0,
+      "max_probability_abs_difference": 8.881784197001252e-16,
+      "sha256": "ff8dc962e3a380c0c1883bc0acc3da496d2bd71b50266b530ceb5e3ea3554ca2"
+    },
+    "comparison/aware": {
+      "questions": 800,
+      "class_disagreements": 0,
+      "max_probability_abs_difference": 3.3306690738754696e-16,
+      "sha256": "92345588f3c8aa7432b0183a71e17c64ea88b67a1400271df6d9e37a667395fb"
+    },
+    "temporal/primary": {
+      "questions": 769,
+      "class_disagreements": 0,
+      "max_probability_abs_difference": 1.1102230246251565e-16,
+      "sha256": "77cb79196dc9e355c1b4801dcb52d54cb30c1c33325e9678844e0b20b27f531a"
+    },
+    "temporal/aware": {
+      "questions": 769,
+      "class_disagreements": 0,
+      "max_probability_abs_difference": 2.220446049250313e-16,
+      "sha256": "81bef44a66f289eb463b4068d14526b7f798019c15acc1444de783d66b3f8b26"
+    }
+  },
+  "predictions_source_sha256": "afb837275250e0f210c453983a48ffa47aa32c612a4fd514a6d8526daf6a7b45",
+  "transformation": "retain condition key, question ID, reference, prediction; remove trace identifiers; no raw inputs, question strings, or oracle operands"
+}

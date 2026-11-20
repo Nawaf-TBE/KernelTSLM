@@ -18,8 +18,8 @@ self-referential commit. No merge or PR is implied.
 
 ## Published scope and provenance
 
-Exports contain aggregate summaries and six aggregate plots only. Full QA JSONL,
-TimeF views, per-question predictions, feature caches, fitted model pickle, raw
+The original exports contain aggregate summaries and six aggregate plots. Full QA JSONL,
+TimeF views, original full per-question predictions, feature caches, fitted model pickle, raw
 data, environments, and real-trace measurement illustrations remain local.
 No model or dataset redistribution license is asserted by this publication.
 Source artifact paths and byte hashes are in [provenance.json](provenance.json).
@@ -82,3 +82,28 @@ the original prepared workspace for frozen dataset/CNN/output byte checks.
 | `shortcut_diagnostics.json` | `e3e8cd7ed3f4f34b8154a356d24aa635342733fb5fda142852298a566d7196e8` |
 | `statistics_metrics.json` | `916ffbacfd105cfcf64122cd0f4359a11b2dff644f461ee29c627089c8db56a6` |
 | `temporal_ablation.json` | `1d21d270128c4592fd465821e5abe24773f8418199d62c535b7c2d4b0289b925` |
+
+## Portable reproducibility extension
+
+[Reproducibility manifest](reproducibility_manifest.json) records the SHA256 of
+four [safe JSON LR models](../../models/qa_v1/),
+[minimal prediction records](predictions.json), [all-condition metrics](condition_metrics.json),
+[derived question-ID index](question_index.json), and [model equivalence](model_equivalence.json).
+Original trusted-local model SHA256:
+`1da48cc45327ccc4071a64a99bbf526260972ad78d6d5d3b657600a2d52a670e`.
+The prediction source is retained locally with its source hash in that manifest;
+the export strips trace identifiers and preserves condition, ID, reference and
+prediction only. No raw arrays, oracle operands or question text are included.
+
+QA JSONL remains excluded: collection-time third-party notice completeness is
+unresolved despite the source card's Apache-2.0 declaration. Private hosting does
+not remove redistribution obligations. Original records were inspected for size,
+schema and sensitive paths but never rewritten. Scalar prediction facts and fitted
+parameters are research evaluation exports, not a repackaged trace dataset.
+
+Run `python3 scripts/verify_published_qa.py` without data or third-party packages.
+It recalculates every condition's categorical and numerical metrics. Dataset-ID
+alignment is checked against a derived frozen index; external original QA is
+required to independently authenticate that index against source bytes.
+[Full reproduction guidance](../../docs/REPRODUCIBILITY.md) separates this check
+from signal-based inference. All prior scientific qualifications still apply.

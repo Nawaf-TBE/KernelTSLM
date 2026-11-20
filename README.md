@@ -148,3 +148,17 @@ See [QA definitions](docs/phase4_qa_v1.md), [baseline methods](docs/phase4_qa_ba
 [figures](results/qa_v1/figures/accuracy.png), and
 [verification summaries and provenance](results/qa_v1/MANIFEST.md).
 Datasets, fitted models, predictions, and full audit evidence remain local.
+
+### Research artifacts and reproducibility
+
+Included: source/tests/configs, research docs, figures and aggregate results,
+[portable fitted LR parameters](models/qa_v1/),
+[minimal validation predictions](results/qa_v1/predictions.json), and
+[independent artifact verification](scripts/verify_published_qa.py).
+
+QA JSONL is excluded pending redistribution-notice clarification. Raw traces,
+TimeF views, frozen CNN, original model pickle, and full historical outputs remain
+external. A clone can recalculate published metrics without data; full inference
+requires the authorized dataset and matching unpublished connector environment.
+See [REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) for exact capabilities,
+commands, licensing review, and limitations. No OpenTSLM training is claimed.
