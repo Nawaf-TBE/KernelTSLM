@@ -1,0 +1,11 @@
+# As the AWS example (scripts/requirements.txt), plus torch, numpy and scikit-learn (baselines).
+# The weight names follow the Gemma 3 module names of this Transformers version.
+torch
+transformers==4.57.6
+safetensors==0.8.0
+huggingface_hub
+numpy
+scikit-learn
+# The walkthrough notebook (walkthrough.py).
+marimo==0.25.2
+matplotlib

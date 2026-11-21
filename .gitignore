@@ -1,0 +1,28 @@
+# Allowlist: only the files named below are in the repo.
+/*
+!/.gitignore
+!/GLOSSARY.md
+!/baselines.py
+!/export_kernelsight.py
+!/kernelsight.npz
+
+!/flamingo/
+/flamingo/*
+!/flamingo/walkthrough.py
+!/flamingo/finetune_kernelsight.py
+!/flamingo/utils.py
+!/flamingo/requirements.txt
+
+!/runs/
+/runs/*
+!/runs/baselines/
+
+# Temporal order: baselines, figure, question set
+!/temporal_baselines.py
+!/plot_temporal.py
+!/temporal_questions.py
+!/temporal_qa/
+/temporal_qa/*
+!/temporal_qa/*.py
+!/runs/temporal_baselines/
+!/runs/temporal_qa/
