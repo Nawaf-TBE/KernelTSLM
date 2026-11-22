@@ -1,0 +1,84 @@
+/* Kernel X-Ray shared styles: tokens, page frame, grid paper and the results dot plots.
+   Used by index.html. Light only: navy ink on white chart paper. */
+:root {
+  --desk: #EDEFF2; --paper: #FFFFFF; --ink: #1B2238; --body: #343B52; --muted: #5C6378; --line: #D5D9E0;
+  --minor: #F6D6D4; --major: #EBAFAC; --marker: #FFE14A; --right: #2C6B3C; --wrong: #B3261E;
+  --sans: "IBM Plex Sans Condensed", "Arial Narrow", sans-serif;
+  --serif: "IBM Plex Serif", Georgia, serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scrollbar-gutter: stable; }
+body { margin: 0; background: var(--desk); color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.6; }
+h1, h2, h3, p, dl, dd, figure, ul { margin: 0; }
+button { font: inherit; color: inherit; }
+a { color: inherit; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-left)); }
+
+/* Top line */
+.top { display: flex; justify-content: space-between; align-items: center; gap: 8px 16px; min-height: 64px; padding-block: 12px; font-family: var(--sans); flex-wrap: wrap; }
+.mark { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; text-decoration: none; }
+.top nav { display: flex; gap: 6px 20px; font-size: 0.95rem; color: var(--muted); flex-wrap: wrap; }
+.top nav a[aria-current="page"] { color: var(--ink); text-decoration: none; font-weight: 600; }
+.top nav .event { padding-left: 20px; border-left: 1px solid var(--line); }
+.check { margin-top: 22px; max-width: 760px; }
+@media (max-width: 640px) { .top nav .event { display: none; } }
+
+/* Chart paper */
+.paper {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--major) 1px, transparent 1px), linear-gradient(90deg, var(--major) 1px, transparent 1px),
+    linear-gradient(var(--minor) 1px, transparent 1px), linear-gradient(90deg, var(--minor) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px;
+  background-position: -1px -1px;
+}
+
+/* Section headings shared by both pages */
+.sec-h { font-family: var(--sans); font-weight: 600; font-size: clamp(1.7rem, 3.4vw, 2.3rem); line-height: 1.08; letter-spacing: -0.015em; max-width: 32ch; }
+.lede { max-width: 64ch; color: var(--body); margin-top: 10px; }
+
+/* Results: dot plots on the same grid paper */
+.results { padding-block: 64px 24px; display: grid; gap: 28px; }
+.plots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 56px; }
+.plot { display: grid; gap: 6px; align-content: start; }
+.plot figcaption { font-family: var(--sans); font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
+.plot figcaption span { font-weight: 400; color: var(--muted); }
+.prow { display: grid; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 14px; align-items: center; font-family: var(--sans); font-size: 0.95rem; color: var(--body); }
+.prow.ours { color: var(--ink); font-weight: 600; }
+.track { position: relative; height: 26px; }
+.track::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--minor); }
+.dot { position: absolute; top: 50%; width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; border-radius: 50%; background: var(--paper); border: 2px solid var(--muted); }
+.ours .dot { background: var(--ink); border-color: var(--ink); width: 13px; height: 13px; margin: -6.5px 0 0 -6.5px; }
+.ours .dot.open { background: var(--paper); }
+.ours .dot.hl { box-shadow: 0 0 0 5px var(--marker); }
+.val { position: absolute; top: 50%; transform: translate(10px, -50%); font-size: 0.85rem; font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.val.left { transform: translate(calc(-100% - 10px), -50%); }
+.bar { position: absolute; top: 50%; height: 2px; margin-top: -1px; background: var(--ink); }
+.pair .track { height: 42px; }
+.pair .track::before, .pair .bar, .pair .dot { top: 34%; }
+.val.under { top: 58%; transform: translateX(-50%); font-size: 0.8rem; }
+.gridbg { position: absolute; inset: 0; pointer-events: none; }
+.gridbg i { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--major); opacity: .55; }
+.axis { display: grid; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 14px; font-family: var(--sans); font-size: 0.8rem; color: var(--muted); }
+.axis .ticks { position: relative; height: 18px; }
+.axis .ticks span { position: absolute; transform: translateX(-50%); }
+.plot .cap { font-size: 0.9rem; color: var(--muted); max-width: 54ch; margin-top: 4px; }
+.limits { border-top: 1px solid var(--line); padding-top: 18px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 56px; font-size: 0.93rem; color: var(--body); }
+
+/* Comparison table */
+.cmp { width: 100%; border-collapse: collapse; background: var(--paper); border: 1px solid var(--line); font-family: var(--sans); }
+.cmp th, .cmp td { text-align: left; vertical-align: top; padding: 10px 14px; border-top: 1px solid var(--minor); }
+.cmp thead th { font-weight: 500; font-size: 0.86rem; color: var(--muted); border-top: 0; border-bottom: 1px solid var(--major); line-height: 1.3; }
+.cmp tbody th { font-weight: 600; font-size: 0.98rem; line-height: 1.3; }
+.cmp span { display: block; font-weight: 400; font-size: 0.82rem; color: var(--muted); line-height: 1.3; margin-top: 2px; }
+.cmp td.n { font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+.cmp .us { background: color-mix(in srgb, var(--marker) 45%, var(--paper)); }
+.cmp thead .us { color: var(--ink); font-weight: 600; }
+@media (max-width: 640px) { .cmp th, .cmp td { padding: 8px 8px; } .cmp td span { display: none; } }
+
+footer { padding-block: 28px 48px; font-family: var(--sans); font-size: 0.88rem; color: var(--muted); max-width: 90ch; }
+
+@media (max-width: 900px) { .plots, .limits { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 520px) { .prow, .axis { grid-template-columns: 8.5rem minmax(0, 1fr); } }
