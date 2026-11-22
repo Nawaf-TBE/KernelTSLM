@@ -6,8 +6,8 @@ Per-Bin state: -2 = idle (no kernel), -1 = kernel without label, 0..11 = L1 clas
 """
 import numpy as np
 
-DATA = '/Users/m7m2od/hackathon/kernelsight.npz'
-LABEL_ROOT = '/Users/m7m2od/TimeNet-kernelsight/kernelsight/'
+from .paths import LABEL_ROOT, NPZ as DATA
+
 N = 512
 IDLE, UNLAB = -2, -1
 INTRO = "The trace has 512 Bins in time order: Bin 0 is the start of the trace and Bin 511 is the end."

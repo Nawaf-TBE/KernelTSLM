@@ -36,11 +36,11 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
+from temporal_qa.paths import LABEL_ROOT  # noqa: E402
 from temporal_qa.timing import runs  # noqa: E402
 from usecases.diagnosis.score import LIMITERS, TRIES, parse, score  # noqa: E402
 
 OUT = ROOT / "runs/usecases/diagnosis"
-LABEL_ROOT = "/Users/m7m2od/TimeNet-kernelsight/kernelsight/"
 DATA = np.load(ROOT / "kernelsight.npz")
 MASK = np.load(ROOT / "temporal_qa/labels_cache.npz")["mask_any_kernel"].astype(np.int8)
 CHANNELS = DATA["channels"].tolist()

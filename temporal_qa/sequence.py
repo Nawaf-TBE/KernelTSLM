@@ -10,8 +10,8 @@ from itertools import permutations
 
 import numpy as np
 
-NPZ = "/Users/m7m2od/hackathon/kernelsight.npz"
-LABEL_ROOT = "/Users/m7m2od/TimeNet-kernelsight/kernelsight/"
+from .paths import LABEL_ROOT, NPZ
+
 D = np.load(NPZ)
 CLASSES = [str(c) for c in D["labels"]]
 N_BINS = 512

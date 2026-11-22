@@ -123,12 +123,12 @@ pre { margin: 0; background: var(--paper); border: 1px solid var(--line); paddin
 <div class="wrap">
   <header class="top">
     <a class="mark" href="#demo">Kernel X-Ray</a>
-    <nav aria-label="Sections"><a href="#demo">Demo</a><a href="#usecases">Use cases</a><a href="#results">Results</a><a href="#findings">Findings</a><a href="https://github.com/m7m2od/kernel-x-ray">Code</a><span class="event">TimeNet Hackathon 2026, round 1</span></nav>
+    <nav aria-label="Sections"><a href="#demo">Demo</a><a href="#usecases">Use cases</a><a href="#results">Results</a><a href="#findings">Findings</a><a href="https://github.com/Nawaf-TBE/kernel-xray">Code</a><span class="event">TimeNet Hackathon 2026, round 1</span></nav>
   </header>
 
   <section class="intro" id="demo">
     <h1>Kernel X-Ray</h1>
-    <p>While a kernel runs, an NVIDIA H100 records 24 hardware counters over time. Kernel X-Ray, a fine-tuned time-series language model, reads them the way a doctor reads an ECG, and writes down what slows the kernel down. Below, six test kernels it never saw in training play one after another. <a href="https://github.com/m7m2od/kernel-x-ray">Read the code</a></p>
+    <p>While a kernel runs, an NVIDIA H100 records 24 hardware counters over time. Kernel X-Ray, a fine-tuned time-series language model, reads them the way a doctor reads an ECG, and writes down what slows the kernel down. Below, six test kernels it never saw in training play one after another. <a href="https://github.com/Nawaf-TBE/kernel-xray">Read the code</a></p>
   </section>
 
   <article class="sheet">
@@ -268,7 +268,7 @@ uv run baselines.py
     </div>
   </section>
 
-  <footer>Data: KernelSight by williamhtan. Model: OpenTSLM-Flamingo (opentime/tslm-nov26). Baseline CNN: L1TemporalCNN from kernel-xray, used with permission. Built for the TimeNet Online Hackathon 2026, round 1.</footer>
+  <footer>Data: KernelSight by williamhtan. Model: OpenTSLM-Flamingo (opentime/tslm-nov26). Baseline CNN: L1TemporalCNN (src/kernel_xray/phase3/cnn.py). Built for the TimeNet Online Hackathon 2026, round 1.</footer>
 </div>
 
 <script src="demo-data.js"></script>

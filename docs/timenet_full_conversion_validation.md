@@ -110,9 +110,9 @@ Phase 1 `.venv`. Use new output paths for every attempt. Before a new large run,
 repeat resource preflight; the 3 GiB approval recorded here applies to this task.
 
 ```bash
-cd '/Users/nawaf/Desktop/Kernel X-ray/.worktrees/timenet-kernelsight'
-export UV_CACHE_DIR='/Users/nawaf/Desktop/Kernel X-ray/.cache/uv'
-export KERNELSIGHT_ROOT='/Users/nawaf/Desktop/Kernel X-ray/data/kernelsight_v4'
+cd '/path/to/kernel-xray/.worktrees/timenet-kernelsight'
+export UV_CACHE_DIR='/path/to/kernel-xray/.cache/uv'
+export KERNELSIGHT_ROOT='/path/to/kernel-xray/data/kernelsight_v4'
 
 .venv/bin/uv run python -m benchmarks.kernelsight.full_conversion \
   --mode write --data-root "$KERNELSIGHT_ROOT" \
@@ -190,7 +190,7 @@ dataset, splits, Phase 1 code/environment/galleries, reports and all earlier
 benchmark artifacts remain unchanged. Recheck with:
 
 ```bash
-cd '/Users/nawaf/Desktop/Kernel X-ray'
+cd '/path/to/kernel-xray'
 .venv/bin/python scripts/verify_task3_preservation.py
 ```
 

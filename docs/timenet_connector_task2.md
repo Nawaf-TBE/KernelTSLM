@@ -111,10 +111,10 @@ Publication remains separately blocked on namespace and licensing requirements.
 From the TimeNet worktree, use its environment explicitly:
 
 ```bash
-cd "/Users/nawaf/Desktop/Kernel X-ray/.worktrees/timenet-kernelsight"
+cd "/path/to/kernel-xray/.worktrees/timenet-kernelsight"
 export PATH="$PWD/.venv/bin:$PATH"
-export UV_CACHE_DIR="/Users/nawaf/Desktop/Kernel X-ray/.cache/uv"
-export KERNELSIGHT_ROOT="/Users/nawaf/Desktop/Kernel X-ray/data/kernelsight_v4"
+export UV_CACHE_DIR="/path/to/kernel-xray/.cache/uv"
+export KERNELSIGHT_ROOT="/path/to/kernel-xray/data/kernelsight_v4"
 export KERNELSIGHT_PARTITIONS=train
 ```
 
@@ -135,7 +135,7 @@ uv run pytest packages/timenet-connectors/src/timenet_connectors/\
 datasets/williamhtan/kernelsight/tests -q
 uv run python benchmarks/kernelsight/verify_training.py \
   --data-root "$KERNELSIGHT_ROOT" --stage prototype \
-  --output "/Users/nawaf/Desktop/Kernel X-ray/outputs/phase2/task2/prototype-new"
+  --output "/path/to/kernel-xray/outputs/phase2/task2/prototype-new"
 ```
 
 Stage C, only after Stage B passes:
@@ -143,7 +143,7 @@ Stage C, only after Stage B passes:
 ```bash
 uv run python benchmarks/kernelsight/verify_training.py \
   --data-root "$KERNELSIGHT_ROOT" --stage training \
-  --output "/Users/nawaf/Desktop/Kernel X-ray/outputs/phase2/task2/training-new"
+  --output "/path/to/kernel-xray/outputs/phase2/task2/training-new"
 ```
 
 Output directories must be fresh; scripts refuse to overwrite registries. Defaults

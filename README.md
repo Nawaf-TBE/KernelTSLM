@@ -5,7 +5,8 @@ kernel runs, and answers four questions a performance engineer asks: what limits
 where the time goes, what ran when, and what kind of work it is. One fine-tuned time-series language model
 (OpenTSLM-Flamingo on Gemma 3 4B) answers all four, in plain language, with numbers that can be checked.
 
-Demo page: `site/index.html`, one page with the live demo on top (six test kernels drawn as chart leads, with the model's reading) and the project, use cases and results below. It loads `site/kx.css`, `site/results.js` and `site/demo-data.js`; `site/xray.html` redirects to it (open it in a browser; it loads `site/demo-data.js` and `site/hero.jpg`).
+**Demo:** open `site/index.html` in a browser. Six test kernels the model never saw play one after another, each
+drawn as chart leads with the model's reading, followed by the use cases, results and findings.
 
 ## Results (held-out test kernels, grouped split, one training run)
 
@@ -27,7 +28,7 @@ Main run `runs/mt_all`: one model, four tasks, seed 0, 2 epochs, 64 min on one H
 | Model | Score | Runs |
 |---|---|---|
 | Logistic regression on averages | 0.911 / 0.751 | 1 |
-| CNN (L1TemporalCNN from kernel-xray) | 0.910 / 0.715 | 5 seeds |
+| CNN (`L1TemporalCNN`, see [CNN baseline](#cnn-baseline)) | 0.910 / 0.715 | 5 seeds |
 | MiniRocket | 0.940 / 0.811 | 5 seeds |
 | Fine-tuned, workload only (`runs/mt_class`) | 0.890 / 0.731 | 1 |
 | **Fine-tuned, all four tasks** | **0.887 / 0.747** | 1 |
@@ -64,10 +65,12 @@ Intervals: 95% bootstrap over Problems. Full numbers: `runs/mt_all/metrics.json`
 
 ## Data and split
 
-KernelSight (`williamhtan/kernelsight`): 1,444 kernel traces from an H100, 24 counters x 512 time Bins, with
-per-Bin workload labels. Read through our TimeNet connector (PR #835). Split 862 / 291 / 291 Snapshots, grouped
-by Problem (kernel motif and shape without dtype, seed and launch options), so 0 Problems cross.
-`kernelsight.npz` is the exported dataset; `export_kernelsight.py` writes it.
+KernelSight (`williamhtan/kernelsight`, Apache-2.0): 1,444 kernel traces from an H100, 24 counters x 512 time
+Bins, with per-Bin workload labels. Read through our TimeNet connector (PR #835). Split 862 / 291 / 291 Snapshots,
+grouped by Problem (kernel motif and shape without dtype, seed and launch options), so 0 Problems cross.
+`kernelsight.npz` is the exported dataset (`export_kernelsight.py` writes it) and `temporal_qa/labels_cache.npz`
+holds the per-Bin labels the question builders use. Terms (Snapshot, Problem, Bin, ...) are defined in
+[GLOSSARY.md](GLOSSARY.md).
 
 ## The four tasks (`usecases/<task>/`, rows in `runs/usecases/<task>/`)
 
@@ -80,17 +83,50 @@ by Problem (kernel motif and shape without dtype, seed and launch options), so 0
 
 Each folder has `SPEC.md` (design, baselines, risks), `build.py` (writes the rows), `score.py` (scorer) and
 `baselines.py`. Every row also stores the correct answer for the time-reversed and the shuffled trace.
+`usecases/explanation/` holds the HAR-CoT check behind finding 4.
+
+## CNN baseline
+
+A counter-only residual CNN (`L1TemporalCNN`, `src/kernel_xray/phase3/`) that labels the primary workload of every
+Bin. On the official validation split, over 33,416 labeled Bins: macro-F1 0.946, accuracy 95.9% (unweighted,
+frozen at epoch 7; class-weighted 0.943). An independent CPU replay matches every saved prediction; boundary Bins
+are harder (63.9%) and the trace-bootstrap interval for macro-F1 is about [0.831, 0.969]. The same architecture,
+trained on our grouped split with its Bin logits averaged into one class per Snapshot, is the CNN row in the
+workload table above.
+
+Details: [results](docs/cnn-baseline.md), [method](docs/phase3_cnn_baseline.md),
+[independent audit](docs/phase3_cnn_independent_audit.md), figures and provenance in `results/cnn/`.
+
+## Repository layout
+
+```text
+usecases/          the four tasks: SPEC, row builder, scorer, baselines per task
+flamingo/          OpenTSLM-Flamingo fine-tuning (multitask.py) and earlier single-task runs
+runs/              results: mt_all (main run), mt_class, mt_diag, baselines, pilots, use-case rows
+site/              demo page (index.html)
+gpu/               scripts to run the fine-tune on a rented H100 (MULTITASK.md)
+temporal_qa/       question templates and label cache used by the row builders
+baselines.py       workload-type baselines (logistic regression, nearest neighbour, MiniRocket, CNN)
+src/kernel_xray/   dataset loader, visualization and the CNN baseline
+scripts/, tests/   CNN pipeline, audit and verification scripts; pytest suite
+docs/              CNN method and audit, TimeNet connector notes
+results/cnn/       CNN figures and provenance
+```
+
+`temporal_questions.py`, `temporal_baselines.py`, `plot_temporal.py`, `flamingo/finetune_kernelsight.py`,
+`flamingo/pilot_temporal.py` and `runs/pilot*` are the earlier experiments that led to the multi-task design.
 
 ## Reproduce
 
+```sh
+uv run --no-project --with numpy,scikit-learn usecases/<task>/build.py   # rows (laptop, seconds)
+uv run baselines.py                                                       # classical baselines (~5 min)
+uv run --with pytest python -m pytest -q                                  # CNN package tests
 ```
-uv run usecases/<task>/build.py                 # rows (Mac, seconds)
-uv run baselines.py                             # classical baselines (Mac, ~5 min)
-# GPU (1x H100): see gpu/MULTITASK.md
-gpu/upload.sh <user>@<ip>
-ssh <user>@<ip> "(setsid nohup bash -c 'bash ~/hackathon/gpu/setup_vm.sh > ~/setup.log 2>&1 && ~/hackathon/gpu/multitask.sh seed0 >> ~/hackathon/runs/multitask.log 2>&1' < /dev/null > /dev/null 2>&1 &)"
-gpu/close_when_done.sh <user>@<ip> <nebius-instance-id> mt_smoke_seed0 mt_all   # copy, check, delete the VM
-```
+
+The fine-tune needs one H100; `gpu/MULTITASK.md` has the steps (upload, set up the VM, run `gpu/multitask.sh`,
+copy the results back). The diagnosis and explanation builders also read the raw KernelSight label files for
+kernel timing; download the release and point `KERNELSIGHT_ROOT` at it (default `data/kernelsight/`).
 
 ## Limits
 
@@ -101,8 +137,7 @@ gpu/close_when_done.sh <user>@<ip> <nebius-instance-id> mt_smoke_seed0 mt_all   
 
 ## Credits and licenses
 
-- Data: KernelSight by williamhtan. Model: OpenTSLM-Flamingo (`opentime/tslm-nov26`).
+- Data: KernelSight by williamhtan (Apache-2.0). Model: OpenTSLM-Flamingo (`opentime/tslm-nov26`).
 - `flamingo/utils.py` comes from the AWS sample `opentslm-finetune-arfbench`, with marked changes; check its
   license before reuse.
-- CNN baseline: L1TemporalCNN from kernel-xray (teammate), used with permission.
 - Photo in `site/`: 极客湾Geekerwan, via Wikimedia Commons, CC BY 3.0, cropped.

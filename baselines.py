@@ -35,7 +35,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from torch.nn import functional as F
 
 HERE = Path(__file__).resolve().parent
-sys.path[:0] = [str(HERE / "flamingo"), str(HERE / "kernel-xray/src")]
+sys.path[:0] = [str(HERE / "flamingo"), str(HERE / "src")]
 from finetune_kernelsight import METRICS, baselines, interval, score  # noqa: E402
 from kernel_xray.phase3.cnn import L1TemporalCNN  # noqa: E402
 

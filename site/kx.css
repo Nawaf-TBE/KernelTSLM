@@ -1,5 +1,5 @@
 /* Kernel X-Ray shared styles: tokens, page frame, grid paper and the results dot plots.
-   Used by index.html (project page) and xray.html (live demo). Light only: navy ink on white chart paper. */
+   Used by index.html. Light only: navy ink on white chart paper. */
 :root {
   --desk: #EDEFF2; --paper: #FFFFFF; --ink: #1B2238; --body: #343B52; --muted: #5C6378; --line: #D5D9E0;
   --minor: #F6D6D4; --major: #EBAFAC; --marker: #FFE14A; --right: #2C6B3C; --wrong: #B3261E;

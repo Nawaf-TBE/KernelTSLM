@@ -1,4 +1,0 @@
-{"id": "temporal/test/000864", "type": "iteration_at_bin", "path": "kernels/kernelbench/_out/L2_P98/input/tensor_input.npz", "answer": "4-11", "output": "12-22", "tokens": 5, "seconds": 1.013, "model": "base"}
-{"id": "temporal/test/000394", "type": "peak_side", "path": "kernels/cutlass_sparse_gemm/_out/m1024_n1024_k8192/input/tensor_input.npz", "answer": "before", "output": "before", "tokens": 1, "seconds": 0.194, "model": "base"}
-{"id": "temporal/test/000776", "type": "iteration_at_bin", "path": "kernels/kernelbench/_out/L2_P100/input/tensor_input.npz", "answer": "23 or more", "output": "1", "tokens": 1, "seconds": 0.158, "model": "base"}
-{"id": "temporal/test/000911", "type": "longest_gap_len", "path": "kernels/kernelbench/_out/L1_P20/dt-fp16_s42/input/tensor_input.npz", "answer": "7-21", "output": "5-6", "tokens": 3, "seconds": 0.451, "model": "base"}

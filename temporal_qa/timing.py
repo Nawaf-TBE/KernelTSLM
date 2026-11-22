@@ -7,7 +7,8 @@ so positions are given relative to the ACTIVE SPAN (first busy Bin to last busy 
 from functools import lru_cache
 import numpy as np
 
-ROOT = '/Users/m7m2od/TimeNet-kernelsight/kernelsight/'
+from .paths import LABEL_ROOT as ROOT, NPZ
+
 LABELS = ['matmul', 'conv', 'activation', 'normalization', 'softmax', 'pooling', 'reduction',
           'attention', 'loss', 'elementwise', 'memory_movement', 'other']
 INTRO = ("The trace has 512 Bins in time order; Bin 0 is the start of the trace and Bin 511 the end. "
@@ -17,7 +18,7 @@ INTRO = ("The trace has 512 Bins in time order; Bin 0 is the start of the trace 
 
 @lru_cache(maxsize=None)
 def _paths():
-    return np.load('/Users/m7m2od/hackathon/kernelsight.npz')['paths']
+    return np.load(NPZ)['paths']
 
 
 @lru_cache(maxsize=4096)

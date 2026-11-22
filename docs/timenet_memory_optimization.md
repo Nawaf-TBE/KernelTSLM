@@ -268,19 +268,19 @@ must have a fresh output path; replace `reproduce-*` if already used. These comm
 use only training and never perform a full conversion:
 
 ```bash
-cd '/Users/nawaf/Desktop/Kernel X-ray/.worktrees/timenet-kernelsight'
-export UV_CACHE_DIR='/Users/nawaf/Desktop/Kernel X-ray/.cache/uv'
-export KERNELSIGHT_ROOT='/Users/nawaf/Desktop/Kernel X-ray/data/kernelsight_v4'
+cd '/path/to/kernel-xray/.worktrees/timenet-kernelsight'
+export UV_CACHE_DIR='/path/to/kernel-xray/.cache/uv'
+export KERNELSIGHT_ROOT='/path/to/kernel-xray/data/kernelsight_v4'
 export KERNELSIGHT_TEST_ROOT="$KERNELSIGHT_ROOT"
 export KERNELSIGHT_PARTITIONS=train
 
 .venv/bin/uv run python benchmarks/kernelsight/verify_training.py \
   --data-root "$KERNELSIGHT_ROOT" --stage training \
-  --output '/Users/nawaf/Desktop/Kernel X-ray/outputs/phase2/task2_1/reproduce-combined'
+  --output '/path/to/kernel-xray/outputs/phase2/task2_1/reproduce-combined'
 
 .venv/bin/uv run python benchmarks/kernelsight/profile_memory.py \
   --data-root "$KERNELSIGHT_ROOT" \
-  --output '/Users/nawaf/Desktop/Kernel X-ray/outputs/phase2/task2_1/reproduce-profile'
+  --output '/path/to/kernel-xray/outputs/phase2/task2_1/reproduce-profile'
 
 .venv/bin/uv run pytest \
   packages/timenet-connectors/src/timenet_connectors/datasets/williamhtan/kernelsight/tests \

@@ -1,6 +1,6 @@
 import numpy as np, os
-ROOT='/Users/m7m2od/TimeNet-kernelsight/kernelsight/'
-D=np.load('/Users/m7m2od/hackathon/kernelsight.npz')
+from .paths import LABEL_ROOT as ROOT, NPZ
+D=np.load(NPZ)
 X=D['x']; SPLIT=D['split']; Y=D['y']; CH=[str(c) for c in D['channels']]; LAB=[str(l) for l in D['labels']]; PATHS=D['paths']
 CACHE=os.path.join(os.path.dirname(os.path.abspath(__file__)),'labels_cache.npz')
 def _build():

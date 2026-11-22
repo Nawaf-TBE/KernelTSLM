@@ -1,5 +1,5 @@
 // Kernel X-Ray results as dot plots. Fills every element with data-plot="<name>"; add data-bare to hide the
-// title and caption (when the page already says them). Shared by index.html and xray.html.
+// title and caption (when the page already says them). Used by index.html.
 // Numbers: runs/mt_all/metrics.json (test split), runs/baselines/metrics.json, runs/usecases/<task>/baselines.json.
 (function () {
   var P = {

@@ -357,9 +357,9 @@ make test-connectors
 make license-check
 
 # Environment variable below is a proposed connector option.
-KERNELSIGHT_ROOT="/Users/nawaf/Desktop/Kernel X-ray/data/kernelsight_v4" \
+KERNELSIGHT_ROOT="/path/to/kernel-xray/data/kernelsight_v4" \
   uv run timenet-build build williamhtan/kernelsight@1.0.0 \
-  --keep-cache --local-registry "/Users/nawaf/Desktop/Kernel X-ray/outputs/phase2/timef"
+  --keep-cache --local-registry "/path/to/kernel-xray/outputs/phase2/timef"
 ```
 
 The final command is the eventual full conversion and is gated by the held-out
