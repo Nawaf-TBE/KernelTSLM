@@ -5,7 +5,7 @@ kernel runs, and answers four questions a performance engineer asks: what limits
 where the time goes, what ran when, and what kind of work it is. One fine-tuned time-series language model
 (OpenTSLM-Flamingo on Gemma 3 4B) answers all four, in plain language, with numbers that can be checked.
 
-Demo page: `site/index.html` (open it in a browser; it loads `site/demo-data.js` and `site/hero.jpg`).
+Demo page: `site/index.html`, one page with the live demo on top (six test kernels drawn as chart leads, with the model's reading) and the project, use cases and results below. It loads `site/kx.css`, `site/results.js` and `site/demo-data.js`; `site/xray.html` redirects to it (open it in a browser; it loads `site/demo-data.js` and `site/hero.jpg`).
 
 ## Results (held-out test kernels, grouped split, one training run)
 
