@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kernel X-Ray | Order Audit Demo</title>
+<meta name="description" content="A hands-on order audit of a time-series language model on GPU hardware counters.">
+<link rel="stylesheet" href="../site/kx.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--yellow:#ffe14a}html{scroll-behavior:smooth}body{background:#eef0f4}button{cursor:pointer}
+.container{max-width:1180px;margin:auto;padding:0 24px}
+header{height:66px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);font-family:var(--sans)}
+.brand{font-size:24px;font-weight:700;text-decoration:none}nav{display:flex;gap:24px;color:var(--muted);font-size:15px}
+.hero{padding:68px 0 40px;display:grid;grid-template-columns:1.12fr .88fr;gap:45px;align-items:end}
+.eyebrow{font:600 13px var(--sans);letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 clamp(52px,7vw,92px)/.96 var(--sans);letter-spacing:-.048em;margin:17px 0 23px;max-width:720px}
+h2{font:650 clamp(32px,4vw,48px)/1.04 var(--sans);letter-spacing:-.022em}
+.subtitle{font:20px/1.5 var(--serif);max-width:520px;color:var(--body)}
+.heroaside{border-left:3px solid var(--yellow);padding-left:24px;font:18px/1.6 var(--serif);color:var(--body)}
+.kicker{font:600 13px var(--sans);color:var(--muted);letter-spacing:.09em;text-transform:uppercase}
+.sheetv{background:white;border:1px solid var(--line);box-shadow:0 16px 36px -30px #19233c40}
+.barhead{padding:20px 24px;display:flex;gap:16px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.barhead strong{font:650 22px var(--sans)}.helper{font:14px var(--sans);color:var(--muted)}
+.controlrow{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font:600 15px var(--sans);padding:9px 14px;border:1px solid #cbd0d9;background:white;border-radius:4px}
+.pill[aria-pressed=true]{background:#1b2238;border-color:#1b2238;color:white}
+.traced{padding:20px 22px 10px;background-color:#fff;background-image:linear-gradient(#f3d7d5 1px,transparent 1px),linear-gradient(90deg,#f3d7d5 1px,transparent 1px);background-size:16px 16px}
+.traces{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;min-width:0}
+.trace{min-width:0;padding:8px 10px 4px;background:#ffffffb8;border:1px solid #e5d9d8}
+.trace label{display:block;font:600 12px var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trace canvas{display:block;width:100%;height:62px}
+.tracenote{margin-top:10px;font:12px var(--sans);color:var(--muted);background:#fff9;padding:7px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line)}
+.stat{background:white;padding:23px 25px}.stat big{display:block;font:700 37px/.98 var(--sans);letter-spacing:-.03em}.stat span{font:14px var(--sans);color:var(--muted);display:block;margin-top:7px}
+.section{padding:70px 0 0}.sectiontop{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:22px}.sectiontop p{max-width:500px;color:var(--body)}
+.audit{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:24px}
+.audit h3{font:650 22px var(--sans);margin:0 0 12px}.subbox{border:1px solid var(--line);padding:22px;background:#fafbfc}
+.metric{font:700 58px/1 var(--sans);margin:15px 0 9px}.note{font:14px/1.5 var(--sans);color:var(--muted)}
+.compare{height:14px;background:#e5e8ed;margin:22px 0 7px;overflow:hidden}.fill{height:100%;background:#19223b;transition:width .2s}
+.question{font:600 16px var(--sans);margin:10px 0}.answer{font:19px/1.48 var(--serif);min-height:62px}
+.pairflag{display:inline-block;background:#fff2a5;padding:3px 9px;font:600 13px var(--sans)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.taskcard{border:1px solid var(--line);background:white;text-align:left;padding:16px;font:650 17px var(--sans);min-height:83px}.taskcard[aria-pressed=true]{border-top:4px solid #1b2238;padding-top:13px;background:#fff8cb}
+.taskbody{background:white;border:1px solid var(--line);padding:27px;margin-top:12px;display:grid;grid-template-columns:1.1fr .9fr;gap:36px}.taskbody h3{font:700 26px var(--sans);margin:0 0 12px}
+.timeline{height:30px;display:flex;overflow:hidden;border:1px solid #cdd3de;margin-top:15px}.timeline span{font:12px var(--sans);min-width:0;overflow:hidden;white-space:nowrap;text-align:center;padding-top:5px}.timeline .idle{background:#edf0f3}.timeline .active{background:#ffe14a}.timeline .unknown{background:#dfd4e5}
+.takeaway{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.takeaway article{background:white;border:1px solid var(--line);padding:20px}.takeaway strong{font:650 20px var(--sans)}.takeaway p{margin-top:9px;color:var(--body)}
+footer{margin-top:65px;border-top:1px solid var(--line);padding:28px 0 45px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font:14px var(--sans);color:var(--muted)}
+.links{display:flex;gap:18px;flex-wrap:wrap}a{color:inherit}
+@media(max-width:850px){.hero,.audit,.taskbody{grid-template-columns:1fr}.traces{grid-template-columns:repeat(3,minmax(0,1fr))}.cards{grid-template-columns:repeat(2,1fr)}.takeaway{grid-template-columns:1fr}.hero{padding-top:38px}}
+@media(max-width:560px){.container{padding:0 14px}header{height:auto;min-height:64px}nav{gap:10px}.heroaside{font-size:16px}.traces{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:1fr}.section{padding-top:45px}.sectiontop{display:block}.sectiontop p{margin-top:10px}.barhead{padding:16px}.audit{padding:14px}.metric{font-size:46px}.stat{padding:16px}}
+</style></head>
+<body>
+<div class="container"><header>
+<a class="brand" href="#top">Kernel X-Ray</a>
+<nav aria-label="Main navigation"><a href="#demo">Demo</a><a href="#audit">Order audit</a><a href="#capabilities">Capabilities</a><a href="#results">Findings</a></nav>
+</header>
+<section class="hero" id="top"><div><div class="eyebrow">TimeNet Hackathon 2026 · Round 1</div><h1>Can AI really<br>read time?</h1><p class="subtitle">We trained a time-series language model on GPU hardware counters. Then we challenged it: shuffle, reverse, or swap the signals. Does its answer still make sense?</p></div>
+<div class="heroaside">24 hardware counters · 512 time bins · one NVIDIA H100.<br><strong>One model, four tasks.</strong><br>Recorded test examples. No live GPU required.</div>
+</section>
+<section class="sheetv" id="demo">
+<div class="barhead"><div><div class="kicker">01 / Explore the trace</div><strong>Choose a GPU kernel</strong></div><div class="controlrow" id="kernels"></div></div>
+<div class="traced"><div class="traces" id="traces" aria-label="GPU hardware-counter traces"></div><p class="tracenote">Original recorded test trace. Values are display-scaled using the dataset's training range, not raw percent readings.</p></div>
+<div class="stats"><div class="stat"><big id="type">—</big><span>Reference workload</span></div><div class="stat"><big id="limiter">—</big><span>Reference limiter (rule-derived)</span></div><div class="stat"><big id="agreement">—</big><span>Diagnosis match with reference</span></div></div>
+</section>
+<section class="section" id="audit"><div class="sectiontop"><div><div class="kicker">02 / Main experiment</div><h2>The order audit</h2></div><p>Keep the numerical summaries fixed, then disrupt the measured sequence. The model should respond to the series, not just the words around it.</p></div>
+<div class="sheetv"><div class="barhead"><strong>Change the signal</strong><div class="controlrow" id="conditions"></div></div>
+<div class="audit">
+<div class="subbox"><h3>What changed?</h3><p id="condition-desc" class="answer"></p><div class="kicker">Visualization</div><canvas id="auditplot" width="500" height="172" style="display:block;width:100%;max-height:175px;background:#fff;margin-top:12px"></canvas><p class="note">The transformed curve is a demonstrative perturbation of a recorded test trace. It is not a fresh inference run.</p></div>
+<div class="subbox"><h3>What happened in evaluation?</h3><div class="kicker" id="metric-title">Temporal QA, real</div><div class="metric" id="metric">80.3%</div><div class="compare"><div class="fill" id="metricbar" style="width:80.3%"></div></div><p class="note" id="metric-desc">Pooled accuracy on 1,000 temporal questions in the held-out grouped test set.</p><p style="margin-top:18px"><span class="pairflag">Reversal-pair score: 70.9% both correct</span></p><p class="note" style="margin-top:8px">A paired result is not directly comparable to single-question accuracy. All numbers are from committed evaluations, not this browser's predictions.</p></div>
+</div></div></section>
+<section class="section" id="capabilities"><div class="sectiontop"><div><div class="kicker">03 / One fine-tuned model</div><h2>Four questions, one model</h2></div><p>Explore actual recorded outputs for a selected test kernel. Diagnosis labels come from explicit rules, not expert annotation.</p></div>
+<div class="cards" id="tasks"></div>
+<div class="taskbody"><div><h3 id="tasktitle"></h3><p class="question" id="taskquestion"></p><div class="answer" id="taskanswer"></div><div class="timeline" id="timeline" hidden></div></div><div><div class="kicker">Reference / verification</div><p style="margin-top:15px" id="taskreference"></p><p class="note" id="taskcaveat" style="margin-top:15px"></p></div></div></section>
+<section class="section" id="results"><div class="sectiontop"><div><div class="kicker">04 / What we learned</div><h2>Evidence over hype</h2></div><p>Our strongest result isn't the number of tasks. It's the controlled test of whether the model uses the measured signals.</p></div>
+<div class="takeaway"><article><strong>Time order matters</strong><p>Temporal QA drops from 80.3% on real series to 46.5% after time shuffling.</p></article><article><strong>Signal identity matters</strong><p>Workload classification drops from 88.7% to 37.8% when another kernel's series replaces the original while text summaries remain fixed.</p></article><article><strong>We report the limits</strong><p>Specialized baselines outperform the model on individual tasks. The data come from one H100, with rule-derived diagnosis references and one multi-task training seed.</p></article></div>
+</section>
+<footer><span>Kernel X-Ray · TimeNet Online Hackathon 2026</span><div class="links"><a href="https://github.com/Nawaf-TBE/kernel-xray">GitHub</a><a href="https://github.com/OpenTSLM/TimeNet/pull/835">TimeNet connector PR</a><a href="../site/index.html">Original demo</a><a href="../README.md">Full methods & results</a></div></footer>
+</div>
+<script src="../site/demo-data.js"></script>
+<script>
+(function(){
+"use strict";
+const KX=window.KX, channels=KX&&KX.channels, kernels=KX&&KX.kernels;
+if(!kernels||!kernels.length){document.getElementById("traces").textContent="Demo data unavailable. Open this file inside the Kernel X-Ray repository alongside the site/ folder.";return;}
+let selected=0,condition="Original",task="Diagnosis",raw=null;
+const $=id=>document.getElementById(id);
+const nice=c=>c.replace(/ \[Throughput %\]/g,"").replace(/^pipe: /,"").replace(/^stall: /,"").replace(/_/g," ");
+const clip=s=>String(s||"").slice(0,1600);
+function decode(k){const s=atob(k.heat),d=new Uint8Array(s.length);for(let i=0;i<s.length;i++)d[i]=s.charCodeAt(i);return d;}
+function channelData(a,j){return a.slice(j*256,(j+1)*256);}
+function plot(c,v){const dpr=window.devicePixelRatio||1,w=c.clientWidth||160,h=c.clientHeight||62;c.width=Math.max(10,Math.round(w*dpr));c.height=Math.max(10,Math.round(h*dpr));const ctx=c.getContext("2d");ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);ctx.strokeStyle="#1b2238";ctx.lineWidth=1.7;ctx.beginPath();v.forEach((a,i)=>{let x=i/(v.length-1)*w,y=h-6-(a/255)*(h-13);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();}
+function renderTraces(){const el=$("traces");el.replaceChildren();for(let j=0;j<24;j++){const div=document.createElement("div");div.className="trace";const lab=document.createElement("label");lab.textContent=nice(channels[j]);lab.title=channels[j];const canvas=document.createElement("canvas");div.append(lab,canvas);el.append(div);plot(canvas,channelData(raw,j));}}
+function renderKernelButtons(){const host=$("kernels");host.replaceChildren();kernels.forEach((k,i)=>{const b=document.createElement("button");b.className="pill";b.textContent=k.name;b.setAttribute("aria-pressed",String(i===selected));b.onclick=()=>{selected=i;renderKernel();};host.append(b)});}
+function renderKernel(){const k=kernels[selected];raw=decode(k);$("type").textContent=k.workload;$("limiter").textContent=k.limiter;$("agreement").textContent=k.model&&k.model.diag_ok?"Agrees":"Differs";renderKernelButtons();renderTraces();renderAudit();renderTask();}
+const vals={Original:["Original time order. This is the measured trace.","Temporal QA · original",80.3,"Pooled accuracy on 1,000 held-out timing questions."],Shuffled:["The exact same values, with time bins placed in a fixed shuffled order.","Temporal QA · time-shuffled",46.5,"Pooled accuracy on the same evaluation task with reference answers recomputed for shuffled input."],Reversed:["The same values in reverse chronological order.","Trend reversal · paired",70.9,"Both-correct accuracy on reversal-sensitive original/reversed trend pairs; not ordinary pooled accuracy."],Swapped:["Counters from another test kernel replace the series, while the original text summaries remain unchanged.","Workload · swapped",37.8,"Accuracy on donor-series classification controls; compare against 88.7% on original series."]};
+function drawAudit(v){const canvas=$("auditplot");const j=3;let seq=Array.from(channelData(raw,j));if(condition==="Reversed")seq.reverse();if(condition==="Shuffled"){const perm=Array.from({length:256},(_,i)=>i);let state=1;for(let i=255;i>0;i--){state=(state*1664525+1013904223)>>>0;const x=state%(i+1);[perm[i],perm[x]]=[perm[x],perm[i]];}seq=perm.map(i=>seq[i]);}if(condition==="Swapped"){let donor=kernels.find((k,i)=>i!==selected&&k.workload!==kernels[selected].workload);if(!donor)donor=kernels[(selected+1)%kernels.length];seq=Array.from(channelData(decode(donor),j));}plot(canvas,seq);}
+function renderAudit(){const x=vals[condition];$("condition-desc").textContent=x[0];$("metric-title").textContent=x[1];$("metric").textContent=x[2].toFixed(1)+"%";$("metricbar").style.width=x[2]+"%";$("metric-desc").textContent=x[3];document.querySelectorAll("#conditions button").forEach(b=>b.setAttribute("aria-pressed",String(b.textContent===condition)));drawAudit();}
+function renderConditions(){const host=$("conditions");["Original","Shuffled","Reversed","Swapped"].forEach(x=>{const b=document.createElement("button");b.className="pill";b.textContent=x;b.onclick=()=>{condition=x;renderAudit()};host.append(b)});renderAudit();}
+const titles={Diagnosis:"Diagnose a slow kernel",Temporal:"Answer timing questions",Segmentation:"What ran when?",Classification:"Name the workload"};
+function renderTasks(){const host=$("tasks");Object.keys(titles).forEach(t=>{const b=document.createElement("button");b.className="taskcard";b.textContent=titles[t];b.setAttribute("aria-pressed",String(t===task));b.onclick=()=>{task=t;renderTask()};host.append(b)});}
+function timeline(k){const host=$("timeline");host.replaceChildren();if(task!=="Segmentation"){host.hidden=true;return;}host.hidden=false;const steps=k.timeline.split(";").map(x=>{let [start,...s]=x.trim().split(" ");return {start:Number(start),label:s.join(" ")}});steps.forEach((x,i)=>{const end=i+1<steps.length?steps[i+1].start:512;const e=document.createElement("span");e.style.width=((end-x.start)/512*100)+"%";e.className=x.label==="idle"?"idle":x.label==="unlabeled"?"unknown":"active";e.textContent=x.label;e.title="Bins "+x.start+"–"+(end-1)+": "+x.label;host.append(e)});}
+function renderTask(){const k=kernels[selected],m=k.model||{};$("tasktitle").textContent=titles[task];document.querySelectorAll("#tasks button").forEach(b=>b.setAttribute("aria-pressed",String(b.textContent===titles[task])));let q="",a="",ref="",caveat="";
+if(task==="Diagnosis"){q="What limits this kernel, and what should we try?";a=m.diagnosis||"Not recorded";ref="Rule-derived reference limiter: "+k.limiter+". "+(m.diag_ok?"The model agrees.":"The model differs.");caveat="These rule-derived labels are not expert-confirmed causal diagnoses.";}
+if(task==="Temporal"){q=k.timing&&k.timing.q||"Timing question";a=m.timing||"Not recorded";ref="Recorded reference answer: "+(k.timing&&k.timing.a||"Unavailable");caveat="This is the original-trace response; altered-input results are summarized in the audit above.";}
+if(task==="Segmentation"){q="What ran when?";a="See the annotated workload timeline below.";ref="Shown timeline is the reference annotation, not a generated model prediction.";caveat="Aggregate model timeline score: 89.7% of bins correct. Per-kernel generated timeline is not bundled in these demo records.";}
+if(task==="Classification"){q="Which workload type dominates this trace?";a=m.workload||"Not recorded";ref="Reference: "+k.workload+". "+(m.workload_ok?"The model agrees.":"The model differs.");caveat="Across the grouped test split: 88.7% plain accuracy; 74.7% balanced accuracy.";}
+$("taskquestion").textContent=q;$("taskanswer").textContent=clip(a);$("taskreference").textContent=ref;$("taskcaveat").textContent=caveat;timeline(k);}
+window.addEventListener("resize",()=>{if(raw){renderTraces();drawAudit();}});
+renderTasks();renderConditions();renderKernel();
+})();
+</script></body></html>
