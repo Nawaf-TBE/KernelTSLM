@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kernel X-Ray | Order Audit Demo</title>
 <meta name="description" content="A hands-on order audit of a time-series language model on GPU hardware counters.">
-<link rel="stylesheet" href="../site/kx.css">
+<link rel="stylesheet" href="kx.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -46,6 +46,7 @@ footer{margin-top:65px;border-top:1px solid var(--line);padding:28px 0 45px;disp
 .links{display:flex;gap:18px;flex-wrap:wrap}a{color:inherit}
 @media(max-width:850px){.hero,.audit,.taskbody{grid-template-columns:1fr}.traces{grid-template-columns:repeat(3,minmax(0,1fr))}.cards{grid-template-columns:repeat(2,1fr)}.takeaway{grid-template-columns:1fr}.hero{padding-top:38px}}
 @media(max-width:560px){.container{padding:0 14px}header{height:auto;min-height:64px}nav{gap:10px}.heroaside{font-size:16px}.traces{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:1fr}.section{padding-top:45px}.sectiontop{display:block}.sectiontop p{margin-top:10px}.barhead{padding:16px}.audit{padding:14px}.metric{font-size:46px}.stat{padding:16px}}
+.prediction-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.resultpill{font:600 13px var(--sans);padding:4px 10px;background:#e1f2e5;color:#256038;display:inline-block}.resultpill.bad{background:#fde5e3;color:#a3221a}.tlrow{margin:11px 0}.tlrow .tlname{font:600 13px var(--sans);margin-bottom:5px}.tlbars{height:28px;display:flex;overflow:hidden;border:1px solid #cdd3de}.tlbars span{overflow:hidden;text-align:center;white-space:nowrap;font:11px var(--sans);padding-top:4px}.tlbars .idle{background:#e5e9ee}.tlbars .active{background:#ffdf58}.tlbars .unknown{background:#dccde9}@media(max-width:650px){.prediction-grid{grid-template-columns:1fr}} 
 </style></head>
 <body>
 <div class="container"><header>
@@ -63,47 +64,211 @@ footer{margin-top:65px;border-top:1px solid var(--line);padding:28px 0 45px;disp
 <section class="section" id="audit"><div class="sectiontop"><div><div class="kicker">02 / Main experiment</div><h2>The order audit</h2></div><p>Keep the numerical summaries fixed, then disrupt the measured sequence. The model should respond to the series, not just the words around it.</p></div>
 <div class="sheetv"><div class="barhead"><strong>Change the signal</strong><div class="controlrow" id="conditions"></div></div>
 <div class="audit">
-<div class="subbox"><h3>What changed?</h3><p id="condition-desc" class="answer"></p><div class="kicker">Visualization</div><canvas id="auditplot" width="500" height="172" style="display:block;width:100%;max-height:175px;background:#fff;margin-top:12px"></canvas><p class="note">The transformed curve is a demonstrative perturbation of a recorded test trace. It is not a fresh inference run.</p></div>
+<div class="subbox"><h3>What changed?</h3><p id="condition-desc" class="answer"></p><div class="kicker" id="audit-counter">Counter signal (256 display samples)</div><canvas id="auditplot" width="500" height="172" style="display:block;width:100%;max-height:175px;background:#fff;margin-top:12px"></canvas><p class="note">These display samples derive from a recorded KernelSight trace. Shuffling is illustrative; model answers below come from the saved experimental evaluation, not browser inference.</p></div>
 <div class="subbox"><h3>What happened in evaluation?</h3><div class="kicker" id="metric-title">Temporal QA, real</div><div class="metric" id="metric">80.3%</div><div class="compare"><div class="fill" id="metricbar" style="width:80.3%"></div></div><p class="note" id="metric-desc">Pooled accuracy on 1,000 temporal questions in the held-out grouped test set.</p><p style="margin-top:18px"><span class="pairflag">Reversal-pair score: 70.9% both correct</span></p><p class="note" style="margin-top:8px">A paired result is not directly comparable to single-question accuracy. All numbers are from committed evaluations, not this browser's predictions.</p></div>
-</div></div></section>
+</div></div>
+<div class="audit" style="padding-top:0"><div class="subbox" style="grid-column:1/-1">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><h3>Try a recorded test question</h3><label class="helper">Question <select id="auditquestion" style="font:15px var(--sans);padding:8px;border:1px solid var(--line);max-width:100%"></select></label></div>
+<p id="auditprompt" class="question" style="font-size:17px;line-height:1.45;margin:10px 0 16px"></p>
+<div class="prediction-grid"><div><div class="kicker">Saved model answer</div><strong id="modelanswer" style="font:700 26px var(--sans);display:block;margin:8px 0"></strong><span class="resultpill" id="answerstatus"></span></div>
+<div><div class="kicker">Reference answer</div><strong id="referenceanswer" style="font:700 26px var(--sans);display:block;margin:8px 0"></strong><p id="donornote" class="note"></p></div></div>
+<p class="note" style="margin-top:14px">Recorded predictions, not live inference. Reversal and time-shuffle outcomes are measured on the same question; swap uses workload classification against an alternative donor trace.</p>
+</div></div></div></section>
 <section class="section" id="capabilities"><div class="sectiontop"><div><div class="kicker">03 / One fine-tuned model</div><h2>Four questions, one model</h2></div><p>Explore actual recorded outputs for a selected test kernel. Diagnosis labels come from explicit rules, not expert annotation.</p></div>
 <div class="cards" id="tasks"></div>
-<div class="taskbody"><div><h3 id="tasktitle"></h3><p class="question" id="taskquestion"></p><div class="answer" id="taskanswer"></div><div class="timeline" id="timeline" hidden></div></div><div><div class="kicker">Reference / verification</div><p style="margin-top:15px" id="taskreference"></p><p class="note" id="taskcaveat" style="margin-top:15px"></p></div></div></section>
+<div class="taskbody"><div><h3 id="tasktitle"></h3><p class="question" id="taskquestion"></p><div class="answer" id="taskanswer"></div><div id="timeline" style="margin-top:14px" hidden></div></div><div><div class="kicker">Reference / verification</div><p style="margin-top:15px" id="taskreference"></p><p class="note" id="taskcaveat" style="margin-top:15px"></p></div></div></section>
 <section class="section" id="results"><div class="sectiontop"><div><div class="kicker">04 / What we learned</div><h2>Evidence over hype</h2></div><p>Our strongest result isn't the number of tasks. It's the controlled test of whether the model uses the measured signals.</p></div>
 <div class="takeaway"><article><strong>Time order matters</strong><p>Temporal QA drops from 80.3% on real series to 46.5% after time shuffling.</p></article><article><strong>Signal identity matters</strong><p>Workload classification drops from 88.7% to 37.8% when another kernel's series replaces the original while text summaries remain fixed.</p></article><article><strong>We report the limits</strong><p>Specialized baselines outperform the model on individual tasks. The data come from one H100, with rule-derived diagnosis references and one multi-task training seed.</p></article></div>
 </section>
 <footer><span>Kernel X-Ray · TimeNet Online Hackathon 2026</span><div class="links"><a href="https://github.com/Nawaf-TBE/kernel-xray">GitHub</a><a href="https://github.com/OpenTSLM/TimeNet/pull/835">TimeNet connector PR</a><a href="../site/index.html">Original demo</a><a href="../README.md">Full methods & results</a></div></footer>
 </div>
-<script src="../site/demo-data.js"></script>
+
+<script src="demo-data.js"></script><script src="audit-records.js"></script>
 <script>
-(function(){
+(function () {
 "use strict";
-const KX=window.KX, channels=KX&&KX.channels, kernels=KX&&KX.kernels;
-if(!kernels||!kernels.length){document.getElementById("traces").textContent="Demo data unavailable. Open this file inside the Kernel X-Ray repository alongside the site/ folder.";return;}
-let selected=0,condition="Original",task="Diagnosis",raw=null;
+const KX=window.KX, AUD=window.KX_AUDIT;
 const $=id=>document.getElementById(id);
-const nice=c=>c.replace(/ \[Throughput %\]/g,"").replace(/^pipe: /,"").replace(/^stall: /,"").replace(/_/g," ");
-const clip=s=>String(s||"").slice(0,1600);
-function decode(k){const s=atob(k.heat),d=new Uint8Array(s.length);for(let i=0;i<s.length;i++)d[i]=s.charCodeAt(i);return d;}
-function channelData(a,j){return a.slice(j*256,(j+1)*256);}
-function plot(c,v){const dpr=window.devicePixelRatio||1,w=c.clientWidth||160,h=c.clientHeight||62;c.width=Math.max(10,Math.round(w*dpr));c.height=Math.max(10,Math.round(h*dpr));const ctx=c.getContext("2d");ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);ctx.strokeStyle="#1b2238";ctx.lineWidth=1.7;ctx.beginPath();v.forEach((a,i)=>{let x=i/(v.length-1)*w,y=h-6-(a/255)*(h-13);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();}
-function renderTraces(){const el=$("traces");el.replaceChildren();for(let j=0;j<24;j++){const div=document.createElement("div");div.className="trace";const lab=document.createElement("label");lab.textContent=nice(channels[j]);lab.title=channels[j];const canvas=document.createElement("canvas");div.append(lab,canvas);el.append(div);plot(canvas,channelData(raw,j));}}
-function renderKernelButtons(){const host=$("kernels");host.replaceChildren();kernels.forEach((k,i)=>{const b=document.createElement("button");b.className="pill";b.textContent=k.name;b.setAttribute("aria-pressed",String(i===selected));b.onclick=()=>{selected=i;renderKernel();};host.append(b)});}
-function renderKernel(){const k=kernels[selected];raw=decode(k);$("type").textContent=k.workload;$("limiter").textContent=k.limiter;$("agreement").textContent=k.model&&k.model.diag_ok?"Agrees":"Differs";renderKernelButtons();renderTraces();renderAudit();renderTask();}
-const vals={Original:["Original time order. This is the measured trace.","Temporal QA · original",80.3,"Pooled accuracy on 1,000 held-out timing questions."],Shuffled:["The exact same values, with time bins placed in a fixed shuffled order.","Temporal QA · time-shuffled",46.5,"Pooled accuracy on the same evaluation task with reference answers recomputed for shuffled input."],Reversed:["The same values in reverse chronological order.","Trend reversal · paired",70.9,"Both-correct accuracy on reversal-sensitive original/reversed trend pairs; not ordinary pooled accuracy."],Swapped:["Counters from another test kernel replace the series, while the original text summaries remain unchanged.","Workload · swapped",37.8,"Accuracy on donor-series classification controls; compare against 88.7% on original series."]};
-function drawAudit(v){const canvas=$("auditplot");const j=3;let seq=Array.from(channelData(raw,j));if(condition==="Reversed")seq.reverse();if(condition==="Shuffled"){const perm=Array.from({length:256},(_,i)=>i);let state=1;for(let i=255;i>0;i--){state=(state*1664525+1013904223)>>>0;const x=state%(i+1);[perm[i],perm[x]]=[perm[x],perm[i]];}seq=perm.map(i=>seq[i]);}if(condition==="Swapped"){let donor=kernels.find((k,i)=>i!==selected&&k.workload!==kernels[selected].workload);if(!donor)donor=kernels[(selected+1)%kernels.length];seq=Array.from(channelData(decode(donor),j));}plot(canvas,seq);}
-function renderAudit(){const x=vals[condition];$("condition-desc").textContent=x[0];$("metric-title").textContent=x[1];$("metric").textContent=x[2].toFixed(1)+"%";$("metricbar").style.width=x[2]+"%";$("metric-desc").textContent=x[3];document.querySelectorAll("#conditions button").forEach(b=>b.setAttribute("aria-pressed",String(b.textContent===condition)));drawAudit();}
-function renderConditions(){const host=$("conditions");["Original","Shuffled","Reversed","Swapped"].forEach(x=>{const b=document.createElement("button");b.className="pill";b.textContent=x;b.onclick=()=>{condition=x;renderAudit()};host.append(b)});renderAudit();}
-const titles={Diagnosis:"Diagnose a slow kernel",Temporal:"Answer timing questions",Segmentation:"What ran when?",Classification:"Name the workload"};
-function renderTasks(){const host=$("tasks");Object.keys(titles).forEach(t=>{const b=document.createElement("button");b.className="taskcard";b.textContent=titles[t];b.setAttribute("aria-pressed",String(t===task));b.onclick=()=>{task=t;renderTask()};host.append(b)});}
-function timeline(k){const host=$("timeline");host.replaceChildren();if(task!=="Segmentation"){host.hidden=true;return;}host.hidden=false;const steps=k.timeline.split(";").map(x=>{let [start,...s]=x.trim().split(" ");return {start:Number(start),label:s.join(" ")}});steps.forEach((x,i)=>{const end=i+1<steps.length?steps[i+1].start:512;const e=document.createElement("span");e.style.width=((end-x.start)/512*100)+"%";e.className=x.label==="idle"?"idle":x.label==="unlabeled"?"unknown":"active";e.textContent=x.label;e.title="Bins "+x.start+"–"+(end-1)+": "+x.label;host.append(e)});}
-function renderTask(){const k=kernels[selected],m=k.model||{};$("tasktitle").textContent=titles[task];document.querySelectorAll("#tasks button").forEach(b=>b.setAttribute("aria-pressed",String(b.textContent===titles[task])));let q="",a="",ref="",caveat="";
-if(task==="Diagnosis"){q="What limits this kernel, and what should we try?";a=m.diagnosis||"Not recorded";ref="Rule-derived reference limiter: "+k.limiter+". "+(m.diag_ok?"The model agrees.":"The model differs.");caveat="These rule-derived labels are not expert-confirmed causal diagnoses.";}
-if(task==="Temporal"){q=k.timing&&k.timing.q||"Timing question";a=m.timing||"Not recorded";ref="Recorded reference answer: "+(k.timing&&k.timing.a||"Unavailable");caveat="This is the original-trace response; altered-input results are summarized in the audit above.";}
-if(task==="Segmentation"){q="What ran when?";a="See the annotated workload timeline below.";ref="Shown timeline is the reference annotation, not a generated model prediction.";caveat="Aggregate model timeline score: 89.7% of bins correct. Per-kernel generated timeline is not bundled in these demo records.";}
-if(task==="Classification"){q="Which workload type dominates this trace?";a=m.workload||"Not recorded";ref="Reference: "+k.workload+". "+(m.workload_ok?"The model agrees.":"The model differs.");caveat="Across the grouped test split: 88.7% plain accuracy; 74.7% balanced accuracy.";}
-$("taskquestion").textContent=q;$("taskanswer").textContent=clip(a);$("taskreference").textContent=ref;$("taskcaveat").textContent=caveat;timeline(k);}
+if(!KX || !AUD || !Array.isArray(KX.kernels) || !KX.kernels.length){
+  $("traces").textContent="Demo assets are missing. Keep index.html, demo-data.js, audit-records.js and kx.css together.";
+  return;
+}
+let selected=0, condition="Original", task="Diagnosis", raw, temporalIndex=0;
+const kernels=KX.kernels, ch=KX.channels;
+const nice=s=>String(s||"").replace(/ \[Throughput %\]/g,"").replace(/^pipe: /,"").replace(/^stall: /,"").replace(/_/g," ");
+const h=(tag,className,content)=>{let e=document.createElement(tag);if(className)e.className=className;if(content!==undefined)e.textContent=content;return e;};
+function decode(k){
+ const binary=atob(k.heat), d=new Uint8Array(binary.length);
+ for(let i=0;i<binary.length;i++)d[i]=binary.charCodeAt(i);
+ if(d.length!==ch.length*256)throw Error("Invalid bundled trace length");
+ return d;
+}
+function series(a,index){return a.slice(index*256,(index+1)*256);}
+function plot(canvas,values){
+ if(!canvas||!values)return;
+ const width=Math.max(100,canvas.getBoundingClientRect().width||250);
+ const height=Math.max(55,canvas.getBoundingClientRect().height||65);
+ const scale=Math.min(2,window.devicePixelRatio||1);
+ canvas.width=Math.round(width*scale);canvas.height=Math.round(height*scale);
+ const c=canvas.getContext("2d");if(!c)return;
+ c.setTransform(scale,0,0,scale,0,0);c.clearRect(0,0,width,height);
+ c.strokeStyle="#aab4c5";c.lineWidth=1;c.beginPath();c.moveTo(0,height-6);c.lineTo(width,height-6);c.stroke();
+ c.strokeStyle="#1b2238";c.lineWidth=1.7;c.lineJoin="round";c.beginPath();
+ for(let i=0;i<values.length;i++){
+   const x=i/(values.length-1)*width, y=height-7-(values[i]/255)*(height-14);
+   i?c.lineTo(x,y):c.moveTo(x,y);
+ }c.stroke();
+}
+function current(){return AUD.data[kernels[selected].id]||{};}
+function chooseKernel(i){
+ selected=i;temporalIndex=0;raw=decode(kernels[i]); renderKernelButtons();renderTraces();
+ $("type").textContent=kernels[i].workload;
+ $("limiter").textContent=kernels[i].limiter;
+ $("agreement").textContent=kernels[i].model&&kernels[i].model.diag_ok?"Agrees":"Differs";
+ renderQuestionOptions();renderAudit();renderTask();
+}
+function renderKernelButtons(){
+ const host=$("kernels");host.replaceChildren();
+ kernels.forEach((k,i)=>{
+ const b=h("button","pill",k.name);b.title=k.detail||k.name;b.setAttribute("aria-pressed",String(i===selected));
+ b.addEventListener("click",()=>chooseKernel(i));host.appendChild(b);
+ });
+}
+function renderTraces(){
+ const host=$("traces");host.replaceChildren();
+ for(let i=0;i<ch.length;i++){
+ const box=h("div","trace"),lab=h("label","",nice(ch[i])),c=document.createElement("canvas");
+ lab.title=ch[i];box.append(lab,c);host.append(box);plot(c,series(raw,i));
+ }
+}
+function shuffle(values){
+ let p=Array.from({length:values.length},(_,i)=>i),seed=24681357;
+ for(let i=p.length-1;i>0;i--){seed=(Math.imul(seed,1664525)+1013904223)>>>0;let j=seed%(i+1);[p[i],p[j]]=[p[j],p[i]];}
+ return p.map(i=>values[i]);
+}
+function question(){return current().temporal?.[temporalIndex]||null;}
+function renderQuestionOptions(){
+ const host=$("auditquestion");host.replaceChildren();
+ const rows=current().temporal||[];
+ rows.forEach((r,i)=>{let opt=h("option","",r.type.replace(/_/g," ")+": "+nice(r.channel)+" · "+r.id.split("/").pop());opt.value=String(i);host.append(opt);});
+ if(rows.length)host.value=String(temporalIndex);
+ host.disabled=condition==="Swapped";
+}
+function drawAudit(){
+ if(!raw)return;
+ let a=raw,idx=3,cap="Original recorded series (display-scaled).";
+ const q=question();
+ if(condition==="Swapped"){
+   // Donor's exact trace is not bundled; draw a representative *different* held-out demo kernel.
+   const k=kernels.find((k,i)=>i!==selected && k.workload!==kernels[selected].workload)||kernels[(selected+1)%kernels.length];
+   a=decode(k);idx=3;cap="Representative alternative demo kernel (not the exact evaluation donor).";
+ }else if(q){idx=Math.max(0,ch.indexOf(q.channel));cap=nice(ch[idx])+" · 256 display samples from 512 recorded time bins";}
+ let values=Array.from(series(a,idx));
+ if(condition==="Reversed")values.reverse();
+ if(condition==="Shuffled")values=shuffle(values);
+ $("audit-counter").textContent=cap;
+ plot($("auditplot"),values);
+}
+const summary={
+ Original:["Temporal QA · original",80.3,"Pooled accuracy on 1,000 test temporal questions."],
+ Shuffled:["Temporal QA · time-shuffled",46.5,"Pooled accuracy under the committed shuffled-input control; scoring uses the experiment's own reference policy."],
+ Reversed:["Trend reversal · paired",70.9,"Both-correct accuracy on reversal-sensitive real/reversed trend pairs, not pooled accuracy."],
+ Swapped:["Workload type · swapped",37.8,"Accuracy against the original workload when the model receives a different kernel's counters (original classification accuracy: 88.7%)."]
+};
+function renderAudit(){
+ const s=summary[condition];
+ $("condition-desc").textContent=({
+  Original:"Original measured sequence; text statistics and time series are unchanged.",
+  Shuffled:"The same values, reordered in time. Does the model continue to answer correctly?",
+  Reversed:"The same values read backward. On direction-sensitive questions the correct answer flips.",
+  Swapped:"Measured series from a different workload while the original trace's text summary stays fixed."
+ })[condition];
+ $("metric-title").textContent=s[0];$("metric").textContent=s[1].toFixed(1)+"%";
+ $("metricbar").style.width=s[1]+"%";$("metric-desc").textContent=s[2];
+ document.querySelectorAll("#conditions button").forEach(b=>b.setAttribute("aria-pressed",String(b.textContent===condition)));
+ renderQuestionOptions();drawAudit();
+ let pred=null, prompt="";
+ if(condition==="Swapped"){
+   pred=current().classification?.swapped;
+   prompt="Which workload type dominates the trace? The model sees a replacement series, but the original text summary.";
+ }else{
+   const r=question();pred=r?.predictions?.[condition.toLowerCase()];
+   prompt=r?.prompt||"No compatible recorded temporal question for this trace.";
+ }
+ $("auditprompt").textContent=prompt;
+ $("modelanswer").textContent=pred?.output??"Not recorded";
+ $("referenceanswer").textContent=pred?.answer??"Not recorded";
+ const correct=pred&&String(pred.output).trim()===String(pred.answer).trim();
+ $("answerstatus").textContent=pred?(correct?"Correct for this condition":"Incorrect for this condition"):"Unavailable";
+ $("answerstatus").className="resultpill"+(correct?"":" bad");
+ $("donornote").textContent=condition==="Swapped"?(pred?.donor_answer?"Donor's workload: "+pred.donor_answer+". Model response is compared to original answer: "+pred.answer+".":"Exact donor series not bundled in this demo."):"Reference is from the saved experimental row for this condition.";
+}
+function renderConditionButtons(){
+ const host=$("conditions");host.replaceChildren();
+ for(const c of ["Original","Shuffled","Reversed","Swapped"]){
+  const b=h("button","pill",c);b.addEventListener("click",()=>{condition=c;renderAudit();});host.append(b);
+ }
+}
+const tasks={Diagnosis:"Diagnose a slow kernel",Temporal:"Answer timing questions",Segmentation:"What ran when?",Classification:"Name the workload"};
+function renderTaskButtons(){
+ const host=$("tasks");host.replaceChildren();
+ for(const [key,label] of Object.entries(tasks)){
+  const b=h("button","taskcard",label);b.setAttribute("aria-pressed",String(task===key));b.addEventListener("click",()=>{task=key;renderTask();});host.append(b);
+ }
+}
+function timelineBar(name,content){
+ const wrap=h("div","tlrow"),lab=h("div","tlname",name),bar=h("div","tlbars");
+ let steps=String(content||"").split(";").map(p=>p.trim()).filter(Boolean).map(t=>{
+ const m=/^(\d+)\s+(.+)$/.exec(t);return m?{start:Number(m[1]),label:m[2]}:null;
+ }).filter(Boolean).sort((a,b)=>a.start-b.start);
+ steps.forEach((p,i)=>{
+   let end=i+1<steps.length?steps[i+1].start:512;
+   if(end<=p.start||p.start>=512)return;
+   const e=h("span",p.label==="idle"?"idle":p.label==="unlabeled"?"unknown":"active",p.label);
+   e.style.width=Math.max(0,(Math.min(512,end)-p.start)/512*100)+"%";
+   e.title="Bins "+p.start+"–"+(Math.min(512,end)-1)+": "+p.label;
+   bar.append(e);
+ });
+ wrap.append(lab,bar);return wrap;
+}
+function renderTask(){
+ const k=kernels[selected],m=current(),q=question();
+ $("tasktitle").textContent=tasks[task];
+ document.querySelectorAll("#tasks button").forEach(b=>b.setAttribute("aria-pressed",String(b.textContent===tasks[task])));
+ $("timeline").replaceChildren();$("timeline").hidden=true;
+ let questionText="",answer="",reference="",caveat="";
+ if(task==="Diagnosis"){
+   questionText="What limits this kernel, and what should I try?";
+   answer=m.diagnosis?.real?.output||k.model?.diagnosis||"Not recorded";
+   reference="Rule-derived reference: "+k.limiter+".";
+   caveat="Not an expert-confirmed causal bottleneck. Across 291 test traces: limiter accuracy 78.7%, explanation fact precision 82.5%.";
+ }
+ if(task==="Temporal"){
+   questionText=q?.prompt||"No temporal question";
+   answer=q?.predictions?.real?.output||"Not recorded";
+   reference="Reference: "+(q?.predictions?.real?.answer||"Not recorded");
+   caveat="Select another question above to compare real and modified-input predictions.";
+ }
+ if(task==="Classification"){
+   questionText="Which workload type dominates the trace?";
+   answer=m.classification?.real?.output||k.model?.workload||"Not recorded";
+   reference="Reference: "+k.workload+".";
+   caveat="On the grouped test: 88.7% accuracy, 74.7% balanced accuracy. MiniRocket achieves 81.1% balanced accuracy.";
+ }
+ if(task==="Segmentation"){
+   const r=m.segmentation?.real;
+   questionText="Write a timeline of workloads in 16-bin steps.";
+   answer=r?.output||"Not recorded";
+   reference="Reference: "+(r?.answer||"Not recorded");
+   caveat="Actual model-generated and reference timelines below. Aggregate model accuracy: 89.7% of timeline bins.";
+   $("timeline").hidden=false;
+   if(r){$("timeline").append(timelineBar("Model timeline",r.output),timelineBar("Reference timeline",r.answer));}
+ }
+ $("taskquestion").textContent=questionText;$("taskanswer").textContent=answer;
+ $("taskreference").textContent=reference;$("taskcaveat").textContent=caveat;
+}
+$("auditquestion").addEventListener("change",e=>{temporalIndex=Number(e.target.value)||0;renderAudit();renderTask();});
 window.addEventListener("resize",()=>{if(raw){renderTraces();drawAudit();}});
-renderTasks();renderConditions();renderKernel();
+renderConditionButtons();renderTaskButtons();chooseKernel(0);
 })();
 </script></body></html>
