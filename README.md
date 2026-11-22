@@ -149,9 +149,19 @@ uv run --with pytest python -m pytest -q                                     # C
 - Rare limiters are weak (balanced limiter accuracy 0.503); some test classes have a single Problem.
 - One H100, short single-kernel traces; one training run per recipe.
 
+## Team
+
+- [m7m2od](https://github.com/m7m2od): multi-task fine-tune, the four use cases and their baselines, the
+  temporal controls, the HAR-CoT check, the demo page, and the TimeNet KernelSight connector
+  ([OpenTSLM/TimeNet#835](https://github.com/OpenTSLM/TimeNet/pull/835)).
+- [Nawaf-TBE](https://github.com/Nawaf-TBE): CNN baseline and its independent audit, dataset validation, loader and
+  visualization (`src/kernel_xray/`), and the TimeNet conversion and memory studies (`docs/timenet_*`).
+
 ## Credits and licenses
 
+Code: MIT ([LICENSE](LICENSE)).
+
 - Data: KernelSight by williamhtan (Apache-2.0). Model: OpenTSLM-Flamingo (`opentime/tslm-nov26`).
-- `flamingo/utils.py` comes from the AWS sample `opentslm-finetune-arfbench`, with marked changes; check its
-  license before reuse.
+- `flamingo/utils.py` comes from the AWS sample `opentslm-finetune-arfbench`, with marked changes; its Flamingo
+  layers keep the MIT notices of OpenFlamingo and flamingo-pytorch.
 - Photo in `site/`: 极客湾Geekerwan, via Wikimedia Commons, CC BY 3.0, cropped.
