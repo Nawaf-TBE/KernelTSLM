@@ -1,41 +1,50 @@
-# Kernel X-Ray — Hackathon demo V2
+# Kernel X-Ray — Hackathon Demo V2
 
-This is an **alternative** to the existing `site/` demo. The original website is unchanged.
+An independent, compact, interactive alternative to the existing `site/` page.
+**The existing site and `main` branch are unchanged.**
 
-## Preview locally
+## Preview
 
-From a clone of the Kernel X-Ray repository:
+From a local clone:
 
-```sh
+```bash
 git fetch origin
 git switch feature/hackathon-demo-v2
 open site-v2/index.html
 ```
 
-Alternatively, open `site-v2/index.html` in Chrome or Safari. The page references `../site/kx.css` and `../site/demo-data.js`, so keep the repository folder structure intact.
+Open `site-v2/index.html` in Chrome or Safari. All required local assets are bundled in this folder:
 
-## What's different
+- `index.html` — interactive page and renderer
+- `kx.css` — chart-paper visual design
+- `demo-data.js` — six recorded KernelSight test traces and original examples
+- `audit-records.js` — recorded per-question predictions for the six test traces under evaluated conditions
 
-- Shorter, demo-first introduction with the **order-audit research question**.
-- Interactive selector for six recorded test kernels, visualizing 24 counters.
-- Original / shuffled / reversed / swapped visualization for one selected channel, with the **published aggregate metrics** for the corresponding audit condition.
-- Compact four-capability tabs: diagnosis, temporal QA, timeline segmentation, and workload classification.
-- Three brief findings, with links to the full README and original demo.
+Do **not** copy only `index.html` into a separate directory.
 
-## Scientific transparency
+## What works
 
-The real example counter signals and single-kernel predictions originate from the existing `site/demo-data.js`.
+1. Select one of six test kernels to see its recorded 24 counter channels (256 display cells per channel summarizing 512 bins) and rule-derived workload/limiter.
+2. Select Original, Shuffled, Reversed or Swapped to see a signal transformation and associated **recorded** evaluation outcome.
+3. On Original, Shuffled and Reversed, choose among recorded temporal questions for the selected kernel to see the saved model output and relevant reference answer.
+4. Swapped shows the recorded classification prediction against the original label, plus the donor's workload where available.
+5. Switch between four use cases: diagnosis, temporal QA, segmentation (with actual *predicted and reference* timelines), and classification.
+6. Explore compact findings and expand baseline comparisons and research limitations.
 
-The order-audit control transforms a display-scaled sample of one recorded channel in the browser. **It does not execute OpenTSLM**. The displayed metrics are already published *aggregate* scores, **not per-kernel predictions recalculated for the selected visual transformation**. In particular, do not present the displayed model response in the capabilities section as the response to a transformed input.
+**This page replays saved experiment results; it does not perform live model inference.** The visuals for shuffling are illustrative permutations over 256 display samples, while model predictions were collected with a specific fixed shuffle over 512 real bins. For swapping, a representative alternative demo kernel is drawn, not necessarily the exact recorded donor. The displayed numerical prediction and correct answer are always from the experiment record for that condition. Do not confuse these approximations with the inference inputs.
 
-The timeline visualization in the segmentation tab represents the **reference annotation**, not a generated segmentation for that kernel.
+## Verified evidence
 
-## Before submission
+- `runs/mt_all/metrics.json` — aggregate scores and trained-model evaluation conditions
+- `runs/mt_all/predictions_temporal_{real,shuffled,reversed}.jsonl` — temporal inputs and outputs
+- `runs/mt_all/predictions_classification_{real,swapped,shuffled,reversed}.jsonl` — workload predictions and donors
+- `runs/mt_all/predictions_segmentation_{real,shuffled,reversed,swapped}.jsonl` — generated timelines
+- `runs/mt_all/predictions_diagnosis_{real,shuffled}.jsonl` — diagnosis text
+- `runs/usecases/temporal/test.jsonl` — temporal question wording and identifiers
+- `usecases/*/SPEC.md` — task definitions, control limitations, and scorer contracts
 
-- Visually check desktop and mobile layouts, labels, and contrast.
-- If per-example perturbation predictions and their corresponding reference answers are exported, integrate them as an explicit, audited dataset for a genuine paired interactive demonstration.
-- Keep the grouped-split evaluation limitations and trained-model benchmarks available in the repository README.
+Metrics from one model seed; diagnostic bottleneck labels are rule-derived; test traces originate from a single H100. See the root README for methods, stronger specialized baselines and further limitations.
 
-## Scope
+## Publication status
 
-V2 is deliberately separate. No edits were made to `site/`, `runs/`, model weights, or the default `main` branch.
+On `feature/hackathon-demo-v2`, the original `site/` and `main` remain unchanged. To show judges this version publicly, deploy the complete `site-v2/` folder (not only the HTML file), or create a reviewed PR later.
