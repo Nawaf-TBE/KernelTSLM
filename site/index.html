@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kernel X-Ray</title>
+<title>KernelTSLM</title>
 <meta name="description" content="A time-series language model that reads a GPU kernel's hardware counters and writes down what limits it. TimeNet Hackathon 2026, round 1.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400&display=swap">
 <link rel="stylesheet" href="kx.css">
 <style>
-/* Kernel X-Ray on one page. Chart-paper system from kx.css: the live demo is the hero, the write-up follows. */
+/* KernelTSLM on one page. Chart-paper system from kx.css: the live demo is the hero, the write-up follows. */
 /* One page: title, then the live demo, then the write-up */
 .intro { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 12px 48px; align-items: end; padding-block: 18px 22px; }
 .intro h1 { font-family: var(--sans); font-weight: 700; font-size: clamp(2.6rem, 6vw, 4.4rem); line-height: 0.95; letter-spacing: -0.03em; }
@@ -103,6 +103,48 @@
 pre { margin: 0; background: var(--paper); border: 1px solid var(--line); padding: 12px 14px; overflow-x: auto; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.8rem; line-height: 1.6; color: var(--ink); }
 .closing .note { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
 
+/* How we trained it */
+.arch { margin-top: 20px; background: var(--paper); border: 1px solid var(--line); padding: 14px 16px; }
+.arch svg { display: block; width: 100%; height: auto; font-family: var(--sans); }
+.arch figcaption { font-family: var(--sans); font-size: 0.88rem; color: var(--muted); margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.arch figcaption i { display: inline-block; width: 22px; height: 11px; vertical-align: -1px; margin-right: 6px; border: 1px solid var(--ink); }
+.dh { font-family: var(--sans); font-weight: 600; font-size: 1.15rem; margin-top: 26px; }
+.tstats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: 14px; border: 1px solid var(--line); background: var(--paper); }
+.tstats div { padding: 10px 14px; border-left: 1px solid var(--minor); font-family: var(--sans); }
+.tstats div:first-child { border-left: 0; }
+.tstats dt { font-size: 1.5rem; font-weight: 700; line-height: 1.1; }
+.tstats dd { font-size: 0.86rem; color: var(--muted); }
+.tcols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 32px; margin-top: 26px; }
+.tcols article { border-top: 2px solid var(--ink); padding-top: 12px; display: grid; gap: 10px; align-content: start; }
+.tcols h3 { font-family: var(--sans); font-weight: 600; font-size: 1.15rem; line-height: 1.2; }
+.tcols p, .tcols li { font-size: 0.94rem; color: var(--body); }
+.tcols ul { padding-left: 1.1rem; display: grid; gap: 6px; margin: 0; }
+.seen { background: var(--paper); border: 1px solid var(--line); font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.76rem; line-height: 1.5; padding: 10px 12px; color: var(--ink); }
+.seen .txt { background: color-mix(in srgb, var(--marker) 55%, var(--paper)); padding: 0 2px; }
+.seen canvas { display: block; width: 100%; height: 34px; margin: 4px 0 8px; }
+.breaks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.breaks figure { background: var(--paper); border: 1px solid var(--line); padding: 6px 8px; }
+.breaks figcaption { font-family: var(--sans); font-size: 0.82rem; font-weight: 600; }
+.breaks figcaption span { font-weight: 400; color: var(--muted); }
+.breaks canvas { display: block; width: 100%; height: 40px; }
+.big2 { display: flex; align-items: baseline; gap: 10px; font-family: var(--sans); }
+.big2 b { font-size: 2rem; line-height: 1; }
+.big2 span { font-size: 0.88rem; color: var(--muted); }
+.mt { width: 100%; border-collapse: collapse; background: var(--paper); border: 1px solid var(--line); font-family: var(--sans); font-size: 0.92rem; }
+.mt th, .mt td { text-align: left; padding: 7px 10px; border-top: 1px solid var(--minor); }
+.mt thead th { font-weight: 500; color: var(--muted); font-size: 0.82rem; border-top: 0; border-bottom: 1px solid var(--major); }
+.mt td.n { font-variant-numeric: tabular-nums; }
+.mt .us { background: color-mix(in srgb, var(--marker) 45%, var(--paper)); font-weight: 600; }
+.ba { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin: 0 0 14px; padding: 10px 14px; background: var(--paper); border: 1px solid var(--line); font-family: var(--sans); font-size: 0.92rem; color: var(--body); }
+.ba b { font-size: 1.5rem; color: var(--ink); line-height: 1; }
+.ba .arrow { color: var(--muted); font-size: 1.2rem; }
+.fbar { display: grid; gap: 6px; margin-top: 2px; font-family: var(--sans); font-size: 0.84rem; color: var(--body); }
+.fbar div { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr) 3.2rem; gap: 8px; align-items: center; }
+.fbar .t { height: 12px; background: var(--desk); border: 1px solid var(--line); position: relative; }
+.fbar .t i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--ink); }
+.fbar .t i.hl { background: var(--marker); border-right: 1px solid var(--ink); }
+.fbar b { font-variant-numeric: tabular-nums; text-align: right; }
+@media (max-width: 900px) { .tcols { grid-template-columns: minmax(0, 1fr); } .tstats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tstats div:nth-child(odd) { border-left: 0; } }
 @media (max-width: 560px) { .ucs { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 520px) { .shead { padding: 14px 16px; } .sfoot { padding: 9px 16px; } .rtext { min-height: 9.6em; } .meta dd { min-height: 3.2em; } .play { margin-left: 0; } }
 @media (prefers-reduced-motion: reduce) { .ln { transition: none; } }
@@ -122,13 +164,13 @@ pre { margin: 0; background: var(--paper); border: 1px solid var(--line); paddin
 <body>
 <div class="wrap">
   <header class="top">
-    <a class="mark" href="#demo">Kernel X-Ray</a>
-    <nav aria-label="Sections"><a href="#demo">Demo</a><a href="#usecases">Use cases</a><a href="#results">Results</a><a href="#findings">Findings</a><a href="https://github.com/Nawaf-TBE/kernel-xray">Code</a><span class="event">TimeNet Hackathon 2026, round 1</span></nav>
+    <a class="mark" href="#demo">KernelTSLM</a>
+    <nav aria-label="Sections"><a href="#demo">Demo</a><a href="live.html">Live demo</a><a href="#usecases">Use cases</a><a href="#training">Training</a><a href="#results">Results</a><a href="#findings">Findings</a><a href="https://github.com/Nawaf-TBE/kernel-xray">Code</a><span class="event">TimeNet Hackathon 2026, round 1</span></nav>
   </header>
 
   <section class="intro" id="demo">
-    <h1>Kernel X-Ray</h1>
-    <p>While a kernel runs, an NVIDIA H100 records 24 hardware counters over time. Kernel X-Ray, a fine-tuned time-series language model, reads them the way a doctor reads an ECG, and writes down what slows the kernel down. Below, six test kernels it never saw in training play one after another. <a href="https://github.com/Nawaf-TBE/kernel-xray">Read the code</a></p>
+    <h1>KernelTSLM</h1>
+    <p>While a kernel runs, an NVIDIA H100 records 24 hardware counters over time. KernelTSLM, a fine-tuned time-series language model, reads them the way a doctor reads an ECG, and writes down what slows the kernel down. Below, six test kernels it never saw in training play one after another. <a href="live.html">Try the live demo</a> · <a href="https://www.youtube.com/watch?v=fsTSLqM1wMU">Watch the video</a> · <a href="https://github.com/Nawaf-TBE/kernel-xray">Read the code</a></p>
   </section>
 
   <article class="sheet">
@@ -167,6 +209,14 @@ pre { margin: 0; background: var(--paper); border: 1px solid var(--line); paddin
       <div><dt>Model</dt><dd>OpenTSLM-Flamingo on Gemma 3 4B, with the language model frozen. One fine-tune on 6,158 questions per epoch across all four tasks: 2 epochs, 64 minutes on one Nebius H100.</dd></div>
       <div><dt>Terms on this page</dt><dd>A <i>counter</i> is one hardware measurement, such as DRAM read bandwidth. The <i>limiter</i> is the part of the GPU that caps a kernel's speed. <i>Test kernels</i> come from problems the model never saw in training. <i>Reference answers</i> come from fixed rules over the counters; the model learns to give the same answers in words.</dd></div>
     </dl>
+    <h3 class="dh">Data and TimeNet: the conversion, checked</h3>
+    <dl class="tstats" id="datastats">
+      <div><dt>1,444</dt><dd>traces converted to TimeNet</dd></div>
+      <div><dt>34,656</dt><dd>counter signals</dd></div>
+      <div><dt>601,292</dt><dd>TimeNet tasks</dd></div>
+      <div><dt>0</dt><dd>values changed: every array checked bit for bit against the source</dd></div>
+      <div><dt>0</dt><dd>records missing, duplicated or in two splits</dd></div>
+    </dl>
   </section>
 
   <section class="block" id="usecases">
@@ -200,11 +250,84 @@ pre { margin: 0; background: var(--paper); border: 1px solid var(--line); paddin
     </div>
   </section>
 
+  <section class="block" id="training">
+    <h2 class="sec-h">How we trained it</h2>
+    <p class="lede">We fine-tuned OpenTSLM-Flamingo (Gemma 3 4B) with the model code and training recipe of the AWS sample <a href="https://github.com/aws-samples/generative-ai-on-amazon-sagemaker/tree/main/examples/opentslm-finetune-arfbench">opentslm-finetune-arfbench</a>: the language model stays frozen and only the parts that read the time series learn. What we added: our data and four question sets, all four tasks in one run, time-reversed training questions, and tests that break the trace.</p>
+    <figure class="arch" id="arch">
+      <svg viewBox="0 0 780 250" role="img" aria-label="Model diagram: 24 counters go through a trained series encoder and perceiver adapter into trained cross-attention layers inside the frozen Gemma 3 4B language model, which also reads a text line per counter and the question, and writes the answer.">
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#1B2238"/></marker></defs>
+        <g fill="none" stroke="#1B2238" stroke-width="1.3">
+          <path d="M14 30 q8 -14 16 0 t16 0 t16 0 t16 0 t16 0 t16 0"/><path d="M14 52 l20 0 l6 -14 l6 14 l20 0 l6 -14 l6 14 l20 0 l6 -14 l6 14"/><path d="M14 74 q12 -10 24 -4 t24 2 t24 -6 t24 4"/>
+        </g>
+        <text x="14" y="98" font-size="13" fill="#1B2238" font-weight="600">24 counters × 512 steps</text>
+        <rect x="170" y="28" width="150" height="52" rx="4" fill="#FFE14A" stroke="#1B2238"/><text x="245" y="52" font-size="14" text-anchor="middle" font-weight="600">Series encoder</text><text x="245" y="70" font-size="12" text-anchor="middle">trained</text>
+        <rect x="350" y="28" width="150" height="52" rx="4" fill="#FFE14A" stroke="#1B2238"/><text x="425" y="52" font-size="14" text-anchor="middle" font-weight="600">Perceiver adapter</text><text x="425" y="70" font-size="12" text-anchor="middle">trained</text>
+        <path d="M128 54 L166 54" stroke="#1B2238" stroke-width="1.5" marker-end="url(#ah)"/><path d="M320 54 L346 54" stroke="#1B2238" stroke-width="1.5" marker-end="url(#ah)"/>
+        <rect x="12" y="150" width="210" height="80" rx="4" fill="#FFFFFF" stroke="#1B2238"/>
+        <text x="22" y="172" font-size="12" font-weight="600">Text: one line per counter</text><text x="22" y="190" font-size="11">"…channel SMs Active, with</text><text x="22" y="205" font-size="11">mean 0.3186 and std 0.4338."</text><text x="22" y="222" font-size="11">+ the question</text>
+        <path d="M222 190 L256 190" stroke="#1B2238" stroke-width="1.5" marker-end="url(#ah)"/>
+        <rect x="260" y="140" width="380" height="100" rx="4" fill="#E4E6EB" stroke="#1B2238"/>
+        <rect x="272" y="152" width="356" height="34" rx="3" fill="#FFE14A" stroke="#1B2238"/><text x="450" y="174" font-size="13" text-anchor="middle" font-weight="600">Gated cross-attention layers · trained</text>
+        <text x="450" y="210" font-size="15" text-anchor="middle" font-weight="700">Gemma 3 4B language model</text><text x="450" y="228" font-size="12" text-anchor="middle">frozen: not changed by our training</text>
+        <path d="M425 80 L425 150" stroke="#1B2238" stroke-width="1.5" marker-end="url(#ah)"/>
+        <path d="M640 190 L676 190" stroke="#1B2238" stroke-width="1.5" marker-end="url(#ah)"/>
+        <text x="682" y="186" font-size="13" font-weight="600">Answer in</text><text x="682" y="203" font-size="13" font-weight="600">plain English</text>
+      </svg>
+      <figcaption><span><i style="background:#FFE14A"></i>Trained (also the token embeddings)</span><span><i style="background:#E4E6EB"></i>Frozen</span><span>Model code and recipe: AWS sample opentslm-finetune-arfbench</span></figcaption>
+    </figure>
+    <dl class="tstats" id="tstats">
+      <div><dt>1</dt><dd>training run</dd></div>
+      <div><dt>4</dt><dd>tasks at once</dd></div>
+      <div><dt>6,158</dt><dd>questions per epoch</dd></div>
+      <div><dt>2</dt><dd>epochs</dd></div>
+      <div><dt>64 min</dt><dd>on one H100</dd></div>
+    </dl>
+    <div class="tcols">
+      <article id="shortcut">
+        <h3>The shortcut: our first models read the summary, not the signal.</h3>
+        <div class="seen" aria-label="What the model sees for one counter">
+          <span class="txt">This is time series channel SMs Active [Throughput %], with mean 0.3186 and std 0.4338.</span>
+          <canvas data-spark="real" aria-hidden="true"></canvas>
+          <span class="txt">This is time series channel pipe: fma, with mean 0.2026 and std 0.2798.</span>
+          <canvas data-spark="fma" aria-hidden="true"></canvas>
+          … 24 counters, then the question.
+        </div>
+        <p>Each counter arrives as a text line with its mean and standard deviation, plus the curve itself. Shown: the real lines for the Matmul + activation test kernel. In four early one-epoch pilots, the model answered from the text lines and did not read the timeline.</p>
+      </article>
+      <article id="breaks">
+        <h3>We break the trace, and keep the text the same.</h3>
+        <div class="breaks">
+          <figure><figcaption>Real</figcaption><canvas data-spark="real" aria-hidden="true"></canvas></figure>
+          <figure><figcaption>Shuffled <span>time order</span></figcaption><canvas data-spark="shuffled" aria-hidden="true"></canvas></figure>
+          <figure><figcaption>Reversed <span>time order</span></figcaption><canvas data-spark="reversed" aria-hidden="true"></canvas></figure>
+          <figure><figcaption>Swapped <span>another program's curve</span></figcaption><canvas data-spark="swapped" aria-hidden="true"></canvas></figure>
+        </div>
+        <p>If the answer doesn't change when only the curve changes, the model isn't reading the curve. Curves shown: SMs active of the Matmul + activation test kernel; swapped from LeakyReLU.</p>
+      </article>
+      <article id="fix">
+        <h3>The fix: train it so the shortcut stops working.</h3>
+        <ul>
+          <li>All four tasks in one run, for two epochs.</li>
+          <li>Time-reversed copies of the trend questions, with the answer flipped, so "usually rising" is no longer a safe guess.</li>
+        </ul>
+        <div class="big2"><b>70.9%</b><span>trend questions right both forwards and backwards. A model that ignores time order gets 0%.</span></div>
+        <table class="mt" id="multi">
+          <thead><tr><th>Test score</th><th>One task only</th><th class="us">All four tasks</th></tr></thead>
+          <tbody>
+            <tr><th>Diagnosis, right limiter</th><td class="n">78.0%</td><td class="n us">78.7%</td></tr>
+            <tr><th>Work type, balanced</th><td class="n">73.1%</td><td class="n us">74.7%</td></tr>
+          </tbody>
+        </table>
+        <p>One model for four tasks costs nothing: it matches the single-task fine-tunes.</p>
+      </article>
+    </div>
+  </section>
   <section class="block" id="results">
     <div class="pair2">
       <div>
         <h2 class="sec-h">How it compares</h2>
-        <p class="lede">Scores on the test set. On every task a model built for that task alone scores higher. Kernel X-Ray answers all four with one model, in plain words, with facts you can check.</p>
+        <p class="lede">Scores on the test set. On every task a model built for that task alone scores higher. KernelTSLM answers all four with one model, in plain words, with facts you can check.</p>
+        <p class="ba" id="beforeafter"><span>Diagnosis, base model:</span><b>0</b><span>valid (20 tried)</span><span class="arrow">→</span><span>fine-tuned:</span><b>78.7%</b><span>right</span></p>
         <div class="tblwrap" data-table="compare"></div>
       </div>
       <div>
@@ -222,11 +345,13 @@ pre { margin: 0; background: var(--paper); border: 1px solid var(--line); paddin
       <article>
         <h3>The diagnosis predicts which kernels speed up.</h3>
         <p>The dataset has each kernel in two number formats, fp32 and the half-size bf16. Kernels the reference calls memory-bound in fp32 ran 1.68 times faster in bf16, because they move half the bytes. Kernels it calls ALU-bound ran 1.01 times as fast. So a "memory-bound" diagnosis tells you that switching to bf16 is worth trying.</p>
+        <div class="fbar" id="speedup" aria-label="Speed-up from fp32 to bf16"><div><span>memory-bound</span><span class="t"><i class="hl" style="width:84%"></i></span><b>1.68×</b></div><div><span>ALU-bound</span><span class="t"><i style="width:50.5%"></i></span><b>1.01×</b></div></div>
         <span class="src">68 and 18 kernel pairs, measured from kernel timing</span>
       </article>
       <article>
         <h3>The dataset's own split leaks test kernels into training.</h3>
         <p>120 of the 160 official test traces have a near-copy in official training: the same problem with a different number format, random seed or launch setting. MiniRocket scores 0.999 on that split and 0.940 on ours, which keeps each problem on one side. Our TimeNet connector adds this grouped split.</p>
+        <div class="fbar" id="leak" aria-label="Official test traces with a near-copy in training"><div><span>official test set</span><span class="t"><i class="hl" style="width:75%"></i></span><b>120/160</b></div></div>
         <span class="src">84 of 401 problems cross the official split</span>
       </article>
       <article>
@@ -273,6 +398,25 @@ uv run baselines.py
 
 <script src="demo-data.js"></script>
 <script src="results.js"></script>
+<script>
+// Sparklines for "How we trained it": the SMs active counter of the Matmul + activation test kernel, and controls of it.
+(function () {
+  var KX = window.KX; if (!KX) return;
+  function curve(id, ch) { var k = KX.kernels.filter(function (k) { return k.id === id; })[0]; if (!k) return null;
+    var raw = atob(k.heat), c = KX.channels.indexOf(ch), out = []; for (var i = 0; i < 256; i++) out.push(raw.charCodeAt(c * 256 + i)); return out; }
+  var sm = "SMs Active [Throughput %]", real = curve("L2_P29", sm); if (!real) return;
+  var seed = 7, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+  var shuffled = real.slice(); for (var i = shuffled.length - 1; i > 0; i--) { var j = Math.floor(rnd() * (i + 1)), t = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = t; }
+  var series = {real: real, shuffled: shuffled, reversed: real.slice().reverse(), swapped: curve("L1_P20_dt-bf16_s42", sm) || real, fma: curve("L2_P29", "pipe: fma") || real};
+  function draw(cv) { var v = series[cv.dataset.spark], b = cv.getBoundingClientRect(), d = window.devicePixelRatio || 1;
+    cv.width = Math.round(b.width * d); cv.height = Math.round(b.height * d); var c = cv.getContext("2d"); c.setTransform(d, 0, 0, d, 0, 0);
+    c.clearRect(0, 0, b.width, b.height); c.beginPath();
+    v.forEach(function (y, i) { var x = 2 + i / (v.length - 1) * (b.width - 4), yy = b.height - 3 - (b.height - 6) * y / 255; i ? c.lineTo(x, yy) : c.moveTo(x, yy); });
+    c.strokeStyle = "#1B2238"; c.lineWidth = 1.2; c.lineJoin = "round"; c.stroke(); }
+  var cvs = document.querySelectorAll("canvas[data-spark]"), all = function () { cvs.forEach(draw); };
+  all(); if ("ResizeObserver" in window) new ResizeObserver(all).observe(document.getElementById("training")); else window.addEventListener("resize", all);
+})();
+</script>
 <script>
 (function () {
   var KX = window.KX; if (!KX) return;
