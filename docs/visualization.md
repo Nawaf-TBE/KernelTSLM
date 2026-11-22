@@ -24,9 +24,8 @@ For a custom gallery, pass `--gallery /path/to/gallery` (and `--data-root` if
 needed). This read-only command checks current gallery provenance; the recorded
 verification report also includes the before/after dataset integrity audit.
 
-The old `.venv/bin/python visualize_traces.py` command forwards to the same implementation.
-The default data root is resolved from the script location, so neither command
-requires a hard-coded home directory. No GPU, PyTorch, model, or network is needed.
+The default data root is resolved from the script location, so it does not
+require a hard-coded home directory. No GPU, PyTorch, model, or network is needed.
 Matplotlib uses the noninteractive Agg backend and a temporary cache directory.
 
 Selection sorts official **training** records by path, chooses one distinct
