@@ -1,6 +1,9 @@
-# Kernel X-Ray
+# KernelTSLM
 
-Kernel X-Ray reads the hardware counters of a GPU kernel and tells you, in plain words, what is slowing it down.
+**Live demo:** https://kerneltslm.m7m2od.com · **Video:** https://www.youtube.com/watch?v=fsTSLqM1wMU ·
+**TimeNet connector:** [OpenTSLM/TimeNet#835](https://github.com/OpenTSLM/TimeNet/pull/835)
+
+KernelTSLM reads the hardware counters of a GPU kernel and tells you, in plain words, what is slowing it down.
 
 While a kernel runs, an NVIDIA H100 records 24 counters over time: how busy the tensor cores are, how much DRAM
 bandwidth is in use, how often warps stall at a barrier, and so on. A performance engineer reads these to answer
@@ -24,9 +27,11 @@ FMA pipe.
 
 ## The demo
 
-Open `site/index.html` in a browser; it needs no server. Six test kernels play one after another. For each, the
+Open https://kerneltslm.m7m2od.com, or `site/index.html` locally; it needs no server. Six test kernels play one after another. For each, the
 page draws the 24 counters like the leads of an ECG, then shows the model's reading next to the reference answer.
 Below the demo, the same page explains the use cases and shows the results and findings.
+
+The live demo page lets you run a test kernel, watch its counters fill in, and ask the model about it in your own words (the model's recorded answers, replayed at their recorded speed).
 
 ## Terms
 
