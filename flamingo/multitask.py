@@ -2,7 +2,7 @@
 validation and test rows of each use case with the real input and three controls, and score them.
 
 Rows: ../runs/usecases/<task>/{train,validation,test}.jsonl, one question per line with the keys id, task, type,
-path, channels, prompt, options, answer, controls, max_new_tokens (the row contract of the use-case brief), and an
+path, channels, prompt, options, answer, controls, max_new_tokens (the row contract), and an
 optional "input" ("reversed" or "shuffled": the row's own input is transformed, e.g. temporal/train_reversed.jsonl,
 added with --add-train). The series come from kernelsight.npz by the row's release path: all 24 Channels in npz
 order, or the row's Channels in the row's order. Scorers: ../usecases/<task>/score.py, score(rows, outputs)
@@ -14,7 +14,7 @@ so only the series change:
   shuffled  the Bins in one fixed order, np.random.default_rng(0).permutation(512), for all Channels and all
             Snapshots (as finetune_kernelsight.shuffled); scored against controls["shuffled"], or the answer if null
   reversed  the Bins in reverse order; scored against controls["reversed"], or the answer if null
-  swapped   the series of a donor Snapshot of another class in the same split, from --donors (CLS's donors.json;
+  swapped   the series of a donor Snapshot of another class in the same split, from --donors (runs/usecases/classification/donors.json;
             drawn when a Snapshot is not in it); scored against the own answer ("swapped") and against the donor's
             own row with the same type, prompt, Channels and options, when it has one ("swapped_donor")
 Each row given to a scorer has "condition" (original, shuffled or reversed: the facts the input shows); a scorer
@@ -28,7 +28,7 @@ Writes --out/metrics.json after each stage and --out/predictions_<task>[_validat
 each file that is complete. It trains again if any is missing, unless --save left a model in --out/model; each
 predictions line names its model. The process exits 0 only when every file is complete. A scorer error is written
 into metrics.json and does not stop the run; a rerun with the same arguments and nothing missing only scores again,
-without a GPU (e.g. on the Mac after a pull).
+without a GPU (e.g. locally after a pull).
 
   python -u multitask.py --tasks classification,temporal,segmentation,explanation --out ../runs/mt \
       > ../runs/mt/train.log 2>&1

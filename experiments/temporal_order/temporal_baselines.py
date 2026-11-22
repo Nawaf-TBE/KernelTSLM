@@ -21,7 +21,7 @@ Logistic regression trains on a random quarter of the training Bins; the seed pi
 shuffle. All models run 5 seeds. Scores are on all test Snapshots and on the 16 multi-workload ones (more
 than one L1 class over time). Intervals: 95% bootstrap over test Snapshots (1,000 resamples) of the seed mean.
 
-  uv run temporal_baselines.py    # ~15 min on an M-series Mac; writes runs/temporal_baselines/
+  uv run experiments/temporal_order/temporal_baselines.py    # ~15 min on a laptop; writes runs/temporal_baselines/
 """
 
 import json
@@ -33,11 +33,10 @@ import torch
 from sklearn.linear_model import LogisticRegression
 from torch.nn import functional as F
 
-HERE = Path(__file__).resolve().parent
-sys.path[:0] = [str(HERE / "kernel-xray/src")]
+HERE = Path(__file__).resolve().parents[2]  # repository root
+sys.path[:0] = [str(HERE / "src")]
 from kernel_xray.phase3.cnn import L1TemporalCNN  # noqa: E402
 
-RELEASE = Path.home() / "TimeNet-kernelsight/kernelsight"
 K, SEEDS, DRAWS = 8, range(5), 1000
 DEVICE = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
 
@@ -47,8 +46,7 @@ def load():
     x, train = data["x"].astype(np.float64), data["split"] == "train"
     mean, std = x[train].mean(axis=(0, 2)), x[train].std(axis=(0, 2))
     z = ((x - mean[:, None]) / np.where(std > 1e-12, std, 1.0)[:, None]).astype(np.float32)
-    y = np.stack([np.load(RELEASE / p.replace("input/tensor_input.npz", "labels/labels.npz"))["workload_l1"]
-                  for p in data["paths"].tolist()])
+    y = np.load(HERE / "temporal_qa/labels_cache.npz")["workload_l1"]  # per-Bin labels in kernelsight.npz order
     multi = np.array([len(set(row[row >= 0].tolist())) > 1 for row in y])
     return data, z, y, multi
 

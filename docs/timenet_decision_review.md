@@ -40,10 +40,10 @@ otherwise stated. Line numbers refer to this checkout, not future releases.
 | T10 | TimeNet `AGENTS.md`, `CONTRIBUTING.md`, `docs/connectors.md`, `docs/cli/build.md`, `docs/manifest.md`, `docs/timef-writer.md`: uv, Python >=3.11, release/provenance and check requirements |
 
 Reviewed implementation references:
-[hello_world connector](../../TimeNet/packages/timenet-connectors/src/timenet_connectors/datasets/timenet/hello_world/connector.py)
+[hello_world connector](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet-connectors/src/timenet_connectors/datasets/timenet/hello_world/connector.py)
 shows owned Signals, reusable specs, scoped classification, bound target annotation
 occurrences and sparse localization. Its tests check deterministic conversion.
-[TSQA connector](../../TimeNet/packages/timenet-connectors/src/timenet_connectors/datasets/chengsenwang/tsqa/connector.py)
+[TSQA connector](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet-connectors/src/timenet_connectors/datasets/chengsenwang/tsqa/connector.py)
 shows channel Signals, pinned source, task splits and QA. Its tests at lines
 186–197 reopen `LocalRegistry.put_dataset` output with TimeFReader and check splits.
 TSQA generates splits; KernelSight must not copy that part. Existing connector

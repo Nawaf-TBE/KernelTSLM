@@ -7,7 +7,7 @@ per Snapshot with one series per Channel (utils.examples_from_tasks reads one se
 classes repeated in training, the baselines, and the evaluation, which saves every output and scores the
 LLM and the baselines alike.
 
-Input: kernelsight.npz from ~/hackathon/export_kernelsight.py, the TimeNet build of
+Input: kernelsight.npz from ../export_kernelsight.py, the TimeNet build of
 williamhtan/kernelsight with its grouped-by-Problem split (862/291/291).
 Needs one CUDA GPU with bfloat16 and about 40 GB of free disk (13.7 GB download, 13.7 GB saved model).
 

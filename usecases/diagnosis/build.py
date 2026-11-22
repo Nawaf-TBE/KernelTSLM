@@ -1,3 +1,7 @@
+# /// script
+# requires-python = ">=3.12"
+# dependencies = ["numpy", "scikit-learn", "tokenizers", "huggingface_hub"]
+# ///
 """Build the KernelSight diagnosis rows ("Talk to Your GPU"): what limits this kernel, and what should I try?
 
 Every number comes from the BUSY Bins (mask_any_kernel = 1) of the input as given. Percentiles are against the 862
@@ -25,7 +29,6 @@ baselines.json.
   uv run --with numpy --with scikit-learn --with tokenizers python usecases/diagnosis/build.py
 """
 
-import glob
 import json
 import re
 import sys
@@ -294,12 +297,10 @@ def baselines(rows, facts):
 
 
 def tokens(rows):
-    files = glob.glob(str(Path.home() / ".cache/huggingface/hub/models--opentime--tslm-nov26/snapshots/*/tokenizer.json"))
-    if not files:
-        return None
+    from huggingface_hub import hf_hub_download
     from tokenizers import Tokenizer
 
-    tok = Tokenizer.from_file(files[0])
+    tok = Tokenizer.from_file(hf_hub_download("opentime/tslm-nov26", "tokenizer.json"))
     count = lambda s: len(tok.encode(s, add_special_tokens=False).ids)
     index = {p: i for i, p in enumerate(DATA["paths"].tolist())}
     X = DATA["x"].astype(np.float64)
@@ -318,7 +319,7 @@ def tokens(rows):
 def main():
     rows, facts = build()
     tok = tokens(rows)
-    max_new = (tok["answer_max"] + 8) if tok else 96  # + end token and slack
+    max_new = tok["answer_max"] + 8  # + end token and slack
     for r in rows:
         r["max_new_tokens"] = max_new
     OUT.mkdir(parents=True, exist_ok=True)
@@ -328,14 +329,17 @@ def main():
         print(name, len(part), dict(Counter(r["type"] for r in part).most_common()),
               "shuffled answer differs:", sum(r["controls"]["shuffled"] != r["answer"] for r in part))
     (OUT / "facts.json").write_text(json.dumps(facts))
-    s = sanity(facts)
-    s["tokens_gemma3"] = tok
-    (OUT / "sanity.json").write_text(json.dumps(s, indent=1))
     print("tokens", tok, "max_new_tokens", max_new)
-    for k in ("limiter_overall", "try_overall", "shuffled_changes", "limiter_by_class", "limiter_by_source"):
-        print(k, json.dumps(s[k], indent=None))
-    d = {k: v for k, v in s["dtype_pairs"].items() if k != "pairs"}
-    print("dtype_pairs", json.dumps(d))
+    if (Path(LABEL_ROOT) / "kernels").is_dir():  # the dtype pairs need kernel timing from the raw release
+        s = sanity(facts)
+        s["tokens_gemma3"] = tok
+        (OUT / "sanity.json").write_text(json.dumps(s, indent=1))
+        for k in ("limiter_overall", "try_overall", "shuffled_changes", "limiter_by_class", "limiter_by_source"):
+            print(k, json.dumps(s[k], indent=None))
+        d = {k: v for k, v in s["dtype_pairs"].items() if k != "pairs"}
+        print("dtype_pairs", json.dumps(d))
+    else:
+        print(f"sanity.json not rebuilt: it needs the raw KernelSight release in {LABEL_ROOT} (set KERNELSIGHT_ROOT)")
     result = baselines(rows, facts)
     (OUT / "baselines.json").write_text(json.dumps(result, indent=1))
     keys = ("n", "main", "limiter_balanced_accuracy", "try_accuracy", "claim_precision", "claims_per_row", "unparsable")

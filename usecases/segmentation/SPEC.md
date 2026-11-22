@@ -1,4 +1,4 @@
-# SEG: per-Bin labelling as a timeline
+# Segmentation: per-Bin labelling as a timeline
 
 ## Formulation
 - One row per Snapshot, type `timeline`, options `[]`, `max_new_tokens` 160.
@@ -31,7 +31,7 @@
 | same, shuffled neighbours | .941 | .875 | .713 | .937 |
 | LR busy + MiniRocket class, 1 seed | .959 | .915 | .849 | .937 |
 
-- The ".768 / .710 / .706" in the brief is macro-F1. The accuracy is .908 / .884 / .882.
+- In macro-F1 the first three rows score .768 / .710 / .706; their accuracy is .908 / .884 / .882.
 - The workload part is mostly the Snapshot class. The true dominant class on all Bins gives .976. Only 3 test answers show two classes.
 
 ## Controls

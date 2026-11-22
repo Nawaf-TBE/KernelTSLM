@@ -1,4 +1,8 @@
-"""Build the temporal rows of the multi-task fine-tune (row contract: SPEC.md and the shared brief).
+# /// script
+# requires-python = ">=3.12"
+# dependencies = ["numpy"]
+# ///
+"""Build the temporal rows of the multi-task fine-tune (row contract: SPEC.md and flamingo/multitask.py).
 
 Four question types. Each row passes ONE Channel, because each question token reads only the latents of the
 most recent series (utils.py:196), and each answer is a function of that one series alone:

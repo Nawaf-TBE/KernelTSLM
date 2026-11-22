@@ -197,8 +197,8 @@ cd '/path/to/kernel-xray'
 ## Evidence and remaining requirements
 
 Machine-readable deliverables are
-[`full_conversion_report.json`](../outputs/phase2/task3/full_conversion_report.json)
-and [`full_integrity_audit.json`](../outputs/phase2/task3/full_integrity_audit.json).
+`outputs/phase2/task3/full_conversion_report.json` (local, not published)
+and `outputs/phase2/task3/full_integrity_audit.json` (local, not published).
 The directory also contains preflight evidence, the failed synthetic scaling
 run, separate writer/reader `result.json` and resource samples, source/compiled
 hashes, exact implementation hashes, environment versions and test logs.

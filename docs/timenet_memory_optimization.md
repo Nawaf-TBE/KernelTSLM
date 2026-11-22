@@ -28,15 +28,15 @@ Measurements used the existing separate TimeNet Python 3.13.4 environment,
 NumPy 2.5.0, DuckDB 1.5.6 and Arrow 24.0.0 (mimalloc). The Phase 1 Python 3.9
 environment was preserved.
 
-All evidence lives under [`outputs/phase2/task2_1/`](../outputs/phase2/task2_1/):
+All evidence lives under `outputs/phase2/task2_1/` (local, not published):
 
-- [`comparison.json`](../outputs/phase2/task2_1/comparison.json): original result,
+- `outputs/phase2/task2_1/comparison.json` (local, not published): original result,
   experiments, counts, timings, sizes and throughput.
-- [`baseline_profile/memory.json`](../outputs/phase2/task2_1/baseline_profile/memory.json)
-  and [`text_reuse/memory.json`](../outputs/phase2/task2_1/text_reuse/memory.json):
+- `baseline_profile/memory.json` (`outputs/phase2/task2_1/baseline_profile/memory.json`, local, not published)
+  and `text_reuse/memory.json` (`outputs/phase2/task2_1/text_reuse/memory.json`, local, not published):
   stage events, high-water RSS, sampled RSS, Arrow allocations, call counts,
   elapsed times and retained-object observations.
-- [`final_unprofiled/report.json`](../outputs/phase2/task2_1/final_unprofiled/report.json):
+- `final_unprofiled/report.json` (`outputs/phase2/task2_1/final_unprofiled/report.json`, local, not published):
   final complete correctness/resource benchmark, without profiling hooks.
 - `python_allocations_32/` and `python_allocations_representative32/`: limited
   Python-allocation diagnostics, excluded from budget claims.

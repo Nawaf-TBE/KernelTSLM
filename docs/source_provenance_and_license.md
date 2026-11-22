@@ -35,7 +35,7 @@ a revision-named local cache alone would not prove origin.
 
 ## 2. Complete file comparison
 
-Evidence directory: [outputs/reports/phase2_source_audit](../outputs/reports/phase2_source_audit/).
+Evidence directory: `outputs/reports/phase2_source_audit/` (local, not published).
 It contains fetched revision/current metadata, commit history, the complete
 paginated tree, per-file integrity records, summary, pinned source documentation,
 current third-party license texts, and a repeatable audit script.

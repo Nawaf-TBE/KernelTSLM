@@ -57,40 +57,40 @@ all APIs were read there rather than inferred from a different TimeNet release.
 
 | Source | Relevant contract |
 |---|---|
-| [AGENTS.md](../../TimeNet/AGENTS.md), [CONTRIBUTING.md](../../TimeNet/CONTRIBUTING.md) | uv workflows, Python support, mandatory checks, MIT contributions, no synthetic data repair |
-| [Architecture](../../TimeNet/docs/architecture.md), [connectors](../../TimeNet/docs/connectors.md) | producer/consumer separation, task-level splits, per-connector isolation |
-| [BaseConnector](../../TimeNet/packages/timenet/src/timenet/connectors/base.py) | `BaseConnector[TRaw]`; no-argument construction; `download(cache_dir)` or `download_async`; `convert(raw_refs)` or `compose`; concrete `metadata()` loads adjacent `dataset.yaml`; `CARD` override; `values_backend` defaults to Parquet |
-| [Dataset](../../TimeNet/packages/timenet/src/timenet/dataset/dataset.py) | `TimeFDataset(metadata=...)`, `add_record(record=...)`, `add_task(task=...)`, `derive_schema()`, `write(path=..., values_backend=...)`, `get_train()`, `get_validation()`, `get_test()`, `iter_tasks(split=...)` |
-| [Record](../../TimeNet/packages/timenet/src/timenet/dataset/record.py), [Source](../../TimeNet/packages/timenet/src/timenet/dataset/source.py) | `Record(sources=..., start_time=..., metadata=..., time_span=...)`; `Source(name=..., signals=..., metadata=...)`; `.annotate()` returns a bound annotation occurrence |
-| [Signal implementation](../../TimeNet/packages/timenet/src/timenet/dataset/time_series.py) | `Signal.from_values(values, *, spec, name, time_axis)`; `Signal.from_irregular(values, *, time_offsets_us, spec, name, full_validation=True)`; `from_loader` for lazy values; shape has leading time dimension |
-| [Specs](../../TimeNet/packages/timenet/src/timenet/types/specs.py) | `TimeSeriesSpec(spec_type, name, unit_value, dtype='float32', categories=(), value_shape=(), dimension_names=(), missing=None)`; scalar shape default; enum values are category strings |
-| [Axes](../../TimeNet/packages/timenet/src/timenet/dataset/axis.py), [clock](../../TimeNet/packages/timenet/src/timenet/types/clock.py) | `RegularAxis(period_us=Fraction(...))`, `OrdinalAxis()`, `IrregularAxis`; integer microsecond offsets; `TimeOrigin(timestamp=None)` means no known Unix anchor |
-| [Annotations](../../TimeNet/packages/timenet/src/timenet/types/annotations.py), [spans](../../TimeNet/packages/timenet/src/timenet/types/spans.py) | `Annotation(key=..., value=..., span=..., metadata=...)`; `TimeInterval.micros(start,end)`; static/point/interval annotations; annotations reject StepSpan |
-| [Tasks](../../TimeNet/packages/timenet/src/timenet/types/tasks.py), [label sets](../../TimeNet/packages/timenet/src/timenet/types/label_sets.py) | `TemporalLocalizationTask`, `LocalizationMode`, `ClassificationTask`, `Label`, `LabelSet`; closed built-in task classes, not extension through custom subclasses |
-| [Splits](../../TimeNet/packages/timenet/src/timenet/types/splits.py) | `Split.TRAIN`, `Split.VALIDATION`, `Split.TEST`; values `train`, `validation`, `test` |
-| [Strict JSON](../../TimeNet/packages/timenet/src/timenet/json.py) | `JsonMapping` accepts nested JSON-native values; reject NumPy objects, nonfinite floats; convert arrays with dtype/shape descriptors and native lists |
-| [Metadata](../../TimeNet/packages/timenet/src/timenet/types/metadata.py), [manifest](../../TimeNet/docs/manifest.md) | `DatasetMetadata.from_yaml`; card version, source revision, license, access; TimeF format version 2, distinct from dataset/card versions |
-| [Discovery](../../TimeNet/packages/timenet-connectors/src/timenet_connectors/discovery.py) | lazy package discovery, `CONNECTOR`, adjacent card; no central registration table |
-| [Build CLI](../../TimeNet/docs/cli/build.md) | exact `timenet-build build` options, local registry, cache retention, immutable publishing |
+| [AGENTS.md](https://github.com/OpenTSLM/TimeNet/blob/main/AGENTS.md), [CONTRIBUTING.md](https://github.com/OpenTSLM/TimeNet/blob/main/CONTRIBUTING.md) | uv workflows, Python support, mandatory checks, MIT contributions, no synthetic data repair |
+| [Architecture](https://github.com/OpenTSLM/TimeNet/blob/main/docs/architecture.md), [connectors](https://github.com/OpenTSLM/TimeNet/blob/main/docs/connectors.md) | producer/consumer separation, task-level splits, per-connector isolation |
+| [BaseConnector](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/connectors/base.py) | `BaseConnector[TRaw]`; no-argument construction; `download(cache_dir)` or `download_async`; `convert(raw_refs)` or `compose`; concrete `metadata()` loads adjacent `dataset.yaml`; `CARD` override; `values_backend` defaults to Parquet |
+| [Dataset](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/dataset/dataset.py) | `TimeFDataset(metadata=...)`, `add_record(record=...)`, `add_task(task=...)`, `derive_schema()`, `write(path=..., values_backend=...)`, `get_train()`, `get_validation()`, `get_test()`, `iter_tasks(split=...)` |
+| [Record](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/dataset/record.py), [Source](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/dataset/source.py) | `Record(sources=..., start_time=..., metadata=..., time_span=...)`; `Source(name=..., signals=..., metadata=...)`; `.annotate()` returns a bound annotation occurrence |
+| [Signal implementation](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/dataset/time_series.py) | `Signal.from_values(values, *, spec, name, time_axis)`; `Signal.from_irregular(values, *, time_offsets_us, spec, name, full_validation=True)`; `from_loader` for lazy values; shape has leading time dimension |
+| [Specs](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/types/specs.py) | `TimeSeriesSpec(spec_type, name, unit_value, dtype='float32', categories=(), value_shape=(), dimension_names=(), missing=None)`; scalar shape default; enum values are category strings |
+| [Axes](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/dataset/axis.py), [clock](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/types/clock.py) | `RegularAxis(period_us=Fraction(...))`, `OrdinalAxis()`, `IrregularAxis`; integer microsecond offsets; `TimeOrigin(timestamp=None)` means no known Unix anchor |
+| [Annotations](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/types/annotations.py), [spans](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/types/spans.py) | `Annotation(key=..., value=..., span=..., metadata=...)`; `TimeInterval.micros(start,end)`; static/point/interval annotations; annotations reject StepSpan |
+| [Tasks](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/types/tasks.py), [label sets](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/types/label_sets.py) | `TemporalLocalizationTask`, `LocalizationMode`, `ClassificationTask`, `Label`, `LabelSet`; closed built-in task classes, not extension through custom subclasses |
+| [Splits](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/types/splits.py) | `Split.TRAIN`, `Split.VALIDATION`, `Split.TEST`; values `train`, `validation`, `test` |
+| [Strict JSON](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/json.py) | `JsonMapping` accepts nested JSON-native values; reject NumPy objects, nonfinite floats; convert arrays with dtype/shape descriptors and native lists |
+| [Metadata](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet/src/timenet/types/metadata.py), [manifest](https://github.com/OpenTSLM/TimeNet/blob/main/docs/manifest.md) | `DatasetMetadata.from_yaml`; card version, source revision, license, access; TimeF format version 2, distinct from dataset/card versions |
+| [Discovery](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet-connectors/src/timenet_connectors/discovery.py) | lazy package discovery, `CONNECTOR`, adjacent card; no central registration table |
+| [Build CLI](https://github.com/OpenTSLM/TimeNet/blob/main/docs/cli/build.md) | exact `timenet-build build` options, local registry, cache retention, immutable publishing |
 
 ### Reference connectors
 
-[hello_world/connector.py](../../TimeNet/packages/timenet-connectors/src/timenet_connectors/datasets/timenet/hello_world/connector.py)
+[hello_world/connector.py](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet-connectors/src/timenet_connectors/datasets/timenet/hello_world/connector.py)
 is a deterministic offline BaseConnector example. It creates shared immutable
 specs/axes, separately owned Signals, Sources and Records, adds Records before
 Tasks, and uses `.annotate()` return values in `target_annotations`. Its scoped
 ClassificationTask, interval annotations, and sparse localization are directly
 relevant. Do not reuse its synthetic wave generator or 16 Hz cadence.
-Its [tests](../../TimeNet/packages/timenet-connectors/src/timenet_connectors/datasets/timenet/hello_world/tests/test_connector.py)
+Its [tests](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet-connectors/src/timenet_connectors/datasets/timenet/hello_world/tests/test_connector.py)
 check deterministic conversion, ownership, schema features, and task chains.
 
-[tsqa/connector.py](../../TimeNet/packages/timenet-connectors/src/timenet_connectors/datasets/chengsenwang/tsqa/connector.py)
+[tsqa/connector.py](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet-connectors/src/timenet_connectors/datasets/chengsenwang/tsqa/connector.py)
 uses BaseHuggingFaceConnector, pinned `SOURCE_REVISION`, declared source files,
 one Signal per channel, and explicit `task.split`. Its AnswerTask is grounded in
 actual source QA text. KernelSight has no such QA or explanation targets, so do
 not invent rationales or copy the QA task pattern merely to fit the example.
 TSQA's **generated** 80/10/10 StratifiedGroupKFold partition is unsuitable here:
-KernelSight already has official partitions. Its [tests](../../TimeNet/packages/timenet-connectors/src/timenet_connectors/datasets/chengsenwang/tsqa/tests/test_connector.py)
+KernelSight already has official partitions. Its [tests](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet-connectors/src/timenet_connectors/datasets/chengsenwang/tsqa/tests/test_connector.py)
 provide synthetic offline fixtures and stored-split round-trip examples using
 `LocalRegistry.put_dataset`, `open_local_version`, and `TimeFReader`.
 
@@ -299,7 +299,7 @@ not an existing TimeNet setting. `download` only locates/fetches files;
 PyTorch loader, its local path aliases, or its Python 3.9 environment.
 
 For remote acquisition, use `hub_snapshot` from
-[timenet_connectors.sources.huggingface_hub](../../TimeNet/packages/timenet-connectors/src/timenet_connectors/sources/huggingface_hub.py)
+[timenet_connectors.sources.huggingface_hub](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet-connectors/src/timenet_connectors/sources/huggingface_hub.py)
 inside `download_async`, with `williamhtan/kernelsight`, a **40-character pinned
 commit**, and explicit patterns for NPZs and split JSONs. Pinning that revision
 is unresolved: the downloaded dataset's name `v4` is not an immutable commit.
@@ -307,7 +307,7 @@ Verify downloaded arrays/split hashes against the current local dataset before
 claiming equivalence. Include upstream documentation/license evidence too.
 Alternatively BaseHuggingFaceConnector supports `HF_REPO`, `SOURCE_REVISION`, and
 `SOURCE_FILES: part -> path/pattern`; its HubFileRef/check_refs/ref_paths API is
-verified in [bases/huggingface.py](../../TimeNet/packages/timenet-connectors/src/timenet_connectors/bases/huggingface.py).
+verified in [bases/huggingface.py](https://github.com/OpenTSLM/TimeNet/blob/main/packages/timenet-connectors/src/timenet_connectors/bases/huggingface.py).
 Avoid pretending it accepts a repository root with no declared parts. The custom
 BaseConnector route better accommodates the initial local-root mode.
 

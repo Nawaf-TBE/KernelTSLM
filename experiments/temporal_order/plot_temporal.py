@@ -4,7 +4,7 @@
 # ///
 """Figure of runs/temporal_baselines/metrics.json -> runs/temporal_baselines/order_matters.png
 
-  uv run plot_temporal.py
+  uv run experiments/temporal_order/plot_temporal.py
 """
 
 import json
@@ -16,7 +16,7 @@ import numpy as np
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-HERE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parents[2]  # repository root
 RUN = HERE / "runs/temporal_baselines"
 MODELS = {"majority": "Majority", "bin_only": "This Bin\nonly", "window_shuffled": "+ neighbors,\nshuffled",
           "window": "+ neighbors,\ntrue order", "cnn": "CNN\n(temporal)"}

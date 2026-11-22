@@ -1,6 +1,6 @@
 """Score KernelSight explanations. Each sentence before "Answer:" is parsed with one fixed form and checked against
 the facts of the Snapshot as the model saw it: original, reversed or shuffled. The condition comes from
-row["condition"] when RUN sets it; otherwise from which reference text row["answer"] equals.
+row["condition"] when flamingo/multitask.py sets it; otherwise from which reference text row["answer"] equals.
 
 main = mean over rows of the row's claim precision; a row with no valid "Answer: <class>" or no parsed claim
 scores 0. Also: class accuracy, claim precision per family (text / series / order), the share of claims that are

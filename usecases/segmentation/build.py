@@ -1,4 +1,8 @@
-"""Build the segmentation rows: one timeline question per Snapshot, in the row contract of the shared brief.
+# /// script
+# requires-python = ">=3.12"
+# dependencies = ["numpy"]
+# ///
+"""Build the segmentation rows: one timeline question per Snapshot, in the row contract of flamingo/multitask.py.
 
 The model reads all 24 Channels, with sass_misc moved last: the question and the answer read only the last
 series (utils.py MaskedCrossAttention), and sass_misc alone gives the best busy/idle on validation (SPEC.md).

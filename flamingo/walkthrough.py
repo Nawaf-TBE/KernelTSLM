@@ -308,7 +308,7 @@ def _(BASELINES, NAMES, metric_table, mo, read_json):
     if _base:
         _out = mo.md(metric_table({NAMES[k]: v for k, v in _base["grouped"].items()}))
     else:
-        _out = mo.callout(mo.md("`runs/baselines/metrics.json` is missing: run `uv run baselines.py` on the Mac and copy it."), kind="warn")
+        _out = mo.callout(mo.md("`runs/baselines/metrics.json` is missing: run `uv run baselines.py` first."), kind="warn")
     _out
     return
 

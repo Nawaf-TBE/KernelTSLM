@@ -192,8 +192,8 @@ In the TimeNet worktree, all implementation additions are uncommitted:
 - Tests `__init__.py`, `conftest.py`, `test_connector.py`, and `test_real.py`.
 - `benchmarks/kernelsight/verify_training.py`.
 
-In Kernel X-ray: `.gitignore` excludes the worktree; AGENTS.md and README link this
-implementation/status; this document records commands and limitations. Generated
+In Kernel X-ray: `.gitignore` excludes the worktree; this document records the
+implementation status, commands and limitations. Generated
 registries/reports/environment inventories are under `outputs/phase2/task2/` and
 `outputs/reports/task2_*`. Original source, splits, upstream tools, completed Phase 1
 outputs and original environment are preserved. No raw dataset bytes are checked

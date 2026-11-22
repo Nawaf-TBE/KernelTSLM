@@ -7,7 +7,7 @@ so positions are given relative to the ACTIVE SPAN (first busy Bin to last busy 
 from functools import lru_cache
 import numpy as np
 
-from .paths import LABEL_ROOT as ROOT, NPZ
+from .paths import NPZ, labels
 
 LABELS = ['matmul', 'conv', 'activation', 'normalization', 'softmax', 'pooling', 'reduction',
           'attention', 'loss', 'elementwise', 'memory_movement', 'other']
@@ -23,7 +23,7 @@ def _paths():
 
 @lru_cache(maxsize=4096)
 def load(i):
-    L = np.load(ROOT + str(_paths()[i]).replace('input/tensor_input.npz', 'labels/labels.npz'))
+    L = labels(i)
     return L['mask_any_kernel'].astype(np.int8), L['workload_l1'].astype(int)
 
 

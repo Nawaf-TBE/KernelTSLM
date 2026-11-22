@@ -1,4 +1,4 @@
-# EXP: explanation (KernelSight rationales + HAR-CoT faithfulness)
+# Explanation: KernelSight rationales and HAR-CoT faithfulness
 
 ## Part A: KernelSight explanation rows
 
@@ -9,11 +9,11 @@
 - series: `The GPU is busy in <bucket> of Bins.`
 - order: `The GPU has N busy periods.`, `A busy period starts every P Bins.`, `SMs Active rises|falls during busy time.`, `Workload order: A -> B.`, `After A comes B.`
 
-**Replace or add:** ADD. CLS keeps the plain class rows as the primary class metric. There is one explanation row per Snapshot, with no repeats.
+**Replace or add:** ADD. The classification task keeps the plain class rows as the primary class metric. There is one explanation row per Snapshot, with no repeats.
 
 **Rows:** train 862, validation 291, test 291. The test rows are 200 plain (1-3 busy periods), 75 loop and 16 multi-workload. Gemma 3 tokens: prompt ≈ 1,009, answer mean 69 (max 107). `max_new_tokens` is 112.
 
-**Scorer.** `score.py` parses each sentence before `Answer:`. It checks each claim against the facts of the input as given (original, reversed or shuffled; `facts.json`). `main` is the mean claim precision per row. A row with no valid `Answer:` scores 0. The scorer also reports class accuracy, precision per family, the order-claim share and the unparsable share. It reads the condition from `row["condition"]` if RUN sets it. If not, it infers the condition from the reference text (verified: 134/134 reversed, 291/291 shuffled).
+**Scorer.** `score.py` parses each sentence before `Answer:`. It checks each claim against the facts of the input as given (original, reversed or shuffled; `facts.json`). `main` is the mean claim precision per row. A row with no valid `Answer:` scores 0. The scorer also reports class accuracy, precision per family, the order-claim share and the unparsable share. It reads the condition from `row["condition"]` if `flamingo/multitask.py` sets it. If not, it infers the condition from the reference text (verified: 134/134 reversed, 291/291 shuffled).
 
 **Baselines** (test; main / order precision):
 
@@ -28,7 +28,7 @@
 **Controls.**
 - shuffled (all rows): text and series claims must stay true. Order claims must disappear or describe the shuffled timeline.
 - reversed: only on rows where a reference claim becomes false (test 134: 121 from the trend, 15 from the workload order).
-- swapped: skip for EXP.
+- swapped: skipped for this task.
 
 **Expected outcome.**
 - Class accuracy near the class rows.
@@ -50,7 +50,7 @@
 - The model can check text claims from the text line alone.
 - The reversed control is mostly one fact. SMs Active falls in 605 Snapshots and rises in only 45.
 - Only 16 multi-workload test Snapshots.
-- RUN must shuffle with `default_rng(0).permutation(512)`, as `finetune_kernelsight.shuffled` does.
+- `flamingo/multitask.py` must shuffle with `default_rng(0).permutation(512)`, as `finetune_kernelsight.shuffled` does.
 - A rationale before the answer can change the class.
 - One run.
 
@@ -77,4 +77,4 @@ multi/conv: "... The GPU has 39 busy periods. A busy period starts every 8 Bins.
 
 **Finding.** OpenTSLM's uv.lock pins open-flamingo 0.0.2, which cannot build the Flamingo model. The script uses open-flamingo 2.0.1 with dependency overrides and transformers <4.58.
 
-**Tested.** Mac MPS, 2 windows × 3 conditions: 4.4 s per window, 2/2 correct. A full run takes ≈ 1.5 h on the Mac.
+**Tested.** Mac MPS, 2 windows × 3 conditions: 4.4 s per window, 2/2 correct. A full run takes ≈ 1.5 h on a MacBook (MPS).

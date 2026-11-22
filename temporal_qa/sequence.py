@@ -10,7 +10,7 @@ from itertools import permutations
 
 import numpy as np
 
-from .paths import LABEL_ROOT, NPZ
+from .paths import NPZ, labels
 
 D = np.load(NPZ)
 CLASSES = [str(c) for c in D["labels"]]
@@ -25,8 +25,7 @@ _cache = {}
 def bins(i):
     """Per-Bin state: class index, UNL, or IDLE."""
     if i not in _cache:
-        p = LABEL_ROOT + str(D["paths"][i]).replace("input/tensor_input.npz", "labels/labels.npz")
-        L = np.load(p)
+        L = labels(i)
         w = L["workload_l1"].astype(int).copy()
         w[L["mask_any_kernel"] == 0] = IDLE
         _cache[i] = w

@@ -5,7 +5,7 @@
 """Rows of the classification use case: one question per Snapshot, "which workload class dominates the trace?",
 with the 12 options, exactly as in the class-only reference run (flamingo/finetune_kernelsight.py, runs/flamingo).
 
-Writes runs/usecases/classification/{train,validation,test}.jsonl (the row contract of the shared brief) and
+Writes runs/usecases/classification/{train,validation,test}.jsonl (the row contract of flamingo/multitask.py) and
 donors.json, the fixed donor of the swapped-series control for each validation and test Snapshot.
 
   uv run usecases/classification/build.py                     # train repeats rare classes to >= 100 rows each

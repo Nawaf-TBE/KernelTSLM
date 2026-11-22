@@ -1,3 +1,7 @@
+# /// script
+# requires-python = ">=3.12"
+# dependencies = ["numpy"]
+# ///
 """Build the KernelSight explanation rows: a short rationale of checked facts, then "Answer: <class>".
 
 Facts (every one is computed, so every reference claim is true):

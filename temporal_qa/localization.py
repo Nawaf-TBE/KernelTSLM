@@ -6,7 +6,7 @@ Per-Bin state: -2 = idle (no kernel), -1 = kernel without label, 0..11 = L1 clas
 """
 import numpy as np
 
-from .paths import LABEL_ROOT, NPZ as DATA
+from .paths import NPZ as DATA, labels
 
 N = 512
 IDLE, UNLAB = -2, -1
@@ -23,7 +23,7 @@ _cache = {}
 def states(i):
     """Per-Bin state array for Snapshot i (numeric keys only, no pickle)."""
     if i not in _cache:
-        l = np.load(LABEL_ROOT + PATHS[i].replace('input/tensor_input.npz', 'labels/labels.npz'))
+        l = labels(i)
         m = l['mask_any_kernel'].astype(bool)
         _cache[i] = np.where(m, l['workload_l1'], IDLE).astype(int)
     return _cache[i]

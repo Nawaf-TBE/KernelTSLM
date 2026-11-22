@@ -1,4 +1,4 @@
-# DIAG: kernel diagnosis ("Talk to Your GPU")
+# Diagnosis: what limits a kernel ("Talk to Your GPU")
 
 **Question.** What limits this kernel, and what should I try? Free text, `options: []`, all 24 Channels with `SMs Active` last (it is > 0 exactly in busy Bins, so the answer can read the busy timeline). Answer = up to 3 fact sentences, then `Limiter: <limiter>.` and `Try: <step>`.
 

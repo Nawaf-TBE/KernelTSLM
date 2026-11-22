@@ -12,7 +12,7 @@ score.py with Problem-cluster intervals, plus the cheap "text-only" baseline and
                       (utils._scale + utils._statistic, 4 decimals): what the LLM can read without the series
   text_lr_balanced    the same with class weights, the counterpart of the LLM's repeated rare classes
 
-  uv run usecases/classification/baselines.py    # ~1 min on the Mac
+  uv run usecases/classification/baselines.py    # ~1 min on a laptop
 """
 
 import ast

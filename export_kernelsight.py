@@ -1,8 +1,7 @@
-"""Export the KernelSight TimeNet dataset to one .npz file for train_kernelsight.py and
-flamingo/finetune_kernelsight.py.
+"""Export the KernelSight TimeNet dataset (grouped split) to kernelsight.npz, the input of every script here.
 
-Run with the TimeNet venv:
-  cd ~/TimeNet && uv run python ~/hackathon/export_kernelsight.py ~/hackathon/kernelsight.npz
+Needs a TimeNet checkout with the KernelSight connector (OpenTSLM/TimeNet PR #835). Run with its environment:
+  cd /path/to/TimeNet && uv run python /path/to/kernel-xray/export_kernelsight.py /path/to/kernel-xray/kernelsight.npz
 """
 
 import sys

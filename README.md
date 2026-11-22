@@ -100,33 +100,47 @@ Details: [results](docs/cnn-baseline.md), [method](docs/phase3_cnn_baseline.md),
 ## Repository layout
 
 ```text
-usecases/          the four tasks: SPEC, row builder, scorer, baselines per task
-flamingo/          OpenTSLM-Flamingo fine-tuning (multitask.py) and earlier single-task runs
-runs/              results: mt_all (main run), mt_class, mt_diag, baselines, pilots, use-case rows
-site/              demo page (index.html)
-gpu/               scripts to run the fine-tune on a rented H100 (MULTITASK.md)
-temporal_qa/       question templates and label cache used by the row builders
-baselines.py       workload-type baselines (logistic regression, nearest neighbour, MiniRocket, CNN)
-src/kernel_xray/   dataset loader, visualization and the CNN baseline
-scripts/, tests/   CNN pipeline, audit and verification scripts; pytest suite
-docs/              CNN method and audit, TimeNet connector notes
-results/cnn/       CNN figures and provenance
-```
+kernelsight.npz         the dataset as exported from TimeNet (export_kernelsight.py writes it)
+baselines.py            workload-type baselines: logistic regression, nearest neighbour, MiniRocket, CNN
 
-`temporal_questions.py`, `temporal_baselines.py`, `plot_temporal.py`, `flamingo/finetune_kernelsight.py`,
-`flamingo/pilot_temporal.py` and `runs/pilot*` are the earlier experiments that led to the multi-task design.
+usecases/<task>/        the four tasks (plus explanation/): SPEC.md, build.py, score.py, baselines.py
+flamingo/               OpenTSLM-Flamingo: multitask.py (main fine-tune), ask.py (interactive demo),
+                        walkthrough.py (marimo notebook), utils.py (model code), earlier single-task scripts
+temporal_qa/            question templates and the per-Bin label cache used by the row builders
+gpu/                    scripts that run the fine-tune on a rented H100 (README inside)
+runs/                   every result: mt_all (main run), mt_class, mt_diag, baselines, use-case rows,
+                        flamingo (class-only run), pilot* (one-epoch pilots), temporal_qa, temporal_baselines
+experiments/            temporal_order/: the question set and per-Bin baselines that motivated the time controls
+site/                   demo page (index.html)
+
+src/kernel_xray/        CNN baseline package: dataset loader, visualization, L1TemporalCNN
+scripts/, tests/        CNN data pipeline, training, audit and verification; pytest suite
+configs/, results/cnn/  CNN configuration; CNN figures, metrics and provenance
+docs/                   CNN method and audit, TimeNet connector notes (index: docs/README.md)
+```
 
 ## Reproduce
 
+Everything below runs from `kernelsight.npz` and the files in the repository:
+
 ```sh
-uv run --no-project --with numpy,scikit-learn usecases/<task>/build.py   # rows (laptop, seconds)
-uv run baselines.py                                                       # classical baselines (~5 min)
-uv run --with pytest python -m pytest -q                                  # CNN package tests
+uv run --no-project --with numpy,scikit-learn usecases/<task>/build.py      # use-case rows (seconds)
+uv run baselines.py                                                          # workload-type baselines (~5 min)
+uv run --no-project --with numpy python experiments/temporal_order/temporal_questions.py
 ```
 
-The fine-tune needs one H100; `gpu/MULTITASK.md` has the steps (upload, set up the VM, run `gpu/multitask.sh`,
-copy the results back). The diagnosis and explanation builders also read the raw KernelSight label files for
-kernel timing; download the release and point `KERNELSIGHT_ROOT` at it (default `data/kernelsight/`).
+The rebuilt rows and question sets match the committed files exactly. Logistic-regression scores can move by one
+test kernel between platforms (diagnosis limiter: 0.938 on macOS, where the committed results were made; 0.942 on
+Linux).
+
+The fine-tune needs one H100; see [gpu/README.md](gpu/README.md). Two parts need the raw KernelSight release:
+the kernel timing in `usecases/diagnosis/build.py` and the CNN pipeline and its tests. Download it once:
+
+```sh
+hf download williamhtan/kernelsight --repo-type dataset --local-dir data/kernelsight_v4
+ln -s data/kernelsight_v4/kernels data/kernelsight_v4/splits .              # paths the CNN code expects
+uv run --with pytest python -m pytest -q                                     # CNN tests
+```
 
 ## Limits
 

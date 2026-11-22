@@ -19,4 +19,4 @@ print('complete' if keys <= set(m) else '-')" 2>/dev/null || echo -)
   printf "%-20s %-8s %8s  %s\n" "$d" "$state" "${n:-0}" "$r"
 done
 command -v nvidia-smi >/dev/null && nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader
-for f in parallel overnight multitask; do [ -f $f.done ] && echo "$f queue: done ($(cat $f.done))"; done
+[ -f multitask.done ] && echo "queue: done ($(cat multitask.done))"

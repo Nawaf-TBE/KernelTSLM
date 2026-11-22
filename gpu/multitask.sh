@@ -1,11 +1,11 @@
 #!/bin/bash
-# The multi-task queue on a 1-GPU VM (plan, times and kill rules: gpu/MULTITASK.md). One job at a time, in the
+# The multi-task queue on a 1-GPU VM (steps: gpu/README.md). One job at a time, in the
 # order below. A job with runs/<job>/job.done is skipped, and multitask.py skips each finished predictions file,
 # so a restart goes on where it stopped. Start it detached, so keys in a terminal cannot stop it:
 #   (setsid nohup ~/hackathon/gpu/multitask.sh round1 > ~/hackathon/runs/multitask.log 2>&1 < /dev/null &)
 #   round1  mt_smoke, mt_all                                   the Round-1 minimum (~2.7 h of jobs)
 #   full    round1, then mt_class and mt_all_seed1               (~5.6 h of jobs)
-#   har     har_cot only, if the HAR-CoT run on the Mac fails   (needs gpu/setup_har.sh first)
+#   har     har_cot only, if the HAR-CoT run on a laptop fails   (needs gpu/setup_har.sh first)
 #   seed0 | seed1 | seed2 | attend | refs   one plan per 1-GPU VM, run in parallel (each: its own smoke test, then
 #           mt_all | mt_all_seed1 | mt_all_seed2 | mt_all_attend (--attend-all) | mt_class + mt_diag)
 # Watch:  ~/hackathon/gpu/progress.sh   or   ~/hackathon/gpu/status.sh   (both only read files)
@@ -16,7 +16,7 @@
 #                 the controls each use case asked for; validation: the controls of its go/no-go rule
 #   mt_class      classification only, 2 epochs, seed 0: the class-only reference in this harness, with controls
 #   mt_all_seed1  mt_all with seed 1, so the multi-task recipe has 2 runs
-#   har_cot       OpenTSLM's released HAR-CoT model on real, shuffled and reversed windows (EXP's run_har.py)
+#   har_cot       OpenTSLM's released HAR-CoT model on real, shuffled and reversed windows (usecases/explanation/har/run_har.py)
 cd ~/hackathon/flamingo || exit 1
 export PATH="$HOME/.local/bin:$PATH"
 PY=.venv/bin/python
@@ -62,7 +62,7 @@ run() {  # run <job> <command...>: adds --out runs/<job>; writes runs/<job>/job.
   return $code
 }
 
-# NOTE: diagnosis replaces explanation (the user's use case: GPU programmers optimizing kernels). To add explanation
+# NOTE: diagnosis replaces explanation in the main run (the headline use case: kernel optimization). To add explanation
 # back: append ",explanation" to --tasks, "explanation=100" to --val-rows, "--test-rows explanation=100", and
 # "explanation=real+shuffled+reversed" / "explanation=real" to the two control lists.
 ALL="--tasks diagnosis,temporal,classification,segmentation --add-train temporal/train_reversed.jsonl:trend
@@ -78,8 +78,8 @@ case $PLAN in
       run mt_class $PY -u multitask.py --tasks classification --epochs 2 --val-controls real,swapped
       run mt_all_seed1 $PY -u multitask.py $ALL --epochs 2 --seed 1 --save
     fi ;;
-  # NOTE: parallel plans, one per 1-GPU VM (gpu/MULTITASK.md, "Parallel"); each job has its own runs/<job> folder,
-  # so pull.sh can copy all VMs into one ~/hackathon/runs
+  # NOTE: parallel plans, one per 1-GPU VM; each job has its own runs/<job> folder,
+  # so pull.sh can copy all VMs into one runs/ folder
   seed0|seed1|seed2|attend|refs)
     run "mt_smoke_$PLAN" $PY -u multitask.py $ALL --limit 4 --epochs 1 --before 4 || { log "stop: the smoke test failed"; exit 1; }
     case $PLAN in

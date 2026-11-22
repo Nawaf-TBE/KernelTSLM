@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["numpy", "scikit-learn", "tokenizers"]
+# dependencies = ["numpy", "scikit-learn", "tokenizers", "huggingface_hub"]
 # ///
 """CPU baselines and design checks for the segmentation timeline, all scored by score.py on the SAME rows
 (runs/usecases/segmentation/{validation,test}.jsonl; 291 Snapshots each).
@@ -16,16 +16,15 @@
                           then the 16-Bin grid; 3 seeds (the seed picks 12% of training Bins)
   lr_window_per_bin       the same predictions without the grid
   lr_window_shuffled_neighbours  the neighbours in random order (the Bin stays at the centre); 3 seeds
-  lr_window_input_shuffled / _input_reversed   seed-0 lr_window on the controls RUN applies to the input,
+  lr_window_input_shuffled / _input_reversed   seed-0 lr_window on the controls flamingo/multitask.py applies to the input,
                           scored as the TSLM controls are (shuffled vs the true timeline, reversed vs reversed)
   lr_window_busy_painted_snapshot_lr   seed-0 lr_window busy Bins painted with the Snapshot LR class
   lr_window_busy_painted_minirocket    the same with the saved MiniRocket class (runs/baselines, seed 0, test only)
 Design checks: grid width (validation chooses; test shown) and the last Channel (validation).
 
-  uv run usecases/segmentation/baselines.py    # ~2 min on an M-series Mac; writes runs/usecases/segmentation/baselines.json
+  uv run usecases/segmentation/baselines.py    # ~2 min on a laptop; writes runs/usecases/segmentation/baselines.json
 """
 
-import glob
 import json
 import sys
 from collections import Counter
@@ -113,11 +112,9 @@ def saved_minirocket():
 
 
 def tokenizer():
-    files = glob.glob(str(Path.home() / ".cache/huggingface/hub/models--opentime--tslm-nov26/snapshots/*/tokenizer.json"))
-    if not files:
-        return None
+    from huggingface_hub import hf_hub_download
     from tokenizers import Tokenizer
-    t = Tokenizer.from_file(files[0])
+    t = Tokenizer.from_file(hf_hub_download("opentime/tslm-nov26", "tokenizer.json"))
     return lambda text: len(t.encode(text, add_special_tokens=False).ids)
 
 

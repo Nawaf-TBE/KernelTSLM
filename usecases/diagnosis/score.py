@@ -2,7 +2,7 @@
 
 Each finding sentence is parsed with one fixed form and checked against the facts of the Snapshot as the model saw
 it (original, reversed or shuffled; runs/usecases/diagnosis/facts.json). The condition comes from row["condition"]
-when RUN sets it; otherwise from which reference text row["answer"] equals.
+when flamingo/multitask.py sets it; otherwise from which reference text row["answer"] equals.
 
 main = limiter accuracy: the text after the last "Limiter:" (up to the next "." or "Try:") must equal the reference
 limiter of that condition. An output without a valid limiter counts as wrong. Also: balanced limiter accuracy (mean

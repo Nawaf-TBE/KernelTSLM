@@ -1,4 +1,4 @@
-# Classification use case (CLS)
+# Classification use case
 
 ## Formulation
 - One row per Snapshot, all 24 Channels: "Which workload class dominates the trace?" Prompt and 12 options come from `finetune_kernelsight.py` (read from the file). Answer: the class name (at most 4 tokens). `max_new_tokens` 16.
@@ -8,7 +8,7 @@
 train 1,509 rows (862 Snapshots, 235 Problems); validation 291 (82 Problems); test 291 (84 Problems). Gemma 3 tokenizer: question + answer 101 tokens; with the 24 Channel lines 882.
 
 ## Oversampling stays
-Train repeats each rare class to 100 rows (matmul keeps 509), as the reference did. A change would confound "mix vs class-only". In a larger mix, softmax (7 Snapshots) would almost vanish. Cost: about 4 min per epoch. RUN uses all 1,509 rows each epoch and does not subsample them. `--min-per-class 0` builds a no-repeat ablation.
+Train repeats each rare class to 100 rows (matmul keeps 509), as the reference did. A change would confound "mix vs class-only". In a larger mix, softmax (7 Snapshots) would almost vanish. Cost: about 4 min per epoch. `flamingo/multitask.py` uses all 1,509 rows each epoch and does not subsample them. `--min-per-class 0` builds a no-repeat ablation.
 
 ## Metric and scorer
 `score.py` (numpy). `main` = balanced accuracy; also accuracy, macro-F1, per-class F1, Problem-weighted accuracy, invalid count. An output that names no option is wrong. Self-test: answers 1.0; random .117 (chance .083). `cluster_interval` resamples Problems; `paired_difference` gives a − b on the same draws.
@@ -45,7 +45,7 @@ Needs real and swapped validation outputs, and a class-only rerun as reference (
 Training about 9.7 min per epoch (2.6 rows/s). About 2 min per 291-row pass (estimated from file times). Full: 6 passes (validation real, swapped; test real, swapped, shuffled, reversed), about 12 min. With 2 epochs, about 31 min. A class-only rerun adds about 40 min.
 
 ## Risks
-A larger mix than the pilots (43% class rows) can dilute. Validation has no softmax. Four test classes have 1 Problem each (one Problem moves balanced accuracy by .09). Softmax repeats 14 times (overfit). The swap needs a default-off utils hook (RUN). One run per recipe.
+A larger mix than the pilots (43% class rows) can dilute. Validation has no softmax. Four test classes have 1 Problem each (one Problem moves balanced accuracy by .09). Softmax repeats 14 times (overfit). The swap needs a default-off utils hook (`flamingo/multitask.py`). One run per recipe.
 
 ## Round-1 minimum
 All class rows in the mix. Passes: validation real; test real, swapped, shuffled (about 8 min). Compare with .717, labelled "one run".

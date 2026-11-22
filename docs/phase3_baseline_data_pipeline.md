@@ -215,7 +215,7 @@ partitions; never randomly split the flattened bin pool into train/val/test.
 ## Validation results and next task
 
 Exact measurements and the training-only L1 distribution are stored in
-[`outputs/phase3/task1/data_pipeline_validation.json`](../outputs/phase3/task1/data_pipeline_validation.json).
+`outputs/phase3/task1/data_pipeline_validation.json` (local, not published).
 The final strict-view verification checked **all 1,124 training and 160 validation
 traces** against source counters, labels, masks, vocabularies and exact timestamp
 arrays. Training-only mean/std recomputation matches Phase 1 exactly (maximum

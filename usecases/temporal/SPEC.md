@@ -1,4 +1,4 @@
-# Temporal reasoning (TMP)
+# Temporal reasoning
 
 ## Formulation and why
 Each row shows ONE Channel, and the answer is a function of that series alone. The question reads only the last series (utils.py:196). In pilots 2-3c that series was Tensor Active, which is 0 for most non-tensor kernels. Answers are closed options. Pilot 1 collapsed to the letter "C", and 23-29 of its 30 free-number answers were invalid.
@@ -14,7 +14,7 @@ Each row shows ONE Channel, and the answer is a function of that series alone. T
 - peak_order, onset: two series; the model collapsed to "same time".
 - kernel_edge: 10 vs 5; 70% of answers do not change on reversal.
 - loop_period: collapsed to one answer.
-- bin_state, class_switch, sequence types: 82-100% same answers under shuffle; SEG covers per-Bin classes.
+- bin_state, class_switch, sequence types: 82-100% same answers under shuffle; the segmentation task covers per-Bin classes.
 
 ## Rows (mean tokens 156-164, Gemma 3 tokenizer; class row 1,050)
 | | trend | peak | iter | gap | total |
@@ -26,7 +26,7 @@ Each row shows ONE Channel, and the answer is a function of that series alone. T
 
 - Caps: 40 rows per (type, Problem) in train, 10 in validation and test.
 - Test trend: 306 pairs, 55 Problems, 42 forward-decreasing.
-- **train_reversed.jsonl is opt-in.** Its rows carry `"input": "reversed"`, and RUN must feed x[:, ::-1] for them. If RUN cannot, leave the file out: ignored, it teaches opposite answers for one input.
+- **train_reversed.jsonl is opt-in.** Its rows carry `"input": "reversed"`, and `flamingo/multitask.py` must feed x[:, ::-1] for them. If it cannot, leave the file out: ignored, it teaches opposite answers for one input.
 - peak_side has no reversed copies: 95% of its reversed answers are "after", which leaks N.
 - controls.shuffled uses `default_rng(0).permutation(512)`, as `finetune_kernelsight.shuffled` does.
 
@@ -68,7 +68,7 @@ Each row shows ONE Channel, and the answer is a function of that series alone. T
 - Round-1 minimum: trend (with reversed copies) and iteration, 1,960 rows/epoch, about 7 min; over 2 epochs plus evaluation, about 25 min.
 
 ## Risks
-- RUN may not support `input`.
+- `flamingo/multitask.py` may not support `input`.
 - 55 trend Problems give wide intervals.
 - Reversed traces are not physical.
 

@@ -9,18 +9,21 @@ Every row: path, split, template, family, question, options ([] = free answer, a
 answer the same question would have with the trace reversed / its Bins shuffled (a control, never shown to the
 model). Writes runs/temporal_qa/{train,validation,test}.jsonl and summary.json.
 
-  uv run --with numpy python temporal_questions.py
+  uv run --no-project --with numpy python experiments/temporal_order/temporal_questions.py
 """
 
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
 
+import sys
+
 import numpy as np
 
-from temporal_qa import dynamics, localization, sequence, timing
+HERE = Path(__file__).resolve().parents[2]  # repository root
+sys.path.insert(0, str(HERE))
+from temporal_qa import dynamics, localization, sequence, timing  # noqa: E402
 
-HERE = Path(__file__).resolve().parent
 DATA = np.load(HERE / "kernelsight.npz")
 HARD_ONLY = {"which_range", "bin_state"}  # their full sets have a strong position shortcut; see the hard subset
 

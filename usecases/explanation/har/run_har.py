@@ -207,7 +207,7 @@ def main():
     p.add_argument("--max-new-tokens", type=int, default=500, help="the HF demo uses 500")
     p.add_argument("--batch", type=int, default=1, help="the authors evaluate with 1; >1 is faster, left padding")
     p.add_argument("--device", default="auto")
-    p.add_argument("--opentslm", type=Path, default=Path.home() / "hackathon/OpenTSLM")
+    p.add_argument("--opentslm", type=Path, required=True)
     p.add_argument("--stub", action="store_true", help="no model: answer with the reference rationale")
     p.add_argument("--score-only", action="store_true", help="rescore the saved outputs")
     args = p.parse_args()

@@ -8,7 +8,7 @@ confirmed target-leakage defect was found. No model was retrained, no checkpoint
 or split changed, and no test arrays were decoded.
 
 The machine-readable entry point is
-[`verification.json`](../outputs/phase3/cnn_audit/verification.json). All evidence
+`outputs/phase3/cnn_audit/verification.json` (local, not published). All evidence
 below is under `outputs/phase3/cnn_audit/`; historical CNN results remain under
 `outputs/phase3/cnn/`. This audit diagnoses the existing selected checkpoint; it
 does not select a replacement or change the reported metric definitions.
