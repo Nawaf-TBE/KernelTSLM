@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kernel-xray"
+version = "0.1.0"
+description = "GPU trace research data preparation"
+requires-python = ">=3.9"
+dependencies = ["numpy==1.26.4", "matplotlib==3.9.4", "torch==2.6.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,14 @@
+{
+  "unweighted": {
+    "accuracy": 0.959330859468518,
+    "macro_f1_supported": 0.9459247843248932,
+    "macro_f1_all12": 0.8670977189644855,
+    "valid_bins": 33416
+  },
+  "weighted": {
+    "accuracy": 0.9587622695714628,
+    "macro_f1_supported": 0.9434112004875501,
+    "macro_f1_all12": 0.8647936004469209,
+    "valid_bins": 33416
+  }
+}
