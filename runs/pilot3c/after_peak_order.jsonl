@@ -1,0 +1,30 @@
+{"path": "kernels/cutlass_ws_overlap/_out/m1024_n4096_k2048_rH_s2_b0/input/tensor_input.npz", "answer": "SMs Active [Throughput %]", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/cutlass_ws_overlap/_out/m512_n512_k4096_rH_s8_b1/input/tensor_input.npz", "answer": "DRAM Write Bandwidth [Throughput %]", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/vector_add/_out/N16M_T1024/input/tensor_input.npz", "answer": "hit: l2", "prediction": "hit: l2", "output": "hit: l2"}
+{"path": "kernels/kernelbench/_out/L1_P58/input/tensor_input.npz", "answer": "at about the same time", "prediction": "hit: l2", "output": "hit: l2"}
+{"path": "kernels/reduction/_out/N1M_T256_I64/input/tensor_input.npz", "answer": "SMs Active [Throughput %]", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/cutlass_ws_overlap/_out/m512_n512_k4096_rH_s8_b0/input/tensor_input.npz", "answer": "DRAM Read Bandwidth [Throughput %]", "prediction": "pipe: tensor_op_hmma", "output": "pipe: tensor_op_hmma"}
+{"path": "kernels/cutlass_ws_overlap/_out/m4096_n4096_k4096_rH_s2_b0/input/tensor_input.npz", "answer": "at about the same time", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/cutlass_ws_overlap/_out/m512_n512_k2048_rM_s1_b0/input/tensor_input.npz", "answer": "DRAM Read Bandwidth [Throughput %]", "prediction": "DRAM Read Bandwidth [Throughput %]", "output": "DRAM Read Bandwidth [Throughput %]"}
+{"path": "kernels/kernelbench/_out/L1_P47/dt-bf16_s123/input/tensor_input.npz", "answer": "at about the same time", "prediction": "DRAM Read Bandwidth [Throughput %]", "output": "DRAM Read Bandwidth [Throughput %]"}
+{"path": "kernels/cutlass_ws_overlap/_out/m4096_n4096_k1024_rM_s8_b0/input/tensor_input.npz", "answer": "pipe: xu", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/kernelbench/_out/L1_P20/dt-fp16_s123/input/tensor_input.npz", "answer": "at about the same time", "prediction": "hit: l2", "output": "hit: l2"}
+{"path": "kernels/cutlass_ws_overlap/_out/m4096_n4096_k1024_rH_s4_b1/input/tensor_input.npz", "answer": "at about the same time", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/kernelbench/_out/L2_P56/input/tensor_input.npz", "answer": "DRAM Write Bandwidth [Throughput %]", "prediction": "DRAM Write Bandwidth [Throughput %]", "output": "DRAM Write Bandwidth [Throughput %]"}
+{"path": "kernels/cutlass_gemm/_out/m4096_n4096_k4096_rN_s2_b1/input/tensor_input.npz", "answer": "at about the same time", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/scatter/_out/N256K_B16_T512/input/tensor_input.npz", "answer": "pipe: alu", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/kernelbench/_out/L1_P58/input/tensor_input.npz", "answer": "at about the same time", "prediction": "hit: l2", "output": "hit: l2"}
+{"path": "kernels/kernelbench/_out/L1_P8/input/tensor_input.npz", "answer": "at about the same time", "prediction": "Tensor Active [Throughput %]", "output": "Tensor Active [Throughput %]"}
+{"path": "kernels/cutlass_ws_overlap/_out/k2048/input/tensor_input.npz", "answer": "DRAM Read Bandwidth [Throughput %]", "prediction": "DRAM Read Bandwidth [Throughput %]", "output": "DRAM Read Bandwidth [Throughput %]"}
+{"path": "kernels/scatter/_out/N4M_B4096_T128/input/tensor_input.npz", "answer": "SMs Active [Throughput %]", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/cutlass_ws_overlap/_out/m1024_n4096_k2048_rM_s1_b0/input/tensor_input.npz", "answer": "pipe: alu", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/kernelbench/_out/L1_P10/input/tensor_input.npz", "answer": "SMs Active [Throughput %]", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/cutlass_ws_overlap/_out/m4096_n4096_k1024_rH_s2_b1/input/tensor_input.npz", "answer": "at about the same time", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/kernelbench/_out/L1_P45/dt-fp32_s42/input/tensor_input.npz", "answer": "hit: l2", "prediction": "hit: l2", "output": "hit: l2"}
+{"path": "kernels/cutlass_ws_overlap/_out/k4096/input/tensor_input.npz", "answer": "DRAM Write Bandwidth [Throughput %]", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/cutlass_ws_overlap/_out/m4096_n4096_k1024_rH_s1_b1/input/tensor_input.npz", "answer": "pipe: xu", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/cutlass_gemm/_out/m4096_n4096_k4096_rM_s4_b0/input/tensor_input.npz", "answer": "at about the same time", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/cutlass_ws_overlap/_out/m4096_n4096_k1024_rH_s1_b0/input/tensor_input.npz", "answer": "SMs Active [Throughput %]", "prediction": "at about the same time", "output": "at about the same time"}
+{"path": "kernels/cutlass_ws_overlap/_out/m4096_n4096_k4096_rM_s4_b1/input/tensor_input.npz", "answer": "DRAM Read Bandwidth [Throughput %]", "prediction": "Tensor Active [Throughput %]", "output": "Tensor Active [Throughput %]"}
+{"path": "kernels/cutlass_fmha/_out/b4h8_q1024_d128_no/input/tensor_input.npz", "answer": "hit: l2", "prediction": "hit: l2", "output": "hit: l2"}
+{"path": "kernels/cutlass_fmha/_out/q4096_causal/input/tensor_input.npz", "answer": "hit: l2", "prediction": "hit: l2", "output": "hit: l2"}

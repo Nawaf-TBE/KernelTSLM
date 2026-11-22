@@ -1,0 +1,61 @@
+{"rows": {"classification": {"train": {"file": 1509, "used": 1509}, "validation": {"file": 291, "used": 291}, "test": {"file": 291, "used": 291}}}}
+{"oracle": {"classification": 1.0}}
+{"pending": ["validation/classification/real", "test/classification/real", "test/classification/reversed", "test/classification/shuffled", "validation/classification/swapped", "test/classification/swapped"]}
+The tokenizer you are loading from '/home/mahmood/.cache/huggingface/hub/models--opentime--tslm-nov26/snapshots/5e030b001fb8d4be6d10ebb3a8b9bc3e6ef80983' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+{"train": {"classification": {"real": 1509, "shuffled": 0, "reversed": 0}}}
+/home/mahmood/hackathon/flamingo/.venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.c:9:10: fatal error: Python.h: No such file or directory
+    9 | #include <Python.h>
+      |          ^~~~~~~~~~
+compilation terminated.
+{"epoch": 1, "train_loss": 0.7717400966567658, "val_loss": 0.5912599225570644, "seconds": 591}
+{"epochs": [{"epoch": 1, "train_loss": 0.7717400966567658, "val_loss": 0.5912599225570644, "seconds": 591, "val_loss_by_task": {"classification": 0.5913}}]}
+{"best_epoch": 1}
+{"epoch": 2, "train_loss": 0.05148095212232026, "val_loss": 0.506550443677455, "seconds": 598}
+{"epochs": [{"epoch": 1, "train_loss": 0.7717400966567658, "val_loss": 0.5912599225570644, "seconds": 591, "val_loss_by_task": {"classification": 0.5913}}, {"epoch": 2, "train_loss": 0.05148095212232026, "val_loss": 0.506550443677455, "seconds": 598, "val_loss_by_task": {"classification": 0.5066}}]}
+{"best_epoch": 2}
+{"training": {"seconds": 1199, "best_epoch": 2, "model": "trained 2026-11-21T20:28:04 seed 0"}}
+The following generation flags are not valid and may be ignored: ['top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+{"evaluated": 0, "of": 291, "file": "predictions_classification_validation_real.jsonl", "answer": "attention", "output": "attention"}
+{"evaluated": 50, "of": 291, "file": "predictions_classification_validation_real.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 100, "of": 291, "file": "predictions_classification_validation_real.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 150, "of": 291, "file": "predictions_classification_validation_real.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 200, "of": 291, "file": "predictions_classification_validation_real.jsonl", "answer": "activation", "output": "activation"}
+{"evaluated": 250, "of": 291, "file": "predictions_classification_validation_real.jsonl", "answer": "reduction", "output": "reduction"}
+{"summary": {"validation": {"classification": {"real": 0.622}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_classification_real.jsonl", "answer": "attention", "output": "attention"}
+{"evaluated": 50, "of": 291, "file": "predictions_classification_real.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 100, "of": 291, "file": "predictions_classification_real.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 150, "of": 291, "file": "predictions_classification_real.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 200, "of": 291, "file": "predictions_classification_real.jsonl", "answer": "normalization", "output": "matmul"}
+{"evaluated": 250, "of": 291, "file": "predictions_classification_real.jsonl", "answer": "loss", "output": "loss"}
+{"summary": {"validation": {"classification": {"real": 0.622}}, "test": {"classification": {"real": 0.731}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_classification_reversed.jsonl", "answer": "attention", "output": "attention"}
+{"evaluated": 50, "of": 291, "file": "predictions_classification_reversed.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 100, "of": 291, "file": "predictions_classification_reversed.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 150, "of": 291, "file": "predictions_classification_reversed.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 200, "of": 291, "file": "predictions_classification_reversed.jsonl", "answer": "normalization", "output": "matmul"}
+{"evaluated": 250, "of": 291, "file": "predictions_classification_reversed.jsonl", "answer": "loss", "output": "loss"}
+{"summary": {"validation": {"classification": {"real": 0.622}}, "test": {"classification": {"real": 0.731, "reversed": 0.73}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_classification_shuffled.jsonl", "answer": "attention", "output": "attention"}
+{"evaluated": 50, "of": 291, "file": "predictions_classification_shuffled.jsonl", "answer": "matmul", "output": "conv"}
+{"evaluated": 100, "of": 291, "file": "predictions_classification_shuffled.jsonl", "answer": "matmul", "output": "conv"}
+{"evaluated": 150, "of": 291, "file": "predictions_classification_shuffled.jsonl", "answer": "matmul", "output": "conv"}
+{"evaluated": 200, "of": 291, "file": "predictions_classification_shuffled.jsonl", "answer": "normalization", "output": "conv"}
+{"evaluated": 250, "of": 291, "file": "predictions_classification_shuffled.jsonl", "answer": "loss", "output": "loss"}
+{"summary": {"validation": {"classification": {"real": 0.622}}, "test": {"classification": {"real": 0.731, "reversed": 0.73, "shuffled": 0.527}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_classification_validation_swapped.jsonl", "answer": "attention", "output": "attention"}
+{"evaluated": 50, "of": 291, "file": "predictions_classification_validation_swapped.jsonl", "answer": "matmul", "output": "conv"}
+{"evaluated": 100, "of": 291, "file": "predictions_classification_validation_swapped.jsonl", "answer": "matmul", "output": "conv"}
+{"evaluated": 150, "of": 291, "file": "predictions_classification_validation_swapped.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 200, "of": 291, "file": "predictions_classification_validation_swapped.jsonl", "answer": "activation", "output": "matmul"}
+{"evaluated": 250, "of": 291, "file": "predictions_classification_validation_swapped.jsonl", "answer": "reduction", "output": "matmul"}
+{"summary": {"validation": {"classification": {"real": 0.622, "swapped": 0.298, "swapped_donor": 0.129}}, "test": {"classification": {"real": 0.731, "reversed": 0.73, "shuffled": 0.527}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_classification_swapped.jsonl", "answer": "attention", "output": "conv"}
+{"evaluated": 50, "of": 291, "file": "predictions_classification_swapped.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 100, "of": 291, "file": "predictions_classification_swapped.jsonl", "answer": "matmul", "output": "conv"}
+{"evaluated": 150, "of": 291, "file": "predictions_classification_swapped.jsonl", "answer": "matmul", "output": "conv"}
+{"evaluated": 200, "of": 291, "file": "predictions_classification_swapped.jsonl", "answer": "normalization", "output": "matmul"}
+{"evaluated": 250, "of": 291, "file": "predictions_classification_swapped.jsonl", "answer": "loss", "output": "loss"}
+{"summary": {"validation": {"classification": {"real": 0.622, "swapped": 0.298, "swapped_donor": 0.129}}, "test": {"classification": {"real": 0.731, "reversed": 0.73, "shuffled": 0.527, "swapped": 0.305, "swapped_donor": 0.106}}}}
+{"extras": {"validation": {"classification": {"swap_read": {"n": 291, "own": 0.3127147766323024, "donor": 0.21649484536082475, "invalid": 0, "chance_own": 0.20133205795869202, "chance_donor": 0.1571072613691383, "own_interval_95": [0.23659221193310945, 0.424446437407224], "donor_interval_95": [0.15302442486824963, 0.29583881578947363], "own_balanced": 0.2979006339377856, "donor_balanced": 0.12892857142857145}, "cluster_interval_real": {"accuracy": [0.7404022885750045, 0.9523001690085912], "balanced_accuracy": [0.5594243443754313, 0.8643076068669635], "macro_f1": [0.5321450463714504, 0.8704998358629514]}}}, "test": {"classification": {"swap_read": {"n": 291, "own": 0.2920962199312715, "donor": 0.20962199312714777, "invalid": 0, "chance_own": 0.1908574532657857, "chance_donor": 0.1520175718283913, "own_interval_95": [0.22257832998919588, 0.40722104178739277], "donor_interval_95": [0.16287878787878787, 0.2727272727272727], "own_balanced": 0.30544520838638484, "donor_balanced": 0.10642333043153837}, "cluster_interval_real": {"accuracy": [0.7657296650717703, 0.9682581453634085], "balanced_accuracy": [0.6701294429254956, 0.9275935618679136], "macro_f1": [0.6162563751930973, 0.9271098294549579]}}}}}
+{"complete": true}

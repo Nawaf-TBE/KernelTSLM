@@ -1,0 +1,30 @@
+{"path": "kernels/kernelbench/_out/L1_P71/input/tensor_input.npz", "answer": "7-21", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/cutlass_fmha/_out/q4096/input/tensor_input.npz", "answer": "1-4", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P53/dt-fp32_s42/input/tensor_input.npz", "answer": "1-4", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/cutlass_sparse_gemm/_out/m2048_n1024_k8192/input/tensor_input.npz", "answer": "22 or more", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/cutlass_ws_overlap/_out/m1024_n4096_k2048_rH_s2_b1/input/tensor_input.npz", "answer": "22 or more", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/cutlass_fmha/_out/b4h8_q2048_d128_no/input/tensor_input.npz", "answer": "22 or more", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P53/dt-fp16_s42/input/tensor_input.npz", "answer": "5-6", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/cutlass_fmha/_out/b4h8_q1024_k4096_d128_no/input/tensor_input.npz", "answer": "5-6", "prediction": "5-6", "output": "5-6"}
+{"path": "kernels/cutlass_grouped_gemm/_out/m512_n512_k2048/input/tensor_input.npz", "answer": "1-4", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P23/dt-bf16_s42/input/tensor_input.npz", "answer": "1-4", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P47/dt-bf16_s123/input/tensor_input.npz", "answer": "7-21", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P53/dt-fp16_s123/input/tensor_input.npz", "answer": "5-6", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P47/dt-fp32_s42/input/tensor_input.npz", "answer": "5-6", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P99/dt-fp16_s123/input/tensor_input.npz", "answer": "22 or more", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/cutlass_fmha/_out/b2h16_q512_d64_causal/input/tensor_input.npz", "answer": "1-4", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/cutlass_ws_overlap/_out/m4096_n4096_k1024_rN_s8_b0/input/tensor_input.npz", "answer": "1-4", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P30/dt-bf16_s42/input/tensor_input.npz", "answer": "7-21", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P74/input/tensor_input.npz", "answer": "7-21", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P35/input/tensor_input.npz", "answer": "1-4", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P59/input/tensor_input.npz", "answer": "5-6", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P9/input/tensor_input.npz", "answer": "5-6", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L2_P30/input/tensor_input.npz", "answer": "22 or more", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P30/input/tensor_input.npz", "answer": "7-21", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P30/dt-fp16_s42/input/tensor_input.npz", "answer": "22 or more", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/cutlass_fmha/_out/b8h8_q2048_d64_causal/input/tensor_input.npz", "answer": "1-4", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P88/dt-fp32_s42/input/tensor_input.npz", "answer": "22 or more", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L2_P56/input/tensor_input.npz", "answer": "22 or more", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P35/dt-fp32_s123/input/tensor_input.npz", "answer": "1-4", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L2_P37/input/tensor_input.npz", "answer": "7-21", "prediction": "22 or more", "output": "22 or more"}
+{"path": "kernels/kernelbench/_out/L1_P99/dt-fp32_s42/input/tensor_input.npz", "answer": "22 or more", "prediction": "22 or more", "output": "22 or more"}

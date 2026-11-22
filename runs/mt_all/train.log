@@ -1,0 +1,206 @@
+{"rows": {"diagnosis": {"train": {"file": 862, "used": 862}, "validation": {"file": 291, "used": 100}, "test": {"file": 291, "used": 291}}, "temporal": {"train": {"file": 2925, "used": 2925}, "validation": {"file": 1079, "used": 300}, "test": {"file": 1000, "used": 1000}}, "classification": {"train": {"file": 1509, "used": 1509}, "validation": {"file": 291, "used": 291}, "test": {"file": 291, "used": 291}}, "segmentation": {"train": {"file": 862, "used": 862}, "validation": {"file": 291, "used": 150}, "test": {"file": 291, "used": 291}}}}
+{"oracle": {"diagnosis": 1.0, "temporal": 1.0, "classification": 1.0, "segmentation": 1.0}}
+{"pending": ["test/diagnosis/before", "test/temporal/before", "test/classification/before", "test/segmentation/before", "validation/diagnosis/real", "test/diagnosis/real", "test/diagnosis/shuffled", "validation/temporal/real", "test/temporal/real", "validation/temporal/reversed", "test/temporal/reversed", "validation/temporal/shuffled", "test/temporal/shuffled", "validation/classification/real", "test/classification/real", "test/classification/reversed", "test/classification/shuffled", "validation/classification/swapped", "test/classification/swapped", "validation/segmentation/real", "test/segmentation/real", "test/segmentation/reversed", "validation/segmentation/shuffled", "test/segmentation/shuffled", "test/segmentation/swapped"]}
+The tokenizer you are loading from '/home/mahmood/.cache/huggingface/hub/models--opentime--tslm-nov26/snapshots/5e030b001fb8d4be6d10ebb3a8b9bc3e6ef80983' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The following generation flags are not valid and may be ignored: ['top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+/home/mahmood/hackathon/flamingo/.venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.c:9:10: fatal error: Python.h: No such file or directory
+    9 | #include <Python.h>
+      |          ^~~~~~~~~~
+compilation terminated.
+{"evaluated": 0, "of": 20, "file": "predictions_diagnosis_before.jsonl", "answer": "DRAM traffic is 80% of peak while busy. L2 hit rate is 40% while busy. Limiter: memory bandwidth. Try: Move fewer bytes: fuse with neighbouring ops or use a narrower data type.", "output": ""}
+{"summary": {"test": {"diagnosis": {"before": 0.0}}}}
+{"evaluated": 0, "of": 20, "file": "predictions_temporal_before.jsonl", "answer": "4-11", "output": "12-22"}
+{"summary": {"test": {"diagnosis": {"before": 0.0}, "temporal": {"before": 0.425}}}}
+{"evaluated": 0, "of": 20, "file": "predictions_classification_before.jsonl", "answer": "activation", "output": "normal"}
+{"summary": {"test": {"diagnosis": {"before": 0.0}, "temporal": {"before": 0.425}, "classification": {"before": 0.0}}}}
+{"evaluated": 0, "of": 20, "file": "predictions_segmentation_before.jsonl", "answer": "0 idle; 64 unlabeled; 80 idle; 96 unlabeled; 112 activation; 464 idle", "output": "0 and ending at 0.3324.0000"}
+{"summary": {"test": {"diagnosis": {"before": 0.0}, "temporal": {"before": 0.425}, "classification": {"before": 0.0}, "segmentation": {"before": 0.0}}}}
+{"train": {"diagnosis": {"real": 862, "shuffled": 0, "reversed": 0}, "temporal": {"real": 2445, "shuffled": 0, "reversed": 480}, "classification": {"real": 1509, "shuffled": 0, "reversed": 0}, "segmentation": {"real": 862, "shuffled": 0, "reversed": 0}}}
+{"epoch": 1, "train_loss": 0.4607458513457117, "val_loss": 0.2601653565994578, "seconds": 1959}
+{"epochs": [{"epoch": 1, "train_loss": 0.4607458513457117, "val_loss": 0.2601653565994578, "seconds": 1959, "val_loss_by_task": {"diagnosis": 0.1734, "temporal": 0.1716, "classification": 0.3501, "segmentation": 0.3208}}]}
+{"best_epoch": 1}
+{"epoch": 2, "train_loss": 0.14346557592194997, "val_loss": 0.17791898194333783, "seconds": 1851}
+{"epochs": [{"epoch": 1, "train_loss": 0.4607458513457117, "val_loss": 0.2601653565994578, "seconds": 1959, "val_loss_by_task": {"diagnosis": 0.1734, "temporal": 0.1716, "classification": 0.3501, "segmentation": 0.3208}}, {"epoch": 2, "train_loss": 0.14346557592194997, "val_loss": 0.17791898194333783, "seconds": 1851, "val_loss_by_task": {"diagnosis": 0.1077, "temporal": 0.1161, "classification": 0.2429, "segmentation": 0.2223}}]}
+{"best_epoch": 2}
+{"training": {"seconds": 3821, "best_epoch": 2, "model": "trained 2026-11-21T20:28:50 seed 0"}}
+{"evaluated": 0, "of": 100, "file": "predictions_diagnosis_validation_real.jsonl", "answer": "DRAM traffic is 75% of peak while busy. The GPU is idle 35% of the active span, across 33 busy periods. L2 hit rate is 45% while busy. Limiter: memory bandwidth. Try: Move fewer bytes: fuse with neighbouring ops or use a narrower data type.", "output": "DRAM traffic is 75% of peak while busy. The GPU is idle 30% of the active span, across 33 busy periods. L2 hit rate is 4"}
+{"evaluated": 50, "of": 100, "file": "predictions_diagnosis_validation_real.jsonl", "answer": "SMs Active is 15% of peak while busy. gmem_coalesce_ratio is in the bottom 25% of training while busy. Limiter: low SM utilization. Try: Use more threads and blocks (a bigger grid or split-K) to fill all SMs.", "output": "SMs Active is 20% of peak while busy. gmem_coalesce_ratio is in the bottom 5% of training while busy. Limiter: low SM ut"}
+{"summary": {"test": {"diagnosis": {"before": 0.0}, "temporal": {"before": 0.425}, "classification": {"before": 0.0}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_diagnosis_real.jsonl", "answer": "Tensor Active is 35% of peak while busy. The GPU is idle 90% of the active span, across 2 busy periods. Limiter: tensor cores. Try: Use FP8 or larger tiles to raise tensor-core throughput.", "output": "Tensor Active is 25% of peak while busy. The GPU is idle 45% of the active span, across 3 busy periods. Limiter: latency"}
+{"evaluated": 50, "of": 291, "file": "predictions_diagnosis_real.jsonl", "answer": "Tensor Active is 50% of peak while busy. The GPU is idle 85% of the active span, across 3 busy periods. DRAM traffic is 45% of peak while busy. Limiter: tensor cores. Try: Use FP8 or larger tiles to raise tensor-core throughput.", "output": "Tensor Active is 35% of peak while busy. The GPU is idle 45% of the active span, across 3 busy periods. DRAM traffic is "}
+{"evaluated": 100, "of": 291, "file": "predictions_diagnosis_real.jsonl", "answer": "Tensor Active is 45% of peak while busy. Limiter: tensor cores. Try: Use FP8 or larger tiles to raise tensor-core throughput.", "output": "Tensor Active is 40% of peak while busy. Limiter: tensor cores. Try: Use FP8 or larger tiles to raise tensor-core throug"}
+{"evaluated": 150, "of": 291, "file": "predictions_diagnosis_real.jsonl", "answer": "Tensor Active is 35% of peak while busy. Limiter: tensor cores. Try: Use FP8 or larger tiles to raise tensor-core throughput.", "output": "Tensor Active is 30% of peak while busy. Limiter: tensor cores. Try: Use FP8 or larger tiles to raise tensor-core throug"}
+{"evaluated": 200, "of": 291, "file": "predictions_diagnosis_real.jsonl", "answer": "pipe: alu is 25% of peak while busy. The GPU is idle 95% of the active span, across 2 busy periods. Limiter: ALU pipe. Try: Cut integer and compare work: simpler index math, vector loads.", "output": "SMs Active is 30% of peak while busy. gmem_coalesce_ratio is in the bottom 10% of training while busy. Limiter: low SM u"}
+{"evaluated": 250, "of": 291, "file": "predictions_diagnosis_real.jsonl", "answer": "The GPU is idle 60% of the active span, across 36 busy periods. Limiter: launch gaps. Try: Fuse kernels or use CUDA Graphs to remove launch gaps.", "output": "DRAM traffic is 40% of peak while busy. The GPU is idle 45% of the active span, across 33 busy periods. L2 hit rate is 2"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787}, "temporal": {"before": 0.425}, "classification": {"before": 0.0}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_diagnosis_shuffled.jsonl", "answer": "The GPU is idle 95% of the active span, across 22 busy periods. Limiter: launch gaps. Try: Fuse kernels or use CUDA Graphs to remove launch gaps.", "output": "SMs Active is 50% of peak while busy. The GPU is idle 95% of the active span, across 3 busy periods. gmem_coalesce_ratio"}
+{"evaluated": 50, "of": 291, "file": "predictions_diagnosis_shuffled.jsonl", "answer": "The GPU is idle 85% of the active span, across 65 busy periods. DRAM traffic is 45% of peak while busy. Limiter: launch gaps. Try: Fuse kernels or use CUDA Graphs to remove launch gaps.", "output": "DRAM traffic is 30% of peak while busy. The GPU is idle 45% of the active span, across 33 busy periods. L2 hit rate is 4"}
+{"evaluated": 100, "of": 291, "file": "predictions_diagnosis_shuffled.jsonl", "answer": "The GPU is idle 75% of the active span, across 82 busy periods. Limiter: launch gaps. Try: Fuse kernels or use CUDA Graphs to remove launch gaps.", "output": "SMs Active is 50% of peak while busy. The GPU is idle 40% of the active span, across 33 busy periods. Limiter: launch ga"}
+{"evaluated": 150, "of": 291, "file": "predictions_diagnosis_shuffled.jsonl", "answer": "The GPU is idle 90% of the active span, across 46 busy periods. Limiter: launch gaps. Try: Fuse kernels or use CUDA Graphs to remove launch gaps.", "output": "SMs Active is 25% of peak while busy. The GPU is idle 95% of the active span, across 3 busy periods. gmem_coalesce_ratio"}
+{"evaluated": 200, "of": 291, "file": "predictions_diagnosis_shuffled.jsonl", "answer": "The GPU is idle 95% of the active span, across 19 busy periods. Limiter: launch gaps. Try: Fuse kernels or use CUDA Graphs to remove launch gaps.", "output": "SMs Active is 15% of peak while busy. The GPU is idle 95% of the active span, across 3 busy periods. gmem_coalesce_ratio"}
+{"evaluated": 250, "of": 291, "file": "predictions_diagnosis_shuffled.jsonl", "answer": "The GPU is idle 75% of the active span, across 97 busy periods. Limiter: launch gaps. Try: Fuse kernels or use CUDA Graphs to remove launch gaps.", "output": "DRAM traffic is 40% of peak while busy. The GPU is idle 45% of the active span, across 33 busy periods. L2 hit rate is 2"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425}, "classification": {"before": 0.0}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}}}}
+{"evaluated": 0, "of": 300, "file": "predictions_temporal_validation_real.jsonl", "answer": "12-22", "output": "4-11"}
+{"evaluated": 50, "of": 300, "file": "predictions_temporal_validation_real.jsonl", "answer": "increasing", "output": "increasing"}
+{"evaluated": 100, "of": 300, "file": "predictions_temporal_validation_real.jsonl", "answer": "1-3", "output": "1-3"}
+{"evaluated": 150, "of": 300, "file": "predictions_temporal_validation_real.jsonl", "answer": "12-22", "output": "12-22"}
+{"evaluated": 200, "of": 300, "file": "predictions_temporal_validation_real.jsonl", "answer": "increasing", "output": "increasing"}
+{"evaluated": 250, "of": 300, "file": "predictions_temporal_validation_real.jsonl", "answer": "1-3", "output": "1-3"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425}, "classification": {"before": 0.0}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778}}}}
+{"evaluated": 0, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "decreasing", "output": "decreasing"}
+{"evaluated": 50, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "increasing", "output": "decreasing"}
+{"evaluated": 100, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "increasing", "output": "increasing"}
+{"evaluated": 150, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "increasing", "output": "increasing"}
+{"evaluated": 200, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "increasing", "output": "increasing"}
+{"evaluated": 250, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "increasing", "output": "increasing"}
+{"evaluated": 300, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "increasing", "output": "increasing"}
+{"evaluated": 350, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "before", "output": "before"}
+{"evaluated": 400, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "before", "output": "before"}
+{"evaluated": 450, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "1-3", "output": "1-3"}
+{"evaluated": 500, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "1-3", "output": "1-3"}
+{"evaluated": 550, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "1-3", "output": "1-3"}
+{"evaluated": 600, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "23 or more", "output": "23 or more"}
+{"evaluated": 650, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "4-11", "output": "4-11"}
+{"evaluated": 700, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "12-22", "output": "12-22"}
+{"evaluated": 750, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "23 or more", "output": "23 or more"}
+{"evaluated": 800, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "12-22", "output": "12-22"}
+{"evaluated": 850, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "4-11", "output": "4-11"}
+{"evaluated": 900, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "1-4", "output": "1-4"}
+{"evaluated": 950, "of": 1000, "file": "predictions_temporal_real.jsonl", "answer": "22 or more", "output": "22 or more"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751}, "classification": {"before": 0.0}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778}}}}
+{"evaluated": 0, "of": 300, "file": "predictions_temporal_validation_reversed.jsonl", "answer": "4-11", "output": "4-11"}
+{"evaluated": 50, "of": 300, "file": "predictions_temporal_validation_reversed.jsonl", "answer": "decreasing", "output": "decreasing"}
+{"evaluated": 100, "of": 300, "file": "predictions_temporal_validation_reversed.jsonl", "answer": "1-3", "output": "1-3"}
+{"evaluated": 150, "of": 300, "file": "predictions_temporal_validation_reversed.jsonl", "answer": "12-22", "output": "12-22"}
+{"evaluated": 200, "of": 300, "file": "predictions_temporal_validation_reversed.jsonl", "answer": "decreasing", "output": "decreasing"}
+{"evaluated": 250, "of": 300, "file": "predictions_temporal_validation_reversed.jsonl", "answer": "1-3", "output": "1-3"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751}, "classification": {"before": 0.0}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656}}}}
+{"evaluated": 0, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "increasing", "output": "decreasing"}
+{"evaluated": 50, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "decreasing", "output": "decreasing"}
+{"evaluated": 100, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "decreasing", "output": "decreasing"}
+{"evaluated": 150, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "decreasing", "output": "decreasing"}
+{"evaluated": 200, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "decreasing", "output": "decreasing"}
+{"evaluated": 250, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "decreasing", "output": "decreasing"}
+{"evaluated": 300, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "decreasing", "output": "decreasing"}
+{"evaluated": 350, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "after", "output": "before"}
+{"evaluated": 400, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "after", "output": "before"}
+{"evaluated": 450, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "1-3", "output": "1-3"}
+{"evaluated": 500, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "1-3", "output": "1-3"}
+{"evaluated": 550, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "1-3", "output": "1-3"}
+{"evaluated": 600, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "23 or more", "output": "23 or more"}
+{"evaluated": 650, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "4-11", "output": "4-11"}
+{"evaluated": 700, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "12-22", "output": "12-22"}
+{"evaluated": 750, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "23 or more", "output": "23 or more"}
+{"evaluated": 800, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "12-22", "output": "12-22"}
+{"evaluated": 850, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "12-22", "output": "4-11"}
+{"evaluated": 900, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "1-4", "output": "1-4"}
+{"evaluated": 950, "of": 1000, "file": "predictions_temporal_reversed.jsonl", "answer": "22 or more", "output": "7-21"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723}, "classification": {"before": 0.0}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656}}}}
+{"evaluated": 0, "of": 300, "file": "predictions_temporal_validation_shuffled.jsonl", "answer": "23 or more", "output": "4-11"}
+{"evaluated": 50, "of": 300, "file": "predictions_temporal_validation_shuffled.jsonl", "answer": "increasing", "output": "decreasing"}
+{"evaluated": 100, "of": 300, "file": "predictions_temporal_validation_shuffled.jsonl", "answer": "1-3", "output": "12-22"}
+{"evaluated": 150, "of": 300, "file": "predictions_temporal_validation_shuffled.jsonl", "answer": "23 or more", "output": "12-22"}
+{"evaluated": 200, "of": 300, "file": "predictions_temporal_validation_shuffled.jsonl", "answer": "increasing", "output": "decreasing"}
+{"evaluated": 250, "of": 300, "file": "predictions_temporal_validation_shuffled.jsonl", "answer": "1-3", "output": "12-22"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723}, "classification": {"before": 0.0}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656, "shuffled": 0.408}}}}
+{"evaluated": 0, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "decreasing", "output": "increasing"}
+{"evaluated": 50, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "increasing", "output": "decreasing"}
+{"evaluated": 100, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "increasing", "output": "decreasing"}
+{"evaluated": 150, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "increasing", "output": "decreasing"}
+{"evaluated": 200, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "increasing", "output": "decreasing"}
+{"evaluated": 250, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "increasing", "output": "decreasing"}
+{"evaluated": 300, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "increasing", "output": "decreasing"}
+{"evaluated": 350, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "after", "output": "before"}
+{"evaluated": 400, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "after", "output": "before"}
+{"evaluated": 450, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "1-3", "output": "12-22"}
+{"evaluated": 500, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "1-3", "output": "12-22"}
+{"evaluated": 550, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "1-3", "output": "23 or more"}
+{"evaluated": 600, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "23 or more", "output": "23 or more"}
+{"evaluated": 650, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "23 or more", "output": "4-11"}
+{"evaluated": 700, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "12-22", "output": "12-22"}
+{"evaluated": 750, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "23 or more", "output": "23 or more"}
+{"evaluated": 800, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "23 or more", "output": "12-22"}
+{"evaluated": 850, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "4-11", "output": "4-11"}
+{"evaluated": 900, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "7-21", "output": "7-21"}
+{"evaluated": 950, "of": 1000, "file": "predictions_temporal_shuffled.jsonl", "answer": "7-21", "output": "7-21"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723, "shuffled": 0.509}, "classification": {"before": 0.0}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656, "shuffled": 0.408}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_classification_validation_real.jsonl", "answer": "attention", "output": "attention"}
+{"evaluated": 50, "of": 291, "file": "predictions_classification_validation_real.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 100, "of": 291, "file": "predictions_classification_validation_real.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 150, "of": 291, "file": "predictions_classification_validation_real.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 200, "of": 291, "file": "predictions_classification_validation_real.jsonl", "answer": "activation", "output": "activation"}
+{"evaluated": 250, "of": 291, "file": "predictions_classification_validation_real.jsonl", "answer": "reduction", "output": "reduction"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723, "shuffled": 0.509}, "classification": {"before": 0.0}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656, "shuffled": 0.408}, "classification": {"real": 0.672}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_classification_real.jsonl", "answer": "attention", "output": "attention"}
+{"evaluated": 50, "of": 291, "file": "predictions_classification_real.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 100, "of": 291, "file": "predictions_classification_real.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 150, "of": 291, "file": "predictions_classification_real.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 200, "of": 291, "file": "predictions_classification_real.jsonl", "answer": "normalization", "output": "normalization"}
+{"evaluated": 250, "of": 291, "file": "predictions_classification_real.jsonl", "answer": "loss", "output": "loss"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723, "shuffled": 0.509}, "classification": {"before": 0.0, "real": 0.747}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656, "shuffled": 0.408}, "classification": {"real": 0.672}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_classification_reversed.jsonl", "answer": "attention", "output": "attention"}
+{"evaluated": 50, "of": 291, "file": "predictions_classification_reversed.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 100, "of": 291, "file": "predictions_classification_reversed.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 150, "of": 291, "file": "predictions_classification_reversed.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 200, "of": 291, "file": "predictions_classification_reversed.jsonl", "answer": "normalization", "output": "normalization"}
+{"evaluated": 250, "of": 291, "file": "predictions_classification_reversed.jsonl", "answer": "loss", "output": "loss"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723, "shuffled": 0.509}, "classification": {"before": 0.0, "real": 0.747, "reversed": 0.768}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656, "shuffled": 0.408}, "classification": {"real": 0.672}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_classification_shuffled.jsonl", "answer": "attention", "output": "conv"}
+{"evaluated": 50, "of": 291, "file": "predictions_classification_shuffled.jsonl", "answer": "matmul", "output": "conv"}
+{"evaluated": 100, "of": 291, "file": "predictions_classification_shuffled.jsonl", "answer": "matmul", "output": "conv"}
+{"evaluated": 150, "of": 291, "file": "predictions_classification_shuffled.jsonl", "answer": "matmul", "output": "conv"}
+{"evaluated": 200, "of": 291, "file": "predictions_classification_shuffled.jsonl", "answer": "normalization", "output": "matmul"}
+{"evaluated": 250, "of": 291, "file": "predictions_classification_shuffled.jsonl", "answer": "loss", "output": "loss"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723, "shuffled": 0.509}, "classification": {"before": 0.0, "real": 0.747, "reversed": 0.768, "shuffled": 0.534}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656, "shuffled": 0.408}, "classification": {"real": 0.672}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_classification_validation_swapped.jsonl", "answer": "attention", "output": "conv"}
+{"evaluated": 50, "of": 291, "file": "predictions_classification_validation_swapped.jsonl", "answer": "matmul", "output": "conv"}
+{"evaluated": 100, "of": 291, "file": "predictions_classification_validation_swapped.jsonl", "answer": "matmul", "output": "conv"}
+{"evaluated": 150, "of": 291, "file": "predictions_classification_validation_swapped.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 200, "of": 291, "file": "predictions_classification_validation_swapped.jsonl", "answer": "activation", "output": "attention"}
+{"evaluated": 250, "of": 291, "file": "predictions_classification_validation_swapped.jsonl", "answer": "reduction", "output": "conv"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723, "shuffled": 0.509}, "classification": {"before": 0.0, "real": 0.747, "reversed": 0.768, "shuffled": 0.534}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656, "shuffled": 0.408}, "classification": {"real": 0.672, "swapped": 0.191, "swapped_donor": 0.161}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_classification_swapped.jsonl", "answer": "attention", "output": "conv"}
+{"evaluated": 50, "of": 291, "file": "predictions_classification_swapped.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 100, "of": 291, "file": "predictions_classification_swapped.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 150, "of": 291, "file": "predictions_classification_swapped.jsonl", "answer": "matmul", "output": "matmul"}
+{"evaluated": 200, "of": 291, "file": "predictions_classification_swapped.jsonl", "answer": "normalization", "output": "attention"}
+{"evaluated": 250, "of": 291, "file": "predictions_classification_swapped.jsonl", "answer": "loss", "output": "normalization"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723, "shuffled": 0.509}, "classification": {"before": 0.0, "real": 0.747, "reversed": 0.768, "shuffled": 0.534, "swapped": 0.27, "swapped_donor": 0.149}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656, "shuffled": 0.408}, "classification": {"real": 0.672, "swapped": 0.191, "swapped_donor": 0.161}}}}
+{"evaluated": 0, "of": 150, "file": "predictions_segmentation_validation_real.jsonl", "answer": "0 idle; 96 unlabeled; 112 activation; 432 idle", "output": "0 idle; 96 unlabeled; 128 activation; 416 idle"}
+{"evaluated": 50, "of": 150, "file": "predictions_segmentation_validation_real.jsonl", "answer": "0 memory_movement", "output": "0 memory_movement"}
+{"evaluated": 100, "of": 150, "file": "predictions_segmentation_validation_real.jsonl", "answer": "0 idle; 208 matmul; 304 idle", "output": "0 idle; 208 matmul; 304 idle"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723, "shuffled": 0.509}, "classification": {"before": 0.0, "real": 0.747, "reversed": 0.768, "shuffled": 0.534, "swapped": 0.27, "swapped_donor": 0.149}, "segmentation": {"before": 0.0}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656, "shuffled": 0.408}, "classification": {"real": 0.672, "swapped": 0.191, "swapped_donor": 0.161}, "segmentation": {"real": 0.888}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_segmentation_real.jsonl", "answer": "0 idle; 160 attention; 176 idle; 336 attention; 352 idle", "output": "0 idle; 240 attention; 272 idle"}
+{"evaluated": 50, "of": 291, "file": "predictions_segmentation_real.jsonl", "answer": "0 idle; 400 matmul; 480 idle", "output": "0 idle; 400 matmul; 112 idle; 400 matmul; 112 idle"}
+{"evaluated": 100, "of": 291, "file": "predictions_segmentation_real.jsonl", "answer": "0 idle; 192 matmul; 320 idle", "output": "0 idle; 192 matmul; 320 idle"}
+{"evaluated": 150, "of": 291, "file": "predictions_segmentation_real.jsonl", "answer": "0 idle; 224 matmul; 288 idle", "output": "0 idle; 224 matmul; 288 idle"}
+{"evaluated": 200, "of": 291, "file": "predictions_segmentation_real.jsonl", "answer": "0 idle; 496 normalization", "output": "0 idle; 240 attention; 272 idle"}
+{"evaluated": 250, "of": 291, "file": "predictions_segmentation_real.jsonl", "answer": "0 idle; 224 loss; 416 idle", "output": "0 idle; 192 unlabeled; 208 loss; 416 idle"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723, "shuffled": 0.509}, "classification": {"before": 0.0, "real": 0.747, "reversed": 0.768, "shuffled": 0.534, "swapped": 0.27, "swapped_donor": 0.149}, "segmentation": {"before": 0.0, "real": 0.897}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656, "shuffled": 0.408}, "classification": {"real": 0.672, "swapped": 0.191, "swapped_donor": 0.161}, "segmentation": {"real": 0.888}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_segmentation_reversed.jsonl", "answer": "0 idle; 160 attention; 176 idle; 336 attention; 352 idle", "output": "0 idle; 240 attention; 272 idle"}
+{"evaluated": 50, "of": 291, "file": "predictions_segmentation_reversed.jsonl", "answer": "0 idle; 32 matmul; 112 idle", "output": "0 idle; 192 matmul; 320 idle"}
+{"evaluated": 100, "of": 291, "file": "predictions_segmentation_reversed.jsonl", "answer": "0 idle; 192 matmul; 320 idle", "output": "0 idle; 192 matmul; 320 idle"}
+{"evaluated": 150, "of": 291, "file": "predictions_segmentation_reversed.jsonl", "answer": "0 idle; 224 matmul; 288 idle", "output": "0 idle; 224 matmul; 288 idle"}
+{"evaluated": 200, "of": 291, "file": "predictions_segmentation_reversed.jsonl", "answer": "0 normalization; 16 idle", "output": "0 idle; 240 attention; 272 idle"}
+{"evaluated": 250, "of": 291, "file": "predictions_segmentation_reversed.jsonl", "answer": "0 idle; 96 loss; 288 idle", "output": "0 idle; 144 unlabeled; 160 loss; 416 idle"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723, "shuffled": 0.509}, "classification": {"before": 0.0, "real": 0.747, "reversed": 0.768, "shuffled": 0.534, "swapped": 0.27, "swapped_donor": 0.149}, "segmentation": {"before": 0.0, "real": 0.897, "reversed": 0.866}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656, "shuffled": 0.408}, "classification": {"real": 0.672, "swapped": 0.191, "swapped_donor": 0.161}, "segmentation": {"real": 0.888}}}}
+{"evaluated": 0, "of": 150, "file": "predictions_segmentation_validation_shuffled.jsonl", "answer": "0 idle; 96 unlabeled; 112 activation; 432 idle", "output": "0 idle; 112 unlabeled; 128 activation; 400 idle"}
+{"evaluated": 50, "of": 150, "file": "predictions_segmentation_validation_shuffled.jsonl", "answer": "0 memory_movement", "output": "0 memory_movement"}
+{"evaluated": 100, "of": 150, "file": "predictions_segmentation_validation_shuffled.jsonl", "answer": "0 idle; 208 matmul; 304 idle", "output": "0 idle; 160 matmul; 416 idle"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723, "shuffled": 0.509}, "classification": {"before": 0.0, "real": 0.747, "reversed": 0.768, "shuffled": 0.534, "swapped": 0.27, "swapped_donor": 0.149}, "segmentation": {"before": 0.0, "real": 0.897, "reversed": 0.866}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656, "shuffled": 0.408}, "classification": {"real": 0.672, "swapped": 0.191, "swapped_donor": 0.161}, "segmentation": {"real": 0.888, "shuffled": 0.678}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_segmentation_shuffled.jsonl", "answer": "0 idle; 160 attention; 176 idle; 336 attention; 352 idle", "output": "0 idle"}
+{"evaluated": 50, "of": 291, "file": "predictions_segmentation_shuffled.jsonl", "answer": "0 idle; 400 matmul; 480 idle", "output": "0 idle"}
+{"evaluated": 100, "of": 291, "file": "predictions_segmentation_shuffled.jsonl", "answer": "0 idle; 192 matmul; 320 idle", "output": "0 idle; 128 unlabeled; 144 conv; 416 idle"}
+{"evaluated": 150, "of": 291, "file": "predictions_segmentation_shuffled.jsonl", "answer": "0 idle; 224 matmul; 288 idle", "output": "0 idle"}
+{"evaluated": 200, "of": 291, "file": "predictions_segmentation_shuffled.jsonl", "answer": "0 idle; 496 normalization", "output": "0 idle"}
+{"evaluated": 250, "of": 291, "file": "predictions_segmentation_shuffled.jsonl", "answer": "0 idle; 224 loss; 416 idle", "output": "0 idle; 128 unlabeled; 144 loss; 448 idle"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723, "shuffled": 0.509}, "classification": {"before": 0.0, "real": 0.747, "reversed": 0.768, "shuffled": 0.534, "swapped": 0.27, "swapped_donor": 0.149}, "segmentation": {"before": 0.0, "real": 0.897, "reversed": 0.866, "shuffled": 0.716}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656, "shuffled": 0.408}, "classification": {"real": 0.672, "swapped": 0.191, "swapped_donor": 0.161}, "segmentation": {"real": 0.888, "shuffled": 0.678}}}}
+{"evaluated": 0, "of": 291, "file": "predictions_segmentation_swapped.jsonl", "answer": "0 idle; 160 attention; 176 idle; 336 attention; 352 idle", "output": "0 idle; 192 unlabeled; 208 conv; 224 idle; 240 conv; 256 idle; 272 conv; 304 idle; 320 conv; 336 idle; 352 conv; 368 idl"}
+{"evaluated": 50, "of": 291, "file": "predictions_segmentation_swapped.jsonl", "answer": "0 idle; 400 matmul; 480 idle", "output": "0 idle; 224 matmul; 288 idle"}
+{"evaluated": 100, "of": 291, "file": "predictions_segmentation_swapped.jsonl", "answer": "0 idle; 192 matmul; 320 idle", "output": "0 idle; 112 unlabeled; 128 matmul; 400 idle"}
+{"evaluated": 150, "of": 291, "file": "predictions_segmentation_swapped.jsonl", "answer": "0 idle; 224 matmul; 288 idle", "output": "0 idle"}
+{"evaluated": 200, "of": 291, "file": "predictions_segmentation_swapped.jsonl", "answer": "0 idle; 496 normalization", "output": "0 idle; 208 matmul; 304 idle"}
+{"evaluated": 250, "of": 291, "file": "predictions_segmentation_swapped.jsonl", "answer": "0 idle; 224 loss; 416 idle", "output": "0 idle; 96 unlabeled; 112 activation; 416 idle"}
+{"summary": {"test": {"diagnosis": {"before": 0.0, "real": 0.787, "shuffled": 0.292}, "temporal": {"before": 0.425, "real": 0.751, "reversed": 0.723, "shuffled": 0.509}, "classification": {"before": 0.0, "real": 0.747, "reversed": 0.768, "shuffled": 0.534, "swapped": 0.27, "swapped_donor": 0.149}, "segmentation": {"before": 0.0, "real": 0.897, "reversed": 0.866, "shuffled": 0.716, "swapped": 0.541, "swapped_donor": 0.51}}, "validation": {"diagnosis": {"real": 0.74}, "temporal": {"real": 0.778, "reversed": 0.656, "shuffled": 0.408}, "classification": {"real": 0.672, "swapped": 0.191, "swapped_donor": 0.161}, "segmentation": {"real": 0.888, "shuffled": 0.678}}}}
+{"extras": {"validation": {"diagnosis": {}, "temporal": {"pairs_reversed": {"n": 117, "problems": 52, "both_right": 0.5811965811965812, "real_right": 0.8034188034188035, "reversed_right": 0.7350427350427351, "interval_95_problem": [0.4687375992063492, 0.6946728888358779], "by_type": {"iteration_at_bin": {"n": 8, "problems": 6, "both_right": 0.0, "real_right": 0.375, "reversed_right": 0.375, "interval_95_problem": [0.0, 0.0]}, "peak_side": {"n": 15, "problems": 9, "both_right": 0.2, "real_right": 0.8, "reversed_right": 0.3333333333333333, "interval_95_problem": [0.058741830065359484, 0.3888888888888889]}, "trend": {"n": 94, "problems": 46, "both_right": 0.6914893617021277, "real_right": 0.8404255319148937, "reversed_right": 0.8297872340425532, "interval_95_problem": [0.5591147786946736, 0.8085478723404255]}}, "trend_forward_decreasing": {"n": 15, "problems": 13, "both_right": 0.6, "real_right": 0.9333333333333333, "reversed_right": 0.6, "interval_95_problem": [0.3076923076923077, 0.8235294117647058]}, "trend_forward_increasing": {"n": 79, "problems": 41, "both_right": 0.7088607594936709, "real_right": 0.8227848101265823, "reversed_right": 0.8734177215189873, "interval_95_problem": [0.5555555555555556, 0.8484936575052854]}}, "paired_shuffled": {"n": 300, "a": 0.8133333333333334, "b": 0.4, "only_a": 141, "only_b": 17, "z": 9.864910323779052, "z_problem": 8.86996180750968, "problems": 74, "by_type": {"iteration_at_bin": {"n": 138, "a": 0.8695652173913043, "b": 0.4420289855072464, "only_a": 60, "only_b": 1, "z": 7.554175916040863, "z_problem": 6.505808995766903, "problems": 64}, "longest_gap_len": {"n": 44, "a": 0.5681818181818182, "b": 0.3409090909090909, "only_a": 12, "only_b": 2, "z": 2.6726124191242437, "z_problem": 2.740889821941611, "problems": 27}, "peak_side": {"n": 24, "a": 0.8333333333333334, "b": 0.6666666666666666, "only_a": 4, "only_b": 0, "z": 2.0, "z_problem": 1.6733200530681511, "problems": 15}, "trend": {"n": 94, "a": 0.8404255319148937, "b": 0.297872340
+{"complete": true}

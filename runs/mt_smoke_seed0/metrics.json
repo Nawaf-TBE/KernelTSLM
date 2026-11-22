@@ -1,0 +1,1324 @@
+{
+ "args": {
+  "tasks": "diagnosis,temporal,classification,segmentation",
+  "data": "/home/mahmood/hackathon/kernelsight.npz",
+  "rows": "/home/mahmood/hackathon/runs/usecases",
+  "scorers": "/home/mahmood/hackathon/usecases",
+  "donors": "/home/mahmood/hackathon/runs/usecases/classification/donors.json",
+  "add_train": [
+   "temporal/train_reversed.jsonl:trend"
+  ],
+  "out": "../runs/mt_smoke_seed0",
+  "base_model": "hf://opentime/tslm-nov26",
+  "epochs": 1,
+  "train_rows": "",
+  "val_rows": "classification=300,temporal=300,segmentation=150,diagnosis=100",
+  "test_rows": "",
+  "controls": "diagnosis=real+shuffled,temporal=real+shuffled+reversed,classification=real+shuffled+swapped+reversed,segmentation=real+shuffled+swapped+reversed",
+  "val_controls": "diagnosis=real,temporal=real+shuffled+reversed,classification=real+swapped,segmentation=real+shuffled",
+  "before": 4,
+  "save": false,
+  "attend_all": false,
+  "seed": 0,
+  "limit": 4
+ },
+ "complete": true,
+ "rows": {
+  "diagnosis": {
+   "train": {
+    "file": 862,
+    "used": 4
+   },
+   "validation": {
+    "file": 291,
+    "used": 4
+   },
+   "test": {
+    "file": 291,
+    "used": 4
+   }
+  },
+  "temporal": {
+   "train": {
+    "file": 2925,
+    "used": 4
+   },
+   "validation": {
+    "file": 1079,
+    "used": 4
+   },
+   "test": {
+    "file": 1000,
+    "used": 4
+   }
+  },
+  "classification": {
+   "train": {
+    "file": 1509,
+    "used": 4
+   },
+   "validation": {
+    "file": 291,
+    "used": 4
+   },
+   "test": {
+    "file": 291,
+    "used": 4
+   }
+  },
+  "segmentation": {
+   "train": {
+    "file": 862,
+    "used": 4
+   },
+   "validation": {
+    "file": 291,
+    "used": 4
+   },
+   "test": {
+    "file": 291,
+    "used": 4
+   }
+  }
+ },
+ "oracle": {
+  "diagnosis": 1.0,
+  "temporal": 1.0,
+  "classification": 1.0,
+  "segmentation": 1.0
+ },
+ "results": {
+  "test": {
+   "diagnosis": {
+    "before": {
+     "n": 4,
+     "main": 0.0,
+     "by_type": {
+      "low SM utilization": 0.0,
+      "memory bandwidth": 0.0
+     },
+     "by_class": {
+      "activation": {
+       "n": 1,
+       "limiter_accuracy": 0.0
+      },
+      "matmul": {
+       "n": 2,
+       "limiter_accuracy": 0.0
+      },
+      "reduction": {
+       "n": 1,
+       "limiter_accuracy": 0.0
+      }
+     },
+     "limiter_balanced_accuracy": 0.0,
+     "try_accuracy": 0.0,
+     "claim_precision": null,
+     "claim_precision_by_form": {
+      "level": null,
+      "idle": null,
+      "rank": null
+     },
+     "claims_per_row": 0.0,
+     "unparsable": 1.0,
+     "unparsed_sentences": 0.0,
+     "conditions": {
+      "original": 4
+     },
+     "seconds": 2.1,
+     "tokens_mean": 0.0,
+     "model": [
+      "base"
+     ]
+    },
+    "real": {
+     "n": 4,
+     "main": 0.0,
+     "by_type": {
+      "low SM utilization": 0.0,
+      "memory bandwidth": 0.0
+     },
+     "by_class": {
+      "activation": {
+       "n": 1,
+       "limiter_accuracy": 0.0
+      },
+      "matmul": {
+       "n": 2,
+       "limiter_accuracy": 0.0
+      },
+      "reduction": {
+       "n": 1,
+       "limiter_accuracy": 0.0
+      }
+     },
+     "limiter_balanced_accuracy": 0.0,
+     "try_accuracy": 0.0,
+     "claim_precision": null,
+     "claim_precision_by_form": {
+      "level": null,
+      "idle": null,
+      "rank": null
+     },
+     "claims_per_row": 0.0,
+     "unparsable": 1.0,
+     "unparsed_sentences": 0.0,
+     "conditions": {
+      "original": 4
+     },
+     "seconds": 0.4,
+     "tokens_mean": 0.0,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "shuffled": {
+     "n": 4,
+     "main": 0.0,
+     "by_type": {
+      "low SM utilization": 0.0,
+      "memory bandwidth": 0.0
+     },
+     "by_class": {
+      "activation": {
+       "n": 1,
+       "limiter_accuracy": 0.0
+      },
+      "matmul": {
+       "n": 2,
+       "limiter_accuracy": 0.0
+      },
+      "reduction": {
+       "n": 1,
+       "limiter_accuracy": 0.0
+      }
+     },
+     "limiter_balanced_accuracy": 0.0,
+     "try_accuracy": 0.0,
+     "claim_precision": null,
+     "claim_precision_by_form": {
+      "level": null,
+      "idle": null,
+      "rank": null
+     },
+     "claims_per_row": 0.0,
+     "unparsable": 1.0,
+     "unparsed_sentences": 0.0,
+     "conditions": {
+      "shuffled": 4
+     },
+     "seconds": 0.4,
+     "tokens_mean": 0.0,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    }
+   },
+   "temporal": {
+    "before": {
+     "n": 4,
+     "main": 0.3333333333333333,
+     "pooled": 0.25,
+     "invalid": 1,
+     "by_type": {
+      "iteration_at_bin": {
+       "n": 2,
+       "accuracy": 0.0,
+       "invalid": 1,
+       "chance": 0.25
+      },
+      "longest_gap_len": {
+       "n": 1,
+       "accuracy": 0.0,
+       "invalid": 0,
+       "chance": 0.25
+      },
+      "peak_side": {
+       "n": 1,
+       "accuracy": 1.0,
+       "invalid": 0,
+       "chance": 0.5
+      }
+     },
+     "seconds": 1.8,
+     "tokens_mean": 2.5,
+     "model": [
+      "base"
+     ]
+    },
+    "real": {
+     "n": 4,
+     "main": 0.3333333333333333,
+     "pooled": 0.25,
+     "invalid": 0,
+     "by_type": {
+      "iteration_at_bin": {
+       "n": 2,
+       "accuracy": 0.0,
+       "invalid": 0,
+       "chance": 0.25
+      },
+      "longest_gap_len": {
+       "n": 1,
+       "accuracy": 0.0,
+       "invalid": 0,
+       "chance": 0.25
+      },
+      "peak_side": {
+       "n": 1,
+       "accuracy": 1.0,
+       "invalid": 0,
+       "chance": 0.5
+      }
+     },
+     "seconds": 1.0,
+     "tokens_mean": 3.0,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "reversed": {
+     "n": 4,
+     "main": 0.16666666666666666,
+     "pooled": 0.25,
+     "invalid": 0,
+     "by_type": {
+      "iteration_at_bin": {
+       "n": 2,
+       "accuracy": 0.5,
+       "invalid": 0,
+       "chance": 0.25
+      },
+      "longest_gap_len": {
+       "n": 1,
+       "accuracy": 0.0,
+       "invalid": 0,
+       "chance": 0.25
+      },
+      "peak_side": {
+       "n": 1,
+       "accuracy": 0.0,
+       "invalid": 0,
+       "chance": 0.5
+      }
+     },
+     "seconds": 1.1,
+     "tokens_mean": 3.5,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "shuffled": {
+     "n": 4,
+     "main": 0.0,
+     "pooled": 0.0,
+     "invalid": 0,
+     "by_type": {
+      "iteration_at_bin": {
+       "n": 2,
+       "accuracy": 0.0,
+       "invalid": 0,
+       "chance": 0.25
+      },
+      "longest_gap_len": {
+       "n": 1,
+       "accuracy": 0.0,
+       "invalid": 0,
+       "chance": 0.25
+      },
+      "peak_side": {
+       "n": 1,
+       "accuracy": 0.0,
+       "invalid": 0,
+       "chance": 0.5
+      }
+     },
+     "seconds": 1.1,
+     "tokens_mean": 3.5,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    }
+   },
+   "classification": {
+    "before": {
+     "n": 4,
+     "main": 0.0,
+     "accuracy": 0.0,
+     "balanced_accuracy": 0.0,
+     "macro_f1": 0.0,
+     "per_class_f1": {
+      "activation": 0.0,
+      "matmul": 0.0,
+      "reduction": 0.0
+     },
+     "problem_accuracy": 0.0,
+     "invalid": 4,
+     "by_type": {
+      "workload_class": {
+       "accuracy": 0.0,
+       "balanced_accuracy": 0.0,
+       "macro_f1": 0.0,
+       "per_class_f1": {
+        "activation": 0.0,
+        "matmul": 0.0,
+        "reduction": 0.0
+       }
+      }
+     },
+     "seconds": 1.2,
+     "tokens_mean": 1.0,
+     "model": [
+      "base"
+     ]
+    },
+    "real": {
+     "n": 4,
+     "main": 0.0,
+     "accuracy": 0.0,
+     "balanced_accuracy": 0.0,
+     "macro_f1": 0.0,
+     "per_class_f1": {
+      "activation": 0.0,
+      "matmul": 0.0,
+      "reduction": 0.0
+     },
+     "problem_accuracy": 0.0,
+     "invalid": 4,
+     "by_type": {
+      "workload_class": {
+       "accuracy": 0.0,
+       "balanced_accuracy": 0.0,
+       "macro_f1": 0.0,
+       "per_class_f1": {
+        "activation": 0.0,
+        "matmul": 0.0,
+        "reduction": 0.0
+       }
+      }
+     },
+     "seconds": 0.6,
+     "tokens_mean": 1.0,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "reversed": {
+     "n": 4,
+     "main": 0.0,
+     "accuracy": 0.0,
+     "balanced_accuracy": 0.0,
+     "macro_f1": 0.0,
+     "per_class_f1": {
+      "activation": 0.0,
+      "matmul": 0.0,
+      "reduction": 0.0
+     },
+     "problem_accuracy": 0.0,
+     "invalid": 4,
+     "by_type": {
+      "workload_class": {
+       "accuracy": 0.0,
+       "balanced_accuracy": 0.0,
+       "macro_f1": 0.0,
+       "per_class_f1": {
+        "activation": 0.0,
+        "matmul": 0.0,
+        "reduction": 0.0
+       }
+      }
+     },
+     "seconds": 0.6,
+     "tokens_mean": 1.0,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "shuffled": {
+     "n": 4,
+     "main": 0.0,
+     "accuracy": 0.0,
+     "balanced_accuracy": 0.0,
+     "macro_f1": 0.0,
+     "per_class_f1": {
+      "activation": 0.0,
+      "matmul": 0.0,
+      "reduction": 0.0
+     },
+     "problem_accuracy": 0.0,
+     "invalid": 4,
+     "by_type": {
+      "workload_class": {
+       "accuracy": 0.0,
+       "balanced_accuracy": 0.0,
+       "macro_f1": 0.0,
+       "per_class_f1": {
+        "activation": 0.0,
+        "matmul": 0.0,
+        "reduction": 0.0
+       }
+      }
+     },
+     "seconds": 0.6,
+     "tokens_mean": 1.0,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "swapped": {
+     "n": 4,
+     "main": 0.0,
+     "accuracy": 0.0,
+     "balanced_accuracy": 0.0,
+     "macro_f1": 0.0,
+     "per_class_f1": {
+      "activation": 0.0,
+      "matmul": 0.0,
+      "reduction": 0.0
+     },
+     "problem_accuracy": 0.0,
+     "invalid": 4,
+     "by_type": {
+      "workload_class": {
+       "accuracy": 0.0,
+       "balanced_accuracy": 0.0,
+       "macro_f1": 0.0,
+       "per_class_f1": {
+        "activation": 0.0,
+        "matmul": 0.0,
+        "reduction": 0.0
+       }
+      }
+     },
+     "seconds": 0.6,
+     "tokens_mean": 1.0,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "swapped_donor": {
+     "n": 4,
+     "main": 0.0,
+     "accuracy": 0.0,
+     "balanced_accuracy": 0.0,
+     "macro_f1": 0.0,
+     "per_class_f1": {
+      "conv": 0.0,
+      "loss": 0.0,
+      "matmul": 0.0,
+      "pooling": 0.0
+     },
+     "problem_accuracy": 0.0,
+     "invalid": 4,
+     "by_type": {
+      "workload_class": {
+       "accuracy": 0.0,
+       "balanced_accuracy": 0.0,
+       "macro_f1": 0.0,
+       "per_class_f1": {
+        "conv": 0.0,
+        "loss": 0.0,
+        "matmul": 0.0,
+        "pooling": 0.0
+       }
+      }
+     }
+    }
+   },
+   "segmentation": {
+    "before": {
+     "n": 4,
+     "main": 0.0,
+     "by_type": {
+      "timeline": {
+       "n": 4,
+       "main": 0.0
+      }
+     },
+     "n_asymmetric": 2,
+     "main_asymmetric": 0.0,
+     "parsed": 0.0,
+     "n_per_bin": 4,
+     "bin_workload_accuracy": 0.0,
+     "bin_workload_macro_f1": 0.0,
+     "bin_busy_idle_accuracy": 0.0,
+     "boundary_f1": 0.0,
+     "multi_workload": {
+      "n": 0
+     },
+     "seconds": 4.4,
+     "tokens_mean": 16.0,
+     "model": [
+      "base"
+     ]
+    },
+    "real": {
+     "n": 4,
+     "main": 0.0,
+     "by_type": {
+      "timeline": {
+       "n": 4,
+       "main": 0.0
+      }
+     },
+     "n_asymmetric": 2,
+     "main_asymmetric": 0.0,
+     "parsed": 0.0,
+     "n_per_bin": 4,
+     "bin_workload_accuracy": 0.0,
+     "bin_workload_macro_f1": 0.0,
+     "bin_busy_idle_accuracy": 0.0,
+     "boundary_f1": 0.0,
+     "multi_workload": {
+      "n": 0
+     },
+     "seconds": 28.8,
+     "tokens_mean": 135.5,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "reversed": {
+     "n": 4,
+     "main": 0.0,
+     "by_type": {
+      "timeline": {
+       "n": 4,
+       "main": 0.0
+      }
+     },
+     "n_asymmetric": 2,
+     "main_asymmetric": 0.0,
+     "parsed": 0.0,
+     "n_per_bin": 4,
+     "bin_workload_accuracy": 0.0,
+     "bin_workload_macro_f1": 0.0,
+     "bin_busy_idle_accuracy": 0.0,
+     "boundary_f1": 0.0,
+     "multi_workload": {
+      "n": 0
+     },
+     "seconds": 34.4,
+     "tokens_mean": 159.8,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "shuffled": {
+     "n": 4,
+     "main": 0.0,
+     "by_type": {
+      "timeline": {
+       "n": 4,
+       "main": 0.0
+      }
+     },
+     "n_asymmetric": 2,
+     "main_asymmetric": 0.0,
+     "parsed": 0.0,
+     "n_per_bin": 4,
+     "bin_workload_accuracy": 0.0,
+     "bin_workload_macro_f1": 0.0,
+     "bin_busy_idle_accuracy": 0.0,
+     "boundary_f1": 0.0,
+     "multi_workload": {
+      "n": 0
+     },
+     "seconds": 27.0,
+     "tokens_mean": 126.5,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "swapped": {
+     "n": 4,
+     "main": 0.0,
+     "by_type": {
+      "timeline": {
+       "n": 4,
+       "main": 0.0
+      }
+     },
+     "n_asymmetric": 2,
+     "main_asymmetric": 0.0,
+     "parsed": 0.0,
+     "n_per_bin": 4,
+     "bin_workload_accuracy": 0.0,
+     "bin_workload_macro_f1": 0.0,
+     "bin_busy_idle_accuracy": 0.0,
+     "boundary_f1": 0.0,
+     "multi_workload": {
+      "n": 0
+     },
+     "seconds": 19.1,
+     "tokens_mean": 91.5,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "swapped_donor": {
+     "n": 4,
+     "main": 0.0,
+     "by_type": {
+      "timeline": {
+       "n": 4,
+       "main": 0.0
+      }
+     },
+     "n_asymmetric": 3,
+     "main_asymmetric": 0.0,
+     "parsed": 0.0,
+     "n_per_bin": 4,
+     "bin_workload_accuracy": 0.0,
+     "bin_workload_macro_f1": 0.0,
+     "bin_busy_idle_accuracy": 0.0,
+     "boundary_f1": 0.0,
+     "multi_workload": {
+      "n": 0
+     }
+    }
+   }
+  },
+  "validation": {
+   "diagnosis": {
+    "real": {
+     "n": 4,
+     "main": 0.0,
+     "by_type": {
+      "low SM utilization": 0.0,
+      "memory bandwidth": 0.0
+     },
+     "by_class": {
+      "activation": {
+       "n": 1,
+       "limiter_accuracy": 0.0
+      },
+      "matmul": {
+       "n": 2,
+       "limiter_accuracy": 0.0
+      },
+      "normalization": {
+       "n": 1,
+       "limiter_accuracy": 0.0
+      }
+     },
+     "limiter_balanced_accuracy": 0.0,
+     "try_accuracy": 0.0,
+     "claim_precision": null,
+     "claim_precision_by_form": {
+      "level": null,
+      "idle": null,
+      "rank": null
+     },
+     "claims_per_row": 0.0,
+     "unparsable": 1.0,
+     "unparsed_sentences": 0.0,
+     "conditions": {
+      "original": 4
+     },
+     "seconds": 0.4,
+     "tokens_mean": 0.0,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    }
+   },
+   "temporal": {
+    "real": {
+     "n": 4,
+     "main": 0.0,
+     "pooled": 0.0,
+     "invalid": 0,
+     "by_type": {
+      "iteration_at_bin": {
+       "n": 3,
+       "accuracy": 0.0,
+       "invalid": 0,
+       "chance": 0.25
+      },
+      "trend": {
+       "n": 1,
+       "accuracy": 0.0,
+       "invalid": 0,
+       "chance": 0.5
+      }
+     },
+     "seconds": 1.1,
+     "tokens_mean": 3.2,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "reversed": {
+     "n": 4,
+     "main": 0.5,
+     "pooled": 0.25,
+     "invalid": 0,
+     "by_type": {
+      "iteration_at_bin": {
+       "n": 3,
+       "accuracy": 0.0,
+       "invalid": 0,
+       "chance": 0.25
+      },
+      "trend": {
+       "n": 1,
+       "accuracy": 1.0,
+       "invalid": 0,
+       "chance": 0.5
+      }
+     },
+     "seconds": 1.0,
+     "tokens_mean": 3.2,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "shuffled": {
+     "n": 4,
+     "main": 0.0,
+     "pooled": 0.0,
+     "invalid": 0,
+     "by_type": {
+      "iteration_at_bin": {
+       "n": 3,
+       "accuracy": 0.0,
+       "invalid": 0,
+       "chance": 0.25
+      },
+      "trend": {
+       "n": 1,
+       "accuracy": 0.0,
+       "invalid": 0,
+       "chance": 0.5
+      }
+     },
+     "seconds": 1.1,
+     "tokens_mean": 3.5,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    }
+   },
+   "classification": {
+    "real": {
+     "n": 4,
+     "main": 0.0,
+     "accuracy": 0.0,
+     "balanced_accuracy": 0.0,
+     "macro_f1": 0.0,
+     "per_class_f1": {
+      "activation": 0.0,
+      "matmul": 0.0,
+      "normalization": 0.0
+     },
+     "problem_accuracy": 0.0,
+     "invalid": 4,
+     "by_type": {
+      "workload_class": {
+       "accuracy": 0.0,
+       "balanced_accuracy": 0.0,
+       "macro_f1": 0.0,
+       "per_class_f1": {
+        "activation": 0.0,
+        "matmul": 0.0,
+        "normalization": 0.0
+       }
+      }
+     },
+     "seconds": 0.6,
+     "tokens_mean": 1.0,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "swapped": {
+     "n": 4,
+     "main": 0.0,
+     "accuracy": 0.0,
+     "balanced_accuracy": 0.0,
+     "macro_f1": 0.0,
+     "per_class_f1": {
+      "activation": 0.0,
+      "matmul": 0.0,
+      "normalization": 0.0
+     },
+     "problem_accuracy": 0.0,
+     "invalid": 4,
+     "by_type": {
+      "workload_class": {
+       "accuracy": 0.0,
+       "balanced_accuracy": 0.0,
+       "macro_f1": 0.0,
+       "per_class_f1": {
+        "activation": 0.0,
+        "matmul": 0.0,
+        "normalization": 0.0
+       }
+      }
+     },
+     "seconds": 0.6,
+     "tokens_mean": 1.0,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "swapped_donor": {
+     "n": 4,
+     "main": 0.0,
+     "accuracy": 0.0,
+     "balanced_accuracy": 0.0,
+     "macro_f1": 0.0,
+     "per_class_f1": {
+      "activation": 0.0,
+      "conv": 0.0
+     },
+     "problem_accuracy": 0.0,
+     "invalid": 4,
+     "by_type": {
+      "workload_class": {
+       "accuracy": 0.0,
+       "balanced_accuracy": 0.0,
+       "macro_f1": 0.0,
+       "per_class_f1": {
+        "activation": 0.0,
+        "conv": 0.0
+       }
+      }
+     }
+    }
+   },
+   "segmentation": {
+    "real": {
+     "n": 4,
+     "main": 0.0,
+     "by_type": {
+      "timeline": {
+       "n": 4,
+       "main": 0.0
+      }
+     },
+     "n_asymmetric": 2,
+     "main_asymmetric": 0.0,
+     "parsed": 0.0,
+     "n_per_bin": 4,
+     "bin_workload_accuracy": 0.0,
+     "bin_workload_macro_f1": 0.0,
+     "bin_busy_idle_accuracy": 0.0,
+     "boundary_f1": 0.0,
+     "multi_workload": {
+      "n": 0
+     },
+     "seconds": 29.7,
+     "tokens_mean": 110.5,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    },
+    "shuffled": {
+     "n": 4,
+     "main": 0.0,
+     "by_type": {
+      "timeline": {
+       "n": 4,
+       "main": 0.0
+      }
+     },
+     "n_asymmetric": 2,
+     "main_asymmetric": 0.0,
+     "parsed": 0.0,
+     "n_per_bin": 4,
+     "bin_workload_accuracy": 0.0,
+     "bin_workload_macro_f1": 0.0,
+     "bin_busy_idle_accuracy": 0.0,
+     "boundary_f1": 0.0,
+     "multi_workload": {
+      "n": 0
+     },
+     "seconds": 24.3,
+     "tokens_mean": 114.2,
+     "model": [
+      "trained 2026-11-21T20:24:33 seed 0"
+     ]
+    }
+   }
+  }
+ },
+ "pending": [
+  "test/diagnosis/before",
+  "test/temporal/before",
+  "test/classification/before",
+  "test/segmentation/before",
+  "validation/diagnosis/real",
+  "test/diagnosis/real",
+  "test/diagnosis/shuffled",
+  "validation/temporal/real",
+  "test/temporal/real",
+  "validation/temporal/reversed",
+  "test/temporal/reversed",
+  "validation/temporal/shuffled",
+  "test/temporal/shuffled",
+  "validation/classification/real",
+  "test/classification/real",
+  "test/classification/reversed",
+  "test/classification/shuffled",
+  "validation/classification/swapped",
+  "test/classification/swapped",
+  "validation/segmentation/real",
+  "test/segmentation/real",
+  "test/segmentation/reversed",
+  "validation/segmentation/shuffled",
+  "test/segmentation/shuffled",
+  "test/segmentation/swapped"
+ ],
+ "summary": {
+  "test": {
+   "diagnosis": {
+    "before": 0.0,
+    "real": 0.0,
+    "shuffled": 0.0
+   },
+   "temporal": {
+    "before": 0.333,
+    "real": 0.333,
+    "reversed": 0.167,
+    "shuffled": 0.0
+   },
+   "classification": {
+    "before": 0.0,
+    "real": 0.0,
+    "reversed": 0.0,
+    "shuffled": 0.0,
+    "swapped": 0.0,
+    "swapped_donor": 0.0
+   },
+   "segmentation": {
+    "before": 0.0,
+    "real": 0.0,
+    "reversed": 0.0,
+    "shuffled": 0.0,
+    "swapped": 0.0,
+    "swapped_donor": 0.0
+   }
+  },
+  "validation": {
+   "diagnosis": {
+    "real": 0.0
+   },
+   "temporal": {
+    "real": 0.0,
+    "reversed": 0.5,
+    "shuffled": 0.0
+   },
+   "classification": {
+    "real": 0.0,
+    "swapped": 0.0,
+    "swapped_donor": 0.0
+   },
+   "segmentation": {
+    "real": 0.0,
+    "shuffled": 0.0
+   }
+  }
+ },
+ "train": {
+  "diagnosis": {
+   "real": 4,
+   "shuffled": 0,
+   "reversed": 0
+  },
+  "temporal": {
+   "real": 4,
+   "shuffled": 0,
+   "reversed": 0
+  },
+  "classification": {
+   "real": 4,
+   "shuffled": 0,
+   "reversed": 0
+  },
+  "segmentation": {
+   "real": 4,
+   "shuffled": 0,
+   "reversed": 0
+  }
+ },
+ "epochs": [
+  {
+   "epoch": 1,
+   "train_loss": 5.380394826177508,
+   "val_loss": 4.397200163453817,
+   "seconds": 13,
+   "val_loss_by_task": {
+    "diagnosis": 6.2842,
+    "temporal": 0.5627,
+    "classification": 5.9176,
+    "segmentation": 4.8242
+   }
+  }
+ ],
+ "training": {
+  "seconds": 18,
+  "best_epoch": 1,
+  "model": "trained 2026-11-21T20:24:33 seed 0"
+ },
+ "extras": {
+  "validation": {
+   "diagnosis": {},
+   "temporal": {
+    "pairs_reversed": {
+     "n": 2,
+     "problems": 2,
+     "both_right": 0.0,
+     "real_right": 0.0,
+     "reversed_right": 0.5,
+     "interval_95_problem": [
+      0.0,
+      0.0
+     ],
+     "by_type": {
+      "iteration_at_bin": {
+       "n": 1,
+       "problems": 1,
+       "both_right": 0.0,
+       "real_right": 0.0,
+       "reversed_right": 0.0,
+       "interval_95_problem": [
+        0.0,
+        0.0
+       ]
+      },
+      "trend": {
+       "n": 1,
+       "problems": 1,
+       "both_right": 0.0,
+       "real_right": 0.0,
+       "reversed_right": 1.0,
+       "interval_95_problem": [
+        0.0,
+        0.0
+       ]
+      }
+     },
+     "trend_forward_decreasing": {
+      "n": 0,
+      "problems": 0,
+      "both_right": null,
+      "real_right": null,
+      "reversed_right": null,
+      "interval_95_problem": [
+       NaN,
+       NaN
+      ]
+     },
+     "trend_forward_increasing": {
+      "n": 1,
+      "problems": 1,
+      "both_right": 0.0,
+      "real_right": 0.0,
+      "reversed_right": 1.0,
+      "interval_95_problem": [
+       0.0,
+       0.0
+      ]
+     }
+    },
+    "paired_shuffled": {
+     "n": 4,
+     "a": 0.0,
+     "b": 0.25,
+     "only_a": 0,
+     "only_b": 1,
+     "z": -1.0,
+     "z_problem": -1.0,
+     "problems": 4,
+     "by_type": {
+      "iteration_at_bin": {
+       "n": 3,
+       "a": 0.0,
+       "b": 0.0,
+       "only_a": 0,
+       "only_b": 0,
+       "z": 0.0,
+       "z_problem": 0.0,
+       "problems": 3
+      },
+      "trend": {
+       "n": 1,
+       "a": 0.0,
+       "b": 1.0,
+       "only_a": 0,
+       "only_b": 1,
+       "z": -1.0,
+       "z_problem": 0.0,
+       "problems": 1
+      }
+     }
+    }
+   },
+   "classification": {
+    "swap_read": {
+     "n": 4,
+     "own": 0.0,
+     "donor": 0.0,
+     "invalid": 4,
+     "chance_own": 0.0,
+     "chance_donor": 0.0,
+     "own_interval_95": [
+      0.0,
+      0.0
+     ],
+     "donor_interval_95": [
+      0.0,
+      0.0
+     ],
+     "own_balanced": 0.0,
+     "donor_balanced": 0.0
+    },
+    "cluster_interval_real": {
+     "accuracy": [
+      0.0,
+      0.0
+     ],
+     "balanced_accuracy": [
+      0.0,
+      0.0
+     ],
+     "macro_f1": [
+      0.0,
+      0.0
+     ]
+    }
+   },
+   "segmentation": {}
+  },
+  "test": {
+   "diagnosis": {},
+   "temporal": {
+    "pairs_reversed": {
+     "n": 2,
+     "problems": 2,
+     "both_right": 0.0,
+     "real_right": 0.5,
+     "reversed_right": 0.5,
+     "interval_95_problem": [
+      0.0,
+      0.0
+     ],
+     "by_type": {
+      "iteration_at_bin": {
+       "n": 1,
+       "problems": 1,
+       "both_right": 0.0,
+       "real_right": 0.0,
+       "reversed_right": 1.0,
+       "interval_95_problem": [
+        0.0,
+        0.0
+       ]
+      },
+      "peak_side": {
+       "n": 1,
+       "problems": 1,
+       "both_right": 0.0,
+       "real_right": 1.0,
+       "reversed_right": 0.0,
+       "interval_95_problem": [
+        0.0,
+        0.0
+       ]
+      }
+     },
+     "hard": {
+      "n": 0,
+      "problems": 0,
+      "both_right": null,
+      "real_right": null,
+      "reversed_right": null,
+      "interval_95_problem": [
+       NaN,
+       NaN
+      ]
+     }
+    },
+    "paired_shuffled": {
+     "n": 4,
+     "a": 0.25,
+     "b": 0.25,
+     "only_a": 0,
+     "only_b": 0,
+     "z": 0.0,
+     "z_problem": 0.0,
+     "problems": 4,
+     "by_type": {
+      "iteration_at_bin": {
+       "n": 2,
+       "a": 0.0,
+       "b": 0.0,
+       "only_a": 0,
+       "only_b": 0,
+       "z": 0.0,
+       "z_problem": 0.0,
+       "problems": 2
+      },
+      "longest_gap_len": {
+       "n": 1,
+       "a": 0.0,
+       "b": 0.0,
+       "only_a": 0,
+       "only_b": 0,
+       "z": 0.0,
+       "z_problem": 0.0,
+       "problems": 1
+      },
+      "peak_side": {
+       "n": 1,
+       "a": 1.0,
+       "b": 1.0,
+       "only_a": 0,
+       "only_b": 0,
+       "z": 0.0,
+       "z_problem": 0.0,
+       "problems": 1
+      }
+     }
+    }
+   },
+   "classification": {
+    "swap_read": {
+     "n": 4,
+     "own": 0.0,
+     "donor": 0.0,
+     "invalid": 4,
+     "chance_own": 0.0,
+     "chance_donor": 0.0,
+     "own_interval_95": [
+      0.0,
+      0.0
+     ],
+     "donor_interval_95": [
+      0.0,
+      0.0
+     ],
+     "own_balanced": 0.0,
+     "donor_balanced": 0.0
+    },
+    "cluster_interval_real": {
+     "accuracy": [
+      0.0,
+      0.0
+     ],
+     "balanced_accuracy": [
+      0.0,
+      0.0
+     ],
+     "macro_f1": [
+      0.0,
+      0.0
+     ]
+    }
+   },
+   "segmentation": {}
+  }
+ }
+}

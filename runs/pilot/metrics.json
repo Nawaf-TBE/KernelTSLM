@@ -1,0 +1,107 @@
+{
+ "args": {
+  "base_model": "hf://opentime/tslm-nov26",
+  "data": "../kernelsight.npz",
+  "questions": "../runs/temporal_qa",
+  "out": "../runs/pilot",
+  "train": 2000,
+  "validation": 150,
+  "test": 30,
+  "epochs": 1
+ },
+ "train": {
+  "class": 1509,
+  "class_switch": 46,
+  "kernel_edge": 509,
+  "bin_state": 292,
+  "peak_order": 400,
+  "which_range": 143,
+  "onset": 288,
+  "loop_order": 9,
+  "iteration_at_bin": 152,
+  "next_op": 25,
+  "prev_op": 19,
+  "longest_gap_len": 52,
+  "next_incl_idle": 24,
+  "loop_period": 41
+ },
+ "majority": {
+  "bin_state": 0.5666666666666667,
+  "class_switch": 0.3,
+  "iteration_at_bin": 0.06666666666666667,
+  "kernel_edge": 0.3,
+  "longest_gap_len": 0.06666666666666667,
+  "loop_order": 0.0,
+  "loop_period": 0.1,
+  "next_incl_idle": 0.5,
+  "next_op": 0.2,
+  "onset": 0.43333333333333335,
+  "peak_order": 0.43333333333333335,
+  "prev_op": 0.13333333333333333,
+  "which_range": 0.3333333333333333
+ },
+ "class_test": {
+  "n": 291,
+  "accuracy": 0.8625429553264605,
+  "balanced_accuracy": 0.7135302605890842,
+  "macro_f1": 0.6882584221661446,
+  "invalid": 0,
+  "per_class_f1": {
+   "activation": 0.6,
+   "attention": 0.9714285714285714,
+   "conv": 0.8,
+   "elementwise": 1.0,
+   "loss": 0.5833333333333334,
+   "matmul": 0.9590643274853801,
+   "memory_movement": 1.0,
+   "normalization": 0.35294117647058826,
+   "pooling": 0.0,
+   "reduction": 0.7586206896551724,
+   "softmax": 0.5454545454545454
+  },
+  "interval_95": {
+   "accuracy": [
+    0.8212199312714776,
+    0.9037800687285223
+   ],
+   "balanced_accuracy": [
+    0.6518819920424199,
+    0.7811262407748416
+   ],
+   "macro_f1": [
+    0.6173531596231092,
+    0.746674810523865
+   ]
+  }
+ },
+ "after": {
+  "bin_state": 0.5333333333333333,
+  "class_switch": 0.3,
+  "iteration_at_bin": 0.23333333333333334,
+  "kernel_edge": 0.3,
+  "longest_gap_len": 0.03333333333333333,
+  "loop_order": 0.375,
+  "loop_period": 0.13333333333333333,
+  "next_incl_idle": 0.5,
+  "next_op": 0.6333333333333333,
+  "onset": 0.4,
+  "peak_order": 0.36666666666666664,
+  "prev_op": 0.5,
+  "which_range": 0.4
+ },
+ "shuffled": {
+  "bin_state": 0.5333333333333333,
+  "class_switch": 0.26666666666666666,
+  "iteration_at_bin": 0.1,
+  "kernel_edge": 0.3,
+  "longest_gap_len": 0.03333333333333333,
+  "loop_order": 0.375,
+  "loop_period": 0.06666666666666667,
+  "next_incl_idle": 0.5333333333333333,
+  "next_op": 0.6333333333333333,
+  "onset": 0.36666666666666664,
+  "peak_order": 0.26666666666666666,
+  "prev_op": 0.5333333333333333,
+  "which_range": 0.4666666666666667
+ }
+}

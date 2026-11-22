@@ -87,6 +87,9 @@ class SeriesInput:
     values: list[float]
     text: str | None = None
     name: str | None = None
+    # NOTE: not in the AWS sample. (mean, std) to state in the prompt instead of the values' own; the encoder
+    # still sees the values scaled by their own. Used only by the controls of multitask.py.
+    stats: tuple[float, float] | None = None
 
 
 # ---- The model
@@ -203,6 +206,9 @@ class MaskedCrossAttention(nn.Module):
         self.to_q = nn.Linear(dim, dim_head * heads, bias=False)
         self.to_kv = nn.Linear(dim_visual, dim_head * heads * 2, bias=False)
         self.to_out = nn.Linear(dim_head * heads, dim, bias=False)
+        # NOTE: not in the AWS sample. True lets the tokens after the last media token (the question and the
+        # answer) attend to the latents of all media; False (the checkpoint's training) keeps the rule above.
+        self.attend_all = False
 
     def forward(self, x: Tensor, media: Tensor, media_locations: Tensor) -> Tensor:
         query = self.to_q(self.norm(x)) * self.scale
@@ -220,9 +226,13 @@ class MaskedCrossAttention(nn.Module):
                 if item == 0:  # a text token before the first media token attends to nothing
                     parts.append(torch.zeros_like(segment))
                     continue
+                if self.attend_all and item == media.shape[1]:
+                    keys, values = key[index].flatten(0, 1), value[index].flatten(0, 1)
+                else:
+                    keys, values = key[index, item - 1], value[index, item - 1]
                 q, k, v = (
                     tensor.unflatten(-1, (self.heads, -1)).transpose(0, 1)
-                    for tensor in (segment, key[index, item - 1], value[index, item - 1])
+                    for tensor in (segment, keys, values)
                 )
                 attended = (q @ k.transpose(-1, -2)).softmax(dim=-1) @ v
                 parts.append(attended.transpose(0, 1).flatten(1))
@@ -506,6 +516,8 @@ class OpenTSLMFlamingo(nn.Module):
                     f"but the model takes at most {self.max_values}"
                 )
             scaled, observed, mean, std = _scale(item.values)
+            if item.stats is not None:
+                mean, std = item.stats
             sentence = (
                 f"This is time series channel {item.name or position + 1}, with mean "
                 f"{_statistic(mean)} and std {_statistic(std)}."

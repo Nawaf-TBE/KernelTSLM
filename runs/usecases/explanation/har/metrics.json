@@ -1,0 +1,112 @@
+{
+ "model": "OpenTSLM/gemma-3-270m-pt-har-flamingo@49feddd590dd74f6a05c76ce560b773f5cf9c224",
+ "csv_sha256": "c8da9bccb23672679d34f8ea078332d693551a484d715d509db23d12e29638cf",
+ "windows": 400,
+ "stub": false,
+ "by_condition": {
+  "real": {
+   "n": 400,
+   "accuracy": 0.58,
+   "balanced_accuracy": 0.58,
+   "macro_f1": 0.576,
+   "invalid": 0.0,
+   "claim_rate": {
+    "periodic_affirm": 0.495,
+    "periodic_mention": 0.698,
+    "order_affirm": 0.06,
+    "order_mention": 0.085,
+    "spike_affirm": 0.573,
+    "spike_mention": 0.922,
+    "variability_affirm": 0.875,
+    "variability_mention": 0.993
+   },
+   "input_periodic_share": 0.623,
+   "periodic_claims_on_periodic_input": 0.768,
+   "mean_words": 114.5,
+   "seconds_per_window": 4.98
+  },
+  "shuffled": {
+   "n": 400,
+   "accuracy": 0.265,
+   "balanced_accuracy": 0.265,
+   "macro_f1": 0.228,
+   "invalid": 0.0,
+   "claim_rate": {
+    "periodic_affirm": 0.465,
+    "periodic_mention": 0.738,
+    "order_affirm": 0.005,
+    "order_mention": 0.01,
+    "spike_affirm": 0.557,
+    "spike_mention": 0.868,
+    "variability_affirm": 0.922,
+    "variability_mention": 1.0
+   },
+   "input_periodic_share": 0.0,
+   "periodic_claims_on_periodic_input": 0.0,
+   "mean_words": 114.9,
+   "seconds_per_window": 4.87,
+   "vs_real": {
+    "pairs": 400,
+    "answer_changed": 0.64,
+    "right_only_real": 136,
+    "right_only_here": 10
+   }
+  },
+  "reversed": {
+   "n": 400,
+   "accuracy": 0.578,
+   "balanced_accuracy": 0.578,
+   "macro_f1": 0.576,
+   "invalid": 0.0,
+   "claim_rate": {
+    "periodic_affirm": 0.537,
+    "periodic_mention": 0.745,
+    "order_affirm": 0.055,
+    "order_mention": 0.083,
+    "spike_affirm": 0.568,
+    "spike_mention": 0.902,
+    "variability_affirm": 0.863,
+    "variability_mention": 0.98
+   },
+   "input_periodic_share": 0.623,
+   "periodic_claims_on_periodic_input": 0.721,
+   "mean_words": 113.1,
+   "seconds_per_window": 4.86,
+   "vs_real": {
+    "pairs": 400,
+    "answer_changed": 0.328,
+    "right_only_real": 47,
+    "right_only_here": 46
+   }
+  }
+ },
+ "reference_rationales": {
+  "selected": {
+   "periodic_affirm": 0.527,
+   "periodic_mention": 0.787,
+   "order_affirm": 0.055,
+   "order_mention": 0.087,
+   "spike_affirm": 0.608,
+   "spike_mention": 0.905,
+   "variability_affirm": 0.855,
+   "variability_mention": 0.993
+  },
+  "all_test": {
+   "periodic_affirm": 0.465,
+   "periodic_mention": 0.765,
+   "order_affirm": 0.072,
+   "order_mention": 0.102,
+   "spike_affirm": 0.543,
+   "spike_mention": 0.907,
+   "variability_affirm": 0.832,
+   "variability_mention": 0.986
+  }
+ },
+ "claim_regex": {
+  "periodic": "\\b(periodic\\w*|oscillat\\w*|rhythm\\w*|cyclic\\w*)",
+  "order": "\\b(initially|followed by|then|thereafter|subsequently|afterwards?|before|after|later|eventually|towards? the end|at the (beginning|start|end)|beginning|transition\\w*)\\b",
+  "spike": "\\b(spike\\w*|peak\\w*)",
+  "variability": "\\b(variab\\w*|fluctuat\\w*)"
+ },
+ "periodic_acf_threshold": 0.5
+}

@@ -20,6 +20,7 @@ The run writes run.pid to --out, so walkthrough.py can watch a run started here.
 """
 
 import argparse
+import dataclasses
 import json
 import os
 import random
@@ -129,12 +130,21 @@ def evaluate(model, pairs: list[tuple[str, Example]], path: Path) -> dict:
         with _autocast(model):
             output = model.generate(example.series, example.evaluated_question(), max_new_tokens=64)
         rows.append({"path": trace, "answer": example.answer,
-                     "prediction": chosen_option(output, example.options), "output": output})
+                     # NOTE: a question without options (a number) counts the output that states the answer
+                     "prediction": chosen_option(output, example.options or [example.answer]), "output": output})
         if index % 50 == 0:
             print(json.dumps({"evaluated": index, "of": len(pairs), **rows[-1]}), flush=True)
     path.write_text("".join(json.dumps(r) + "\n" for r in rows))
     answers, predictions = [r["answer"] for r in rows], [r["prediction"] for r in rows]
     return {**score(answers, predictions), "interval_95": interval(answers, [predictions])}
+
+
+def shuffled(pairs: list[tuple[str, Example]]) -> list[tuple[str, Example]]:
+    """The same questions with the Bins of each Snapshot in a random order: one permutation for all its Channels,
+    so the order of time is gone and the values stay. A model that scores the same here does not use time order."""
+    order = np.random.default_rng(0).permutation(len(pairs[0][1].series[0].values))
+    return [(path, dataclasses.replace(e, series=[dataclasses.replace(s, values=[s.values[i] for i in order]) for s in e.series]))
+            for path, e in pairs]
 
 
 def main():
@@ -144,6 +154,8 @@ def main():
     p.add_argument("--out", default="runs/flamingo")
     p.add_argument("--epochs", type=int, default=3)
     p.add_argument("--limit", type=int, default=0, help="random N examples per split (debugging only)")
+    p.add_argument("--seed", type=int, default=0, help="training order and option shuffles")
+    p.add_argument("--skip-before", action="store_true", help="do not score the base model (the same in every run)")
     args = p.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -169,12 +181,14 @@ def main():
     if not torch.cuda.is_available():  # NOTE: utils._load would fall back to a float32 CPU run that takes days
         raise SystemExit("no CUDA GPU: install a CUDA build of torch")
     model = OpenTSLM.load(args.base_model).model
-    torch.manual_seed(0)
-    report("before", evaluate(model, split["test"], out / "predictions_before.jsonl"))
+    torch.manual_seed(args.seed)
+    if not args.skip_before:
+        report("before", evaluate(model, split["test"], out / "predictions_before.jsonl"))
     record_losses(model, out / "losses.jsonl")
-    train(model, train_examples, [e for _, e in split["validation"]], epochs=args.epochs, accumulation=8, seed=0)
+    train(model, train_examples, [e for _, e in split["validation"]], epochs=args.epochs, accumulation=8, seed=args.seed)
     OpenTSLM(model).save(str(out / "model"))  # NOTE: before the last evaluation, so a crash there keeps the weights
     report("after", evaluate(model, split["test"], out / "predictions_after.jsonl"))
+    report("after_shuffled", evaluate(model, shuffled(split["test"]), out / "predictions_after_shuffled.jsonl"))
 
 
 if __name__ == "__main__":

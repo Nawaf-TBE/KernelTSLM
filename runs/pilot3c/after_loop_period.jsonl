@@ -1,0 +1,30 @@
+{"path": "kernels/kernelbench/_out/L1_P99/dt-fp32_s42/input/tensor_input.npz", "answer": "1-9", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P58/input/tensor_input.npz", "answer": "11-12", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P82/input/tensor_input.npz", "answer": "10", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P20/input/tensor_input.npz", "answer": "10", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L2_P46/input/tensor_input.npz", "answer": "1-9", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L2_P67/input/tensor_input.npz", "answer": "11-12", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P68/input/tensor_input.npz", "answer": "13 or more", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P99/dt-bf16_s42/input/tensor_input.npz", "answer": "1-9", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P99/dt-fp16_s123/input/tensor_input.npz", "answer": "1-9", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P30/dt-bf16_s123/input/tensor_input.npz", "answer": "10", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P30/dt-fp32_s123/input/tensor_input.npz", "answer": "13 or more", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P30/dt-fp16_s123/input/tensor_input.npz", "answer": "10", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P35/input/tensor_input.npz", "answer": "11-12", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L2_P34/input/tensor_input.npz", "answer": "11-12", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P45/dt-fp16_s123/input/tensor_input.npz", "answer": "1-9", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P20/dt-bf16_s123/input/tensor_input.npz", "answer": "1-9", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P9/input/tensor_input.npz", "answer": "10", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L2_P37/input/tensor_input.npz", "answer": "11-12", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P88/dt-fp16_s42/input/tensor_input.npz", "answer": "1-9", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P53/dt-fp16_s42/input/tensor_input.npz", "answer": "10", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P47/dt-fp16_s123/input/tensor_input.npz", "answer": "1-9", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P53/dt-bf16_s123/input/tensor_input.npz", "answer": "10", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P23/dt-fp32_s42/input/tensor_input.npz", "answer": "11-12", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P63/input/tensor_input.npz", "answer": "11-12", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P45/input/tensor_input.npz", "answer": "10", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P30/dt-fp16_s42/input/tensor_input.npz", "answer": "1-9", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P53/dt-bf16_s42/input/tensor_input.npz", "answer": "10", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L2_P47/input/tensor_input.npz", "answer": "1-9", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P47/dt-bf16_s123/input/tensor_input.npz", "answer": "1-9", "prediction": "11-12", "output": "11-12"}
+{"path": "kernels/kernelbench/_out/L1_P53/dt-fp16_s123/input/tensor_input.npz", "answer": "10", "prediction": "11-12", "output": "11-12"}

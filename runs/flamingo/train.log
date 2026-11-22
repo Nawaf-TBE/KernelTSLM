@@ -1,0 +1,30 @@
+{"splits": {"train": {"attention": 56, "matmul": 509, "memory_movement": 29, "loss": 28, "activation": 49, "softmax": 7, "normalization": 27, "pooling": 28, "reduction": 57, "conv": 59, "elementwise": 13}, "validation": {"attention": 18, "matmul": 170, "memory_movement": 10, "activation": 21, "normalization": 14, "pooling": 7, "elementwise": 7, "reduction": 18, "conv": 19, "loss": 7}, "test": {"attention": 18, "matmul": 170, "activation": 21, "softmax": 7, "normalization": 7, "pooling": 7, "reduction": 18, "conv": 20, "loss": 7, "memory_movement": 9, "elementwise": 7}}}
+{"train_oversampled": {"attention": 100, "matmul": 509, "memory_movement": 100, "loss": 100, "activation": 100, "softmax": 100, "normalization": 100, "pooling": 100, "reduction": 100, "conv": 100, "elementwise": 100}}
+{"baselines": {"majority": {"n": 291, "accuracy": 0.584192439862543, "balanced_accuracy": 0.09090909090909091, "macro_f1": 0.06704791954249655, "invalid": 0, "per_class_f1": {"activation": 0.0, "attention": 0.0, "conv": 0.0, "elementwise": 0.0, "loss": 0.0, "matmul": 0.737527114967462, "memory_movement": 0.0, "normalization": 0.0, "pooling": 0.0, "reduction": 0.0, "softmax": 0.0}}, "logistic_regression": {"n": 291, "accuracy": 0.9106529209621993, "balanced_accuracy": 0.7512095747389864, "macro_f1": 0.7112629526851845, "invalid": 0, "per_class_f1": {"activation": 0.8947368421052632, "attention": 0.9, "conv": 0.8780487804878049, "elementwise": 1.0, "loss": 0.56, "matmul": 0.9881656804733728, "memory_movement": 1.0, "normalization": 0.35294117647058826, "pooling": 0.0, "reduction": 1.0, "softmax": 0.25}}}}
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 4441.24it/s]
+The tokenizer you are loading from '/home/mahmood/.cache/huggingface/hub/models--opentime--tslm-nov26/snapshots/5e030b001fb8d4be6d10ebb3a8b9bc3e6ef80983' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The following generation flags are not valid and may be ignored: ['top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+/home/mahmood/hackathon/flamingo/.venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.c:9:10: fatal error: Python.h: No such file or directory
+    9 | #include <Python.h>
+      |          ^~~~~~~~~~
+compilation terminated.
+{"evaluated": 0, "of": 291, "path": "kernels/cutlass_fmha/_out/b2h16_q2048_d128_causal/input/tensor_input.npz", "answer": "attention", "prediction": null, "output": "normal"}
+{"evaluated": 50, "of": 291, "path": "kernels/cutlass_sparse_gemm/_out/m2048_n2048_k8192/input/tensor_input.npz", "answer": "matmul", "prediction": null, "output": "normal"}
+{"evaluated": 100, "of": 291, "path": "kernels/cutlass_ws_overlap/_out/m4096_n4096_k1024_rN_s2_b0/input/tensor_input.npz", "answer": "matmul", "prediction": null, "output": "1"}
+{"evaluated": 150, "of": 291, "path": "kernels/cutlass_ws_overlap/_out/m512_n512_k2048_rN_s4_b0/input/tensor_input.npz", "answer": "matmul", "prediction": null, "output": "normal"}
+{"evaluated": 200, "of": 291, "path": "kernels/kernelbench/_out/L1_P35/dt-bf16_s123/input/tensor_input.npz", "answer": "normalization", "prediction": null, "output": "normal"}
+{"evaluated": 250, "of": 291, "path": "kernels/kernelbench/_out/L1_P99/dt-fp16_s123/input/tensor_input.npz", "answer": "loss", "prediction": null, "output": "normal"}
+{"before": {"n": 291, "accuracy": 0.0, "balanced_accuracy": 0.0, "macro_f1": 0.0, "invalid": 291, "per_class_f1": {"activation": 0.0, "attention": 0.0, "conv": 0.0, "elementwise": 0.0, "loss": 0.0, "matmul": 0.0, "memory_movement": 0.0, "normalization": 0.0, "pooling": 0.0, "reduction": 0.0, "softmax": 0.0}, "interval_95": {"accuracy": [0.0, 0.0], "balanced_accuracy": [0.0, 0.0], "macro_f1": [0.0, 0.0]}}}
+{"epoch": 1, "train_loss": 0.7903229548268668, "val_loss": 0.5189011403663197, "seconds": 579}
+{"best_epoch": 1}
+{"epoch": 2, "train_loss": 0.08601201000106268, "val_loss": 0.4598858922612912, "seconds": 588}
+{"best_epoch": 2}
+{"epoch": 3, "train_loss": 0.02982974514182462, "val_loss": 0.42907629132143416, "seconds": 582}
+{"best_epoch": 3}
+{"evaluated": 0, "of": 291, "path": "kernels/cutlass_fmha/_out/b2h16_q2048_d128_causal/input/tensor_input.npz", "answer": "attention", "prediction": "attention", "output": "attention"}
+{"evaluated": 50, "of": 291, "path": "kernels/cutlass_sparse_gemm/_out/m2048_n2048_k8192/input/tensor_input.npz", "answer": "matmul", "prediction": "matmul", "output": "matmul"}
+{"evaluated": 100, "of": 291, "path": "kernels/cutlass_ws_overlap/_out/m4096_n4096_k1024_rN_s2_b0/input/tensor_input.npz", "answer": "matmul", "prediction": "matmul", "output": "matmul"}
+{"evaluated": 150, "of": 291, "path": "kernels/cutlass_ws_overlap/_out/m512_n512_k2048_rN_s4_b0/input/tensor_input.npz", "answer": "matmul", "prediction": "matmul", "output": "matmul"}
+{"evaluated": 200, "of": 291, "path": "kernels/kernelbench/_out/L1_P35/dt-bf16_s123/input/tensor_input.npz", "answer": "normalization", "prediction": "matmul", "output": "matmul"}
+{"evaluated": 250, "of": 291, "path": "kernels/kernelbench/_out/L1_P99/dt-fp16_s123/input/tensor_input.npz", "answer": "loss", "prediction": "loss", "output": "loss"}
+{"after": {"n": 291, "accuracy": 0.8969072164948454, "balanced_accuracy": 0.7169255581020287, "macro_f1": 0.6924856318680475, "invalid": 0, "per_class_f1": {"activation": 0.65, "attention": 1.0, "conv": 0.9230769230769231, "elementwise": 0.9333333333333333, "loss": 0.7777777777777778, "matmul": 0.976878612716763, "memory_movement": 1.0, "normalization": 0.0, "pooling": 0.0, "reduction": 0.8947368421052632, "softmax": 0.46153846153846156}, "interval_95": {"accuracy": [0.8591065292096219, 0.9312714776632303], "balanced_accuracy": [0.6733697058252947, 0.7659114705575549], "macro_f1": [0.6376192984157955, 0.7351896078810001]}}}

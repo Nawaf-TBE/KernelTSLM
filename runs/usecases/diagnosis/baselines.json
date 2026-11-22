@@ -1,0 +1,842 @@
+{
+ "lr_choice_on_validation": {
+  "limiter": {
+   "C": 10.0,
+   "validation_accuracy": 0.904
+  },
+  "try": {
+   "C": 1.0,
+   "validation_accuracy": 0.849
+  }
+ },
+ "reference (self-test)": {
+  "original": {
+   "n": 291,
+   "main": 1.0,
+   "by_type": {
+    "ALU pipe": 1.0,
+    "FMA pipe": 1.0,
+    "barrier stalls": 1.0,
+    "latency": 1.0,
+    "launch gaps": 1.0,
+    "low SM utilization": 1.0,
+    "memory bandwidth": 1.0,
+    "tensor cores": 1.0
+   },
+   "by_class": {
+    "activation": {
+     "n": 21,
+     "limiter_accuracy": 1.0
+    },
+    "attention": {
+     "n": 18,
+     "limiter_accuracy": 1.0
+    },
+    "conv": {
+     "n": 20,
+     "limiter_accuracy": 1.0
+    },
+    "elementwise": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "loss": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "matmul": {
+     "n": 170,
+     "limiter_accuracy": 1.0
+    },
+    "memory_movement": {
+     "n": 9,
+     "limiter_accuracy": 1.0
+    },
+    "normalization": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "pooling": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "reduction": {
+     "n": 18,
+     "limiter_accuracy": 1.0
+    },
+    "softmax": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    }
+   },
+   "limiter_balanced_accuracy": 1.0,
+   "try_accuracy": 1.0,
+   "claim_precision": 1.0,
+   "claim_precision_by_form": {
+    "level": 1.0,
+    "idle": 1.0,
+    "rank": 1.0
+   },
+   "claims_per_row": 1.8041237113402062,
+   "unparsable": 0.0,
+   "unparsed_sentences": 0.0,
+   "conditions": {
+    "original": 291
+   }
+  },
+  "shuffled": {
+   "n": 291,
+   "main": 1.0,
+   "by_type": {
+    "ALU pipe": 1.0,
+    "FMA pipe": 1.0,
+    "barrier stalls": 1.0,
+    "latency": 1.0,
+    "launch gaps": 1.0,
+    "low SM utilization": 1.0,
+    "memory bandwidth": 1.0,
+    "tensor cores": 1.0
+   },
+   "by_class": {
+    "activation": {
+     "n": 21,
+     "limiter_accuracy": 1.0
+    },
+    "attention": {
+     "n": 18,
+     "limiter_accuracy": 1.0
+    },
+    "conv": {
+     "n": 20,
+     "limiter_accuracy": 1.0
+    },
+    "elementwise": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "loss": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "matmul": {
+     "n": 170,
+     "limiter_accuracy": 1.0
+    },
+    "memory_movement": {
+     "n": 9,
+     "limiter_accuracy": 1.0
+    },
+    "normalization": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "pooling": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "reduction": {
+     "n": 18,
+     "limiter_accuracy": 1.0
+    },
+    "softmax": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    }
+   },
+   "limiter_balanced_accuracy": 1.0,
+   "try_accuracy": 1.0,
+   "claim_precision": 1.0,
+   "claim_precision_by_form": {
+    "level": 1.0,
+    "idle": 1.0,
+    "rank": 1.0
+   },
+   "claims_per_row": 1.6357388316151202,
+   "unparsable": 0.0,
+   "unparsed_sentences": 0.0,
+   "conditions": {
+    "shuffled": 291
+   }
+  },
+  "reversed": {
+   "n": 291,
+   "main": 1.0,
+   "by_type": {
+    "ALU pipe": 1.0,
+    "FMA pipe": 1.0,
+    "barrier stalls": 1.0,
+    "latency": 1.0,
+    "launch gaps": 1.0,
+    "low SM utilization": 1.0,
+    "memory bandwidth": 1.0,
+    "tensor cores": 1.0
+   },
+   "by_class": {
+    "activation": {
+     "n": 21,
+     "limiter_accuracy": 1.0
+    },
+    "attention": {
+     "n": 18,
+     "limiter_accuracy": 1.0
+    },
+    "conv": {
+     "n": 20,
+     "limiter_accuracy": 1.0
+    },
+    "elementwise": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "loss": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "matmul": {
+     "n": 170,
+     "limiter_accuracy": 1.0
+    },
+    "memory_movement": {
+     "n": 9,
+     "limiter_accuracy": 1.0
+    },
+    "normalization": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "pooling": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "reduction": {
+     "n": 18,
+     "limiter_accuracy": 1.0
+    },
+    "softmax": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    }
+   },
+   "limiter_balanced_accuracy": 1.0,
+   "try_accuracy": 1.0,
+   "claim_precision": 1.0,
+   "claim_precision_by_form": {
+    "level": 1.0,
+    "idle": 1.0,
+    "rank": 1.0
+   },
+   "claims_per_row": 1.8041237113402062,
+   "unparsable": 0.0,
+   "unparsed_sentences": 0.0,
+   "conditions": {
+    "reversed": 291
+   }
+  }
+ },
+ "random limiter and step": {
+  "original": {
+   "n": 291,
+   "main": 0.10996563573883161,
+   "by_type": {
+    "ALU pipe": 0.0,
+    "FMA pipe": 0.2222222222222222,
+    "barrier stalls": 0.5,
+    "latency": 0.12,
+    "launch gaps": 0.13333333333333333,
+    "low SM utilization": 0.057692307692307696,
+    "memory bandwidth": 0.06153846153846154,
+    "tensor cores": 0.1452991452991453
+   },
+   "by_class": {
+    "activation": {
+     "n": 21,
+     "limiter_accuracy": 0.0
+    },
+    "attention": {
+     "n": 18,
+     "limiter_accuracy": 0.05555555555555555
+    },
+    "conv": {
+     "n": 20,
+     "limiter_accuracy": 0.2
+    },
+    "elementwise": {
+     "n": 7,
+     "limiter_accuracy": 0.14285714285714285
+    },
+    "loss": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    },
+    "matmul": {
+     "n": 170,
+     "limiter_accuracy": 0.1411764705882353
+    },
+    "memory_movement": {
+     "n": 9,
+     "limiter_accuracy": 0.0
+    },
+    "normalization": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    },
+    "pooling": {
+     "n": 7,
+     "limiter_accuracy": 0.14285714285714285
+    },
+    "reduction": {
+     "n": 18,
+     "limiter_accuracy": 0.05555555555555555
+    },
+    "softmax": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    }
+   },
+   "limiter_balanced_accuracy": 0.15501068376068378,
+   "try_accuracy": 0.0859106529209622,
+   "claim_precision": null,
+   "claim_precision_by_form": {
+    "level": null,
+    "idle": null,
+    "rank": null
+   },
+   "claims_per_row": 0.0,
+   "unparsable": 0.0,
+   "unparsed_sentences": 0.0,
+   "conditions": {
+    "original": 291
+   }
+  }
+ },
+ "majority limiter and step (train)": {
+  "original": {
+   "n": 291,
+   "main": 0.4020618556701031,
+   "by_type": {
+    "ALU pipe": 0.0,
+    "FMA pipe": 0.0,
+    "barrier stalls": 0.0,
+    "latency": 0.0,
+    "launch gaps": 0.0,
+    "low SM utilization": 0.0,
+    "memory bandwidth": 0.0,
+    "tensor cores": 1.0
+   },
+   "by_class": {
+    "activation": {
+     "n": 21,
+     "limiter_accuracy": 0.0
+    },
+    "attention": {
+     "n": 18,
+     "limiter_accuracy": 0.6111111111111112
+    },
+    "conv": {
+     "n": 20,
+     "limiter_accuracy": 0.15
+    },
+    "elementwise": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    },
+    "loss": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    },
+    "matmul": {
+     "n": 170,
+     "limiter_accuracy": 0.6058823529411764
+    },
+    "memory_movement": {
+     "n": 9,
+     "limiter_accuracy": 0.0
+    },
+    "normalization": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    },
+    "pooling": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    },
+    "reduction": {
+     "n": 18,
+     "limiter_accuracy": 0.0
+    },
+    "softmax": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    }
+   },
+   "limiter_balanced_accuracy": 0.125,
+   "try_accuracy": 0.4020618556701031,
+   "claim_precision": null,
+   "claim_precision_by_form": {
+    "level": null,
+    "idle": null,
+    "rank": null
+   },
+   "claims_per_row": 0.0,
+   "unparsable": 0.0,
+   "unparsed_sentences": 0.0,
+   "conditions": {
+    "original": 291
+   }
+  }
+ },
+ "workload class -> train majority (true class)": {
+  "original": {
+   "n": 291,
+   "main": 0.570446735395189,
+   "by_type": {
+    "ALU pipe": 0.16666666666666666,
+    "FMA pipe": 0.0,
+    "barrier stalls": 0.0,
+    "latency": 0.0,
+    "launch gaps": 0.0,
+    "low SM utilization": 0.28846153846153844,
+    "memory bandwidth": 0.5538461538461539,
+    "tensor cores": 0.9743589743589743
+   },
+   "by_class": {
+    "activation": {
+     "n": 21,
+     "limiter_accuracy": 0.6666666666666666
+    },
+    "attention": {
+     "n": 18,
+     "limiter_accuracy": 0.6111111111111112
+    },
+    "conv": {
+     "n": 20,
+     "limiter_accuracy": 0.45
+    },
+    "elementwise": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "loss": {
+     "n": 7,
+     "limiter_accuracy": 0.42857142857142855
+    },
+    "matmul": {
+     "n": 170,
+     "limiter_accuracy": 0.6058823529411764
+    },
+    "memory_movement": {
+     "n": 9,
+     "limiter_accuracy": 0.8888888888888888
+    },
+    "normalization": {
+     "n": 7,
+     "limiter_accuracy": 0.42857142857142855
+    },
+    "pooling": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    },
+    "reduction": {
+     "n": 18,
+     "limiter_accuracy": 0.05555555555555555
+    },
+    "softmax": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    }
+   },
+   "limiter_balanced_accuracy": 0.24791666666666667,
+   "try_accuracy": 0.5567010309278351,
+   "claim_precision": null,
+   "claim_precision_by_form": {
+    "level": null,
+    "idle": null,
+    "rank": null
+   },
+   "claims_per_row": 0.0,
+   "unparsable": 0.0,
+   "unparsed_sentences": 0.0,
+   "conditions": {
+    "original": 291
+   }
+  }
+ },
+ "workload class -> train majority (MiniRocket class)": {
+  "original": {
+   "n": 291,
+   "main": 0.5738831615120275,
+   "by_type": {
+    "ALU pipe": 0.16666666666666666,
+    "FMA pipe": 0.0,
+    "barrier stalls": 0.0,
+    "latency": 0.0,
+    "launch gaps": 0.0,
+    "low SM utilization": 0.28846153846153844,
+    "memory bandwidth": 0.5692307692307692,
+    "tensor cores": 0.9743589743589743
+   },
+   "by_class": {
+    "activation": {
+     "n": 21,
+     "limiter_accuracy": 0.6666666666666666
+    },
+    "attention": {
+     "n": 18,
+     "limiter_accuracy": 0.6111111111111112
+    },
+    "conv": {
+     "n": 20,
+     "limiter_accuracy": 0.45
+    },
+    "elementwise": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "loss": {
+     "n": 7,
+     "limiter_accuracy": 0.42857142857142855
+    },
+    "matmul": {
+     "n": 170,
+     "limiter_accuracy": 0.611764705882353
+    },
+    "memory_movement": {
+     "n": 9,
+     "limiter_accuracy": 0.8888888888888888
+    },
+    "normalization": {
+     "n": 7,
+     "limiter_accuracy": 0.42857142857142855
+    },
+    "pooling": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    },
+    "reduction": {
+     "n": 18,
+     "limiter_accuracy": 0.05555555555555555
+    },
+    "softmax": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    }
+   },
+   "limiter_balanced_accuracy": 0.2498397435897436,
+   "try_accuracy": 0.5463917525773195,
+   "claim_precision": null,
+   "claim_precision_by_form": {
+    "level": null,
+    "idle": null,
+    "rank": null
+   },
+   "claims_per_row": 0.0,
+   "unparsable": 0.0,
+   "unparsed_sentences": 0.0,
+   "conditions": {
+    "original": 291
+   }
+  }
+ },
+ "LR on text-line mean/std (48 features)": {
+  "original": {
+   "n": 291,
+   "main": 0.9381443298969072,
+   "by_type": {
+    "ALU pipe": 0.6666666666666666,
+    "FMA pipe": 0.7777777777777778,
+    "barrier stalls": 0.5,
+    "latency": 0.76,
+    "launch gaps": 0.9333333333333333,
+    "low SM utilization": 0.9807692307692307,
+    "memory bandwidth": 0.9538461538461539,
+    "tensor cores": 0.9829059829059829
+   },
+   "by_class": {
+    "activation": {
+     "n": 21,
+     "limiter_accuracy": 1.0
+    },
+    "attention": {
+     "n": 18,
+     "limiter_accuracy": 1.0
+    },
+    "conv": {
+     "n": 20,
+     "limiter_accuracy": 0.8
+    },
+    "elementwise": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "loss": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "matmul": {
+     "n": 170,
+     "limiter_accuracy": 0.9411764705882353
+    },
+    "memory_movement": {
+     "n": 9,
+     "limiter_accuracy": 1.0
+    },
+    "normalization": {
+     "n": 7,
+     "limiter_accuracy": 0.42857142857142855
+    },
+    "pooling": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "reduction": {
+     "n": 18,
+     "limiter_accuracy": 1.0
+    },
+    "softmax": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    }
+   },
+   "limiter_balanced_accuracy": 0.8194123931623931,
+   "try_accuracy": 0.9381443298969072,
+   "claim_precision": null,
+   "claim_precision_by_form": {
+    "level": null,
+    "idle": null,
+    "rank": null
+   },
+   "claims_per_row": 0.0,
+   "unparsable": 0.0,
+   "unparsed_sentences": 0.0,
+   "conditions": {
+    "original": 291
+   }
+  },
+  "shuffled": {
+   "n": 291,
+   "main": 0.4020618556701031,
+   "by_type": {
+    "ALU pipe": 0.5,
+    "FMA pipe": 0.4444444444444444,
+    "barrier stalls": 0.0,
+    "latency": 0.16,
+    "launch gaps": 0.9333333333333333,
+    "low SM utilization": 0.4230769230769231,
+    "memory bandwidth": 0.36923076923076925,
+    "tensor cores": 0.39316239316239315
+   },
+   "by_class": {
+    "activation": {
+     "n": 21,
+     "limiter_accuracy": 0.6666666666666666
+    },
+    "attention": {
+     "n": 18,
+     "limiter_accuracy": 0.05555555555555555
+    },
+    "conv": {
+     "n": 20,
+     "limiter_accuracy": 0.45
+    },
+    "elementwise": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "loss": {
+     "n": 7,
+     "limiter_accuracy": 0.5714285714285714
+    },
+    "matmul": {
+     "n": 170,
+     "limiter_accuracy": 0.3176470588235294
+    },
+    "memory_movement": {
+     "n": 9,
+     "limiter_accuracy": 1.0
+    },
+    "normalization": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "pooling": {
+     "n": 7,
+     "limiter_accuracy": 0.42857142857142855
+    },
+    "reduction": {
+     "n": 18,
+     "limiter_accuracy": 0.3333333333333333
+    },
+    "softmax": {
+     "n": 7,
+     "limiter_accuracy": 0.42857142857142855
+    }
+   },
+   "limiter_balanced_accuracy": 0.7504405034324942,
+   "try_accuracy": 0.3745704467353952,
+   "claim_precision": null,
+   "claim_precision_by_form": {
+    "level": null,
+    "idle": null,
+    "rank": null
+   },
+   "claims_per_row": 0.0,
+   "unparsable": 0.0,
+   "unparsed_sentences": 0.0,
+   "conditions": {
+    "shuffled": 291
+   }
+  }
+ },
+ "garbage": {
+  "original": {
+   "n": 291,
+   "main": 0.0,
+   "by_type": {
+    "ALU pipe": 0.0,
+    "FMA pipe": 0.0,
+    "barrier stalls": 0.0,
+    "latency": 0.0,
+    "launch gaps": 0.0,
+    "low SM utilization": 0.0,
+    "memory bandwidth": 0.0,
+    "tensor cores": 0.0
+   },
+   "by_class": {
+    "activation": {
+     "n": 21,
+     "limiter_accuracy": 0.0
+    },
+    "attention": {
+     "n": 18,
+     "limiter_accuracy": 0.0
+    },
+    "conv": {
+     "n": 20,
+     "limiter_accuracy": 0.0
+    },
+    "elementwise": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    },
+    "loss": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    },
+    "matmul": {
+     "n": 170,
+     "limiter_accuracy": 0.0
+    },
+    "memory_movement": {
+     "n": 9,
+     "limiter_accuracy": 0.0
+    },
+    "normalization": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    },
+    "pooling": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    },
+    "reduction": {
+     "n": 18,
+     "limiter_accuracy": 0.0
+    },
+    "softmax": {
+     "n": 7,
+     "limiter_accuracy": 0.0
+    }
+   },
+   "limiter_balanced_accuracy": 0.0,
+   "try_accuracy": 0.0,
+   "claim_precision": null,
+   "claim_precision_by_form": {
+    "level": null,
+    "idle": null,
+    "rank": null
+   },
+   "claims_per_row": 0.0,
+   "unparsable": 1.0,
+   "unparsed_sentences": 1.0,
+   "conditions": {
+    "original": 291
+   }
+  }
+ },
+ "original reference on shuffled input (order-blind)": {
+  "shuffled": {
+   "n": 291,
+   "main": 0.39862542955326463,
+   "by_type": {
+    "ALU pipe": 0.16666666666666666,
+    "FMA pipe": 0.4444444444444444,
+    "barrier stalls": 0.5,
+    "latency": 0.08,
+    "launch gaps": 1.0,
+    "low SM utilization": 0.4230769230769231,
+    "memory bandwidth": 0.38461538461538464,
+    "tensor cores": 0.39316239316239315
+   },
+   "by_class": {
+    "activation": {
+     "n": 21,
+     "limiter_accuracy": 0.6666666666666666
+    },
+    "attention": {
+     "n": 18,
+     "limiter_accuracy": 0.05555555555555555
+    },
+    "conv": {
+     "n": 20,
+     "limiter_accuracy": 0.55
+    },
+    "elementwise": {
+     "n": 7,
+     "limiter_accuracy": 1.0
+    },
+    "loss": {
+     "n": 7,
+     "limiter_accuracy": 0.5714285714285714
+    },
+    "matmul": {
+     "n": 170,
+     "limiter_accuracy": 0.3235294117647059
+    },
+    "memory_movement": {
+     "n": 9,
+     "limiter_accuracy": 1.0
+    },
+    "normalization": {
+     "n": 7,
+     "limiter_accuracy": 0.42857142857142855
+    },
+    "pooling": {
+     "n": 7,
+     "limiter_accuracy": 0.42857142857142855
+    },
+    "reduction": {
+     "n": 18,
+     "limiter_accuracy": 0.3333333333333333
+    },
+    "softmax": {
+     "n": 7,
+     "limiter_accuracy": 0.42857142857142855
+    }
+   },
+   "limiter_balanced_accuracy": 0.8848684210526316,
+   "try_accuracy": 0.39862542955326463,
+   "claim_precision": 0.8457142857142858,
+   "claim_precision_by_form": {
+    "level": 1.0,
+    "idle": 0.024,
+    "rank": 1.0
+   },
+   "claims_per_row": 1.8041237113402062,
+   "unparsable": 0.0,
+   "unparsed_sentences": 0.0,
+   "conditions": {
+    "shuffled": 291
+   }
+  }
+ }
+}

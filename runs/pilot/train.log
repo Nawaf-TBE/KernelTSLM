@@ -1,0 +1,46 @@
+{"train": {"class": 1509, "class_switch": 46, "kernel_edge": 509, "bin_state": 292, "peak_order": 400, "which_range": 143, "onset": 288, "loop_order": 9, "iteration_at_bin": 152, "next_op": 25, "prev_op": 19, "longest_gap_len": 52, "next_incl_idle": 24, "loop_period": 41}}
+{"majority": {"bin_state": 0.5666666666666667, "class_switch": 0.3, "iteration_at_bin": 0.06666666666666667, "kernel_edge": 0.3, "longest_gap_len": 0.06666666666666667, "loop_order": 0.0, "loop_period": 0.1, "next_incl_idle": 0.5, "next_op": 0.2, "onset": 0.43333333333333335, "peak_order": 0.43333333333333335, "prev_op": 0.13333333333333333, "which_range": 0.3333333333333333}}
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 4457.76it/s]
+The tokenizer you are loading from '/home/mahmood/.cache/huggingface/hub/models--opentime--tslm-nov26/snapshots/5e030b001fb8d4be6d10ebb3a8b9bc3e6ef80983' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+/home/mahmood/hackathon/flamingo/.venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.c:9:10: fatal error: Python.h: No such file or directory
+    9 | #include <Python.h>
+      |          ^~~~~~~~~~
+compilation terminated.
+{"epoch": 1, "train_loss": 0.6285713063560175, "val_loss": 0.36700544305382793, "seconds": 1356}
+{"best_epoch": 1}
+The following generation flags are not valid and may be ignored: ['top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+{"evaluated": 0, "of": 291, "path": "kernels/cutlass_fmha/_out/b2h16_q2048_d128_causal/input/tensor_input.npz", "answer": "attention", "prediction": "attention", "output": "attention"}
+{"evaluated": 50, "of": 291, "path": "kernels/cutlass_sparse_gemm/_out/m2048_n2048_k8192/input/tensor_input.npz", "answer": "matmul", "prediction": "matmul", "output": "matmul"}
+{"evaluated": 100, "of": 291, "path": "kernels/cutlass_ws_overlap/_out/m4096_n4096_k1024_rN_s2_b0/input/tensor_input.npz", "answer": "matmul", "prediction": "matmul", "output": "matmul"}
+{"evaluated": 150, "of": 291, "path": "kernels/cutlass_ws_overlap/_out/m512_n512_k2048_rN_s4_b0/input/tensor_input.npz", "answer": "matmul", "prediction": "matmul", "output": "matmul"}
+{"evaluated": 200, "of": 291, "path": "kernels/kernelbench/_out/L1_P35/dt-bf16_s123/input/tensor_input.npz", "answer": "normalization", "prediction": "matmul", "output": "matmul"}
+{"evaluated": 250, "of": 291, "path": "kernels/kernelbench/_out/L1_P99/dt-fp16_s123/input/tensor_input.npz", "answer": "loss", "prediction": "loss", "output": "loss"}
+{"class_test": {"n": 291, "accuracy": 0.8625429553264605, "balanced_accuracy": 0.7135302605890842, "macro_f1": 0.6882584221661446, "invalid": 0, "per_class_f1": {"activation": 0.6, "attention": 0.9714285714285714, "conv": 0.8, "elementwise": 1.0, "loss": 0.5833333333333334, "matmul": 0.9590643274853801, "memory_movement": 1.0, "normalization": 0.35294117647058826, "pooling": 0.0, "reduction": 0.7586206896551724, "softmax": 0.5454545454545454}, "interval_95": {"accuracy": [0.8212199312714776, 0.9037800687285223], "balanced_accuracy": [0.6518819920424199, 0.7811262407748416], "macro_f1": [0.6173531596231092, 0.746674810523865]}}}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L1_P35/dt-fp32_s42/input/tensor_input.npz", "answer": "idle", "prediction": "normalization", "output": "normalization"}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L2_P75/input/tensor_input.npz", "answer": "C", "prediction": "C", "output": "C"}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L1_P30/dt-bf16_s42/input/tensor_input.npz", "answer": "26", "prediction": "26", "output": "26"}
+{"evaluated": 0, "of": 30, "path": "kernels/cutlass_sparse_gemm/_out/m2048_n2048_k8192/input/tensor_input.npz", "answer": "C", "prediction": "C", "output": "C"}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L1_P71/input/tensor_input.npz", "answer": "19", "prediction": null, "output": "1"}
+{"evaluated": 0, "of": 16, "path": "kernels/kernelbench/_out/L2_P47/input/tensor_input.npz", "answer": "conv -> activation", "prediction": null, "output": "conv -> activation -> conv"}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L1_P53/dt-bf16_s42/input/tensor_input.npz", "answer": "10", "prediction": null, "output": "11"}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L2_P1/input/tensor_input.npz", "answer": "activation", "prediction": "an idle gap", "output": "an idle gap"}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L2_P67/input/tensor_input.npz", "answer": "pooling", "prediction": "pooling", "output": "pooling"}
+{"evaluated": 0, "of": 30, "path": "kernels/cutlass_ws_overlap/_out/m512_n512_k4096_rN_s2_b0/input/tensor_input.npz", "answer": "DRAM Read Bandwidth [Throughput %]", "prediction": "at about the same time", "output": "at about the same time"}
+{"evaluated": 0, "of": 30, "path": "kernels/cutlass_ws_overlap/_out/m1024_n4096_k2048_rM_s1_b1/input/tensor_input.npz", "answer": "at about the same time", "prediction": "at about the same time", "output": "at about the same time"}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L2_P6/input/tensor_input.npz", "answer": "conv", "prediction": "pooling", "output": "pooling"}
+{"evaluated": 0, "of": 30, "path": "kernels/cutlass_ws_overlap/_out/m1024_n4096_k2048_rH_s4_b1/input/tensor_input.npz", "answer": "C", "prediction": "C", "output": "C"}
+{"after": {"bin_state": 0.5333333333333333, "class_switch": 0.3, "iteration_at_bin": 0.23333333333333334, "kernel_edge": 0.3, "longest_gap_len": 0.03333333333333333, "loop_order": 0.375, "loop_period": 0.13333333333333333, "next_incl_idle": 0.5, "next_op": 0.6333333333333333, "onset": 0.4, "peak_order": 0.36666666666666664, "prev_op": 0.5, "which_range": 0.4}}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L1_P35/dt-fp32_s42/input/tensor_input.npz", "answer": "idle", "prediction": "normalization", "output": "normalization"}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L2_P75/input/tensor_input.npz", "answer": "C", "prediction": "C", "output": "C"}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L1_P30/dt-bf16_s42/input/tensor_input.npz", "answer": "26", "prediction": "26", "output": "26"}
+{"evaluated": 0, "of": 30, "path": "kernels/cutlass_sparse_gemm/_out/m2048_n2048_k8192/input/tensor_input.npz", "answer": "C", "prediction": "C", "output": "C"}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L1_P71/input/tensor_input.npz", "answer": "19", "prediction": null, "output": "1"}
+{"evaluated": 0, "of": 16, "path": "kernels/kernelbench/_out/L2_P47/input/tensor_input.npz", "answer": "conv -> activation", "prediction": null, "output": "conv -> activation: This is the first element in the loop iteration. conv -> activation: This"}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L1_P53/dt-bf16_s42/input/tensor_input.npz", "answer": "10", "prediction": null, "output": "11"}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L2_P1/input/tensor_input.npz", "answer": "activation", "prediction": "an idle gap", "output": "an idle gap"}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L2_P67/input/tensor_input.npz", "answer": "pooling", "prediction": "pooling", "output": "pooling"}
+{"evaluated": 0, "of": 30, "path": "kernels/cutlass_ws_overlap/_out/m512_n512_k4096_rN_s2_b0/input/tensor_input.npz", "answer": "DRAM Read Bandwidth [Throughput %]", "prediction": "DRAM Read Bandwidth [Throughput %]", "output": "DRAM Read Bandwidth [Throughput %]"}
+{"evaluated": 0, "of": 30, "path": "kernels/cutlass_ws_overlap/_out/m1024_n4096_k2048_rM_s1_b1/input/tensor_input.npz", "answer": "at about the same time", "prediction": "at about the same time", "output": "at about the same time"}
+{"evaluated": 0, "of": 30, "path": "kernels/kernelbench/_out/L2_P6/input/tensor_input.npz", "answer": "conv", "prediction": "pooling", "output": "pooling"}
+{"evaluated": 0, "of": 30, "path": "kernels/cutlass_ws_overlap/_out/m1024_n4096_k2048_rH_s4_b1/input/tensor_input.npz", "answer": "C", "prediction": "C", "output": "C"}
+{"shuffled": {"bin_state": 0.5333333333333333, "class_switch": 0.26666666666666666, "iteration_at_bin": 0.1, "kernel_edge": 0.3, "longest_gap_len": 0.03333333333333333, "loop_order": 0.375, "loop_period": 0.06666666666666667, "next_incl_idle": 0.5333333333333333, "next_op": 0.6333333333333333, "onset": 0.36666666666666664, "peak_order": 0.26666666666666666, "prev_op": 0.5333333333333333, "which_range": 0.4666666666666667}}

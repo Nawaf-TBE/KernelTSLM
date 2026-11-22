@@ -1,0 +1,344 @@
+{
+ "args": {
+  "tasks": "diagnosis",
+  "data": "/home/mahmood/hackathon/kernelsight.npz",
+  "rows": "/home/mahmood/hackathon/runs/usecases",
+  "scorers": "/home/mahmood/hackathon/usecases",
+  "donors": "/home/mahmood/hackathon/runs/usecases/classification/donors.json",
+  "add_train": [],
+  "out": "../runs/mt_diag",
+  "base_model": "hf://opentime/tslm-nov26",
+  "epochs": 2,
+  "train_rows": "",
+  "val_rows": "diagnosis=100",
+  "test_rows": "",
+  "controls": "diagnosis=real+shuffled",
+  "val_controls": "diagnosis=real",
+  "before": 0,
+  "save": false,
+  "attend_all": false,
+  "seed": 0,
+  "limit": 0
+ },
+ "complete": true,
+ "rows": {
+  "diagnosis": {
+   "train": {
+    "file": 862,
+    "used": 862
+   },
+   "validation": {
+    "file": 291,
+    "used": 100
+   },
+   "test": {
+    "file": 291,
+    "used": 291
+   }
+  }
+ },
+ "oracle": {
+  "diagnosis": 1.0
+ },
+ "results": {
+  "validation": {
+   "diagnosis": {
+    "real": {
+     "n": 100,
+     "main": 0.72,
+     "by_type": {
+      "ALU pipe": 0.5555555555555556,
+      "FMA pipe": 1.0,
+      "barrier stalls": 1.0,
+      "latency": 0.0,
+      "launch gaps": 0.7692307692307693,
+      "low SM utilization": 0.8,
+      "memory bandwidth": 0.7272727272727273,
+      "tensor cores": 1.0
+     },
+     "by_class": {
+      "activation": {
+       "n": 4,
+       "limiter_accuracy": 1.0
+      },
+      "attention": {
+       "n": 4,
+       "limiter_accuracy": 0.5
+      },
+      "conv": {
+       "n": 6,
+       "limiter_accuracy": 1.0
+      },
+      "elementwise": {
+       "n": 4,
+       "limiter_accuracy": 0.75
+      },
+      "loss": {
+       "n": 4,
+       "limiter_accuracy": 0.75
+      },
+      "matmul": {
+       "n": 58,
+       "limiter_accuracy": 0.6724137931034483
+      },
+      "memory_movement": {
+       "n": 5,
+       "limiter_accuracy": 0.8
+      },
+      "normalization": {
+       "n": 6,
+       "limiter_accuracy": 1.0
+      },
+      "pooling": {
+       "n": 2,
+       "limiter_accuracy": 1.0
+      },
+      "reduction": {
+       "n": 7,
+       "limiter_accuracy": 0.42857142857142855
+      }
+     },
+     "limiter_balanced_accuracy": 0.7315073815073816,
+     "try_accuracy": 0.72,
+     "claim_precision": 0.7469879518072289,
+     "claim_precision_by_form": {
+      "level": 0.832,
+      "idle": 0.515,
+      "rank": 0.571
+     },
+     "claims_per_row": 1.66,
+     "unparsable": 0.0,
+     "unparsed_sentences": 0.0,
+     "conditions": {
+      "original": 100
+     },
+     "seconds": 236.9,
+     "tokens_mean": 46.1,
+     "model": [
+      "trained 2026-11-21T20:53:19 seed 0"
+     ]
+    }
+   }
+  },
+  "test": {
+   "diagnosis": {
+    "real": {
+     "n": 291,
+     "main": 0.7800687285223368,
+     "by_type": {
+      "ALU pipe": 0.5,
+      "FMA pipe": 0.4444444444444444,
+      "barrier stalls": 0.0,
+      "latency": 0.04,
+      "launch gaps": 0.26666666666666666,
+      "low SM utilization": 0.8269230769230769,
+      "memory bandwidth": 0.8461538461538461,
+      "tensor cores": 1.0
+     },
+     "by_class": {
+      "activation": {
+       "n": 21,
+       "limiter_accuracy": 0.7142857142857143
+      },
+      "attention": {
+       "n": 18,
+       "limiter_accuracy": 0.6666666666666666
+      },
+      "conv": {
+       "n": 20,
+       "limiter_accuracy": 0.8
+      },
+      "elementwise": {
+       "n": 7,
+       "limiter_accuracy": 1.0
+      },
+      "loss": {
+       "n": 7,
+       "limiter_accuracy": 0.42857142857142855
+      },
+      "matmul": {
+       "n": 170,
+       "limiter_accuracy": 0.7764705882352941
+      },
+      "memory_movement": {
+       "n": 9,
+       "limiter_accuracy": 0.8888888888888888
+      },
+      "normalization": {
+       "n": 7,
+       "limiter_accuracy": 0.42857142857142855
+      },
+      "pooling": {
+       "n": 7,
+       "limiter_accuracy": 1.0
+      },
+      "reduction": {
+       "n": 18,
+       "limiter_accuracy": 0.9444444444444444
+      },
+      "softmax": {
+       "n": 7,
+       "limiter_accuracy": 1.0
+      }
+     },
+     "limiter_balanced_accuracy": 0.4905235042735042,
+     "try_accuracy": 0.6838487972508591,
+     "claim_precision": 0.8478664192949907,
+     "claim_precision_by_form": {
+      "level": 0.896,
+      "idle": 0.676,
+      "rank": 0.717
+     },
+     "claims_per_row": 1.852233676975945,
+     "unparsable": 0.0,
+     "unparsed_sentences": 0.0,
+     "conditions": {
+      "original": 291
+     },
+     "seconds": 721.4,
+     "tokens_mean": 49.1,
+     "model": [
+      "trained 2026-11-21T20:53:19 seed 0"
+     ]
+    },
+    "shuffled": {
+     "n": 291,
+     "main": 0.35051546391752575,
+     "by_type": {
+      "ALU pipe": 0.5,
+      "FMA pipe": 0.3333333333333333,
+      "barrier stalls": 0.0,
+      "latency": 0.08,
+      "launch gaps": 0.3333333333333333,
+      "low SM utilization": 0.4230769230769231,
+      "memory bandwidth": 0.4153846153846154,
+      "tensor cores": 0.3418803418803419
+     },
+     "by_class": {
+      "activation": {
+       "n": 21,
+       "limiter_accuracy": 0.3333333333333333
+      },
+      "attention": {
+       "n": 18,
+       "limiter_accuracy": 0.0
+      },
+      "conv": {
+       "n": 20,
+       "limiter_accuracy": 0.6
+      },
+      "elementwise": {
+       "n": 7,
+       "limiter_accuracy": 1.0
+      },
+      "loss": {
+       "n": 7,
+       "limiter_accuracy": 0.14285714285714285
+      },
+      "matmul": {
+       "n": 170,
+       "limiter_accuracy": 0.2823529411764706
+      },
+      "memory_movement": {
+       "n": 9,
+       "limiter_accuracy": 0.8888888888888888
+      },
+      "normalization": {
+       "n": 7,
+       "limiter_accuracy": 1.0
+      },
+      "pooling": {
+       "n": 7,
+       "limiter_accuracy": 0.42857142857142855
+      },
+      "reduction": {
+       "n": 18,
+       "limiter_accuracy": 0.3333333333333333
+      },
+      "softmax": {
+       "n": 7,
+       "limiter_accuracy": 0.42857142857142855
+      }
+     },
+     "limiter_balanced_accuracy": 0.5739387871853547,
+     "try_accuracy": 0.32646048109965636,
+     "claim_precision": 0.5516717325227963,
+     "claim_precision_by_form": {
+      "level": 0.83,
+      "idle": 0.0,
+      "rank": 0.615
+     },
+     "claims_per_row": 2.261168384879725,
+     "unparsable": 0.0,
+     "unparsed_sentences": 0.0,
+     "conditions": {
+      "shuffled": 291
+     },
+     "seconds": 839.5,
+     "tokens_mean": 57.5,
+     "model": [
+      "trained 2026-11-21T20:53:19 seed 0"
+     ]
+    }
+   }
+  }
+ },
+ "pending": [
+  "validation/diagnosis/real",
+  "test/diagnosis/real",
+  "test/diagnosis/shuffled"
+ ],
+ "train": {
+  "diagnosis": {
+   "real": 862,
+   "shuffled": 0,
+   "reversed": 0
+  }
+ },
+ "epochs": [
+  {
+   "epoch": 1,
+   "train_loss": 1.0883227334316743,
+   "val_loss": 0.1915105048753321,
+   "seconds": 349,
+   "val_loss_by_task": {
+    "diagnosis": 0.1915
+   }
+  },
+  {
+   "epoch": 2,
+   "train_loss": 0.10483755204089747,
+   "val_loss": 0.13682710432447492,
+   "seconds": 341,
+   "val_loss_by_task": {
+    "diagnosis": 0.1368
+   }
+  }
+ ],
+ "training": {
+  "seconds": 699,
+  "best_epoch": 2,
+  "model": "trained 2026-11-21T20:53:19 seed 0"
+ },
+ "summary": {
+  "validation": {
+   "diagnosis": {
+    "real": 0.72
+   }
+  },
+  "test": {
+   "diagnosis": {
+    "real": 0.78,
+    "shuffled": 0.351
+   }
+  }
+ },
+ "extras": {
+  "validation": {
+   "diagnosis": {}
+  },
+  "test": {
+   "diagnosis": {}
+  }
+ }
+}
